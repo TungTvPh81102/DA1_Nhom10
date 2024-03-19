@@ -22,11 +22,17 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 // Điều hướng
 $action = $_GET['action'] ?? '/';
 
+
+// Kiểm tra xem user đăng nhập chưa
+middleware_auth_check($action);
+
 match ($action) {
     // HOME DASHBOARD
     '/' => homeDashboard(),
 
     // LOGIN HỆ THỐNG
+    'login' => adminLogin(),
+    'logout' => adminLogout(),
 
     // CRUD SETTINGS
 
@@ -36,7 +42,11 @@ match ($action) {
 
 
     // CRUD PRODUCTS
-
+    'products-list' => productsList(),
+    'product-create' => productsCreate(),
+    'product-detail' => productDetail(),
+    'product-update' => productUpdate(),
+    'product-delete' => productDelete(),
 
     // CRUD BRANDS
 
@@ -48,7 +58,12 @@ match ($action) {
 
 
     // CRUD USER
-
+    'users-list' => usersList(),
+    'user-create' => userCreate(),
+    'user-detail' => userDetail(),
+    'user-update' => userUpdate(),
+    'user-delete' => userDelete(),
+    'active' => activeStatus(),
 };
 
 
