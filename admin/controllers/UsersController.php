@@ -31,7 +31,7 @@ function userCreate()
         validateUserCreate($data);
 
         $avatar = $data['avatar'];
-        if (is_array($avatar)) {
+        if (is_array($avatar) && $avatar['size'] > 0) {
             $data['avatar'] = upload_file($avatar, 'uploads/users/');
         }
 
@@ -99,7 +99,7 @@ function userUpdate()
         ];
         validateUserUpdate($id, $data);
         $avatar = $data['avatar'];
-        if (is_array($avatar)) {
+        if (is_array($avatar) && is_array($avatar) && $avatar['size'] > 0) {
             $data['avatar'] = upload_file($avatar, "uploads/users/");
             if (!empty($avatar) && !empty($user['avatar'] && file_exists(PATH_UPLOAD . $user['avatar'])) && !empty($data['avatar'])) {
                 unlink(PATH_UPLOAD . $user['avatar']);
@@ -237,13 +237,13 @@ function validateUserUpdate($id, $data)
         }
     }
 
-    // if (empty(trim($data['phone_number']))) {
-    //     $errors['phone_number']['required'] = 'Vui lòng nhập số điện thoại';
-    // } else {
-    //     if (strlen(trim($data['phone_number'])) > 11) {
-    //         $errors['phone_number']['length'] = 'Số điện thoại chỉ tối đa 11 ký tự';
-    //     }
-    // }
+    if (empty(trim($data['phone_number']))) {
+        $errors['phone_number']['required'] = 'Vui lòng nhập số điện thoại';
+    } else {
+        if (strlen(trim($data['phone_number'])) > 11) {
+            $errors['phone_number']['length'] = 'Số điện thoại chỉ tối đa 11 ký tự';
+        }
+    }
 
     if (empty(trim($data['address']))) {
         $errors['address']['required'] = 'Vui lòng nhập địa chỉ';
@@ -255,7 +255,7 @@ function validateUserUpdate($id, $data)
         $errors['password']['length'] = 'Vui lòng nhập mật khẩu lớn hơn 8 ký tự';
     }
 
-    if (!empty($data['avatar']['name'])) {
+    if (!empty($data['avatar']['name']) && is_array($data['avatar']) && $data['avatar']['size'] > 0) {
         $typeImage = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
         if ($data['avatar']['size'] >= 2 * 1024 * 1024) {
             $errors['avatar']['size'] = 'Ảnh chỉ nhỏ hơn 2M';

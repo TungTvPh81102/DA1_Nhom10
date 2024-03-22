@@ -51,6 +51,7 @@ match ($action) {
     'product-detail' => productDetail(),
     'product-update' => productUpdate(),
     'product-delete' => productDelete(),
+    'gallerys' => gallerys(),
 
     // CRUD BRANDS
     'brands-list' => brandsList(),
