@@ -106,7 +106,9 @@ function validateCategoryCreate($data)
     if (empty(trim($data['name']))) {
         $errors['name']['required'] = 'Vui lòng nhập thông tin';
     } else if (strlen(trim($data['name'])) > 20) {
-        $errors['name']['length'] = 'Vui lòng nhập độ dài tối đa 20 ký tự';
+        $errors['name']['length'] = 'Vui lòng nhập độ dài tối đa 50 ký tự';
+    } else if (!checkUniqueName('categories', $data['name'])) {
+        $errors['name']['unique'] = 'Tên category đã tồn tại, vui lòng nhập tên khác';
     }
 }
 
@@ -116,69 +118,11 @@ function validateCategoryUpdate($id, $data)
 
     $errors = [];
 
-    if (empty(trim($data['first_name']))) {
-        $errors['first_name']['required'] = 'Vui lòng nhập thông tin';
-    } else if (strlen(trim($data['first_name'])) > 20) {
-        $errors['first_name']['length'] = 'Vui lòng nhập độ dài tối đa 20 ký tự';
-    }
-
-    if (empty(trim($data['last_name']))) {
-        $errors['last_name']['required'] = 'Vui lòng nhập thông tin';
-    } elseif (strlen(trim($data['last_name'])) > 20) {
-        $errors['last_name']['length'] = 'Vui lòng nhập độ dài tối đa 50 ký tự';
-    }
-
-    if (empty(trim($data['email']))) {
-        $errors['email']['required'] = 'Vui lòng nhập địa chỉ email';
-    } else {
-        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors['email']['emailcheck'] = 'Email nhập vào sai định dạng, vui lòng kiểm tra lại';
-        } else if (!checkUniqueEmailForUpdate('users', $id, $data['email'])) {
-            $errors['email']['unique'] = 'Email đã tồn tại trên hệ thống, vui lòng nhập email khác';
-        }
-    }
-
-    // if (empty(trim($data['phone_number']))) {
-    //     $errors['phone_number']['required'] = 'Vui lòng nhập số điện thoại';
-    // } else {
-    //     if (strlen(trim($data['phone_number'])) > 11) {
-    //         $errors['phone_number']['length'] = 'Số điện thoại chỉ tối đa 11 ký tự';
-    //     }
-    // }
-
-    if (empty(trim($data['address']))) {
-        $errors['address']['required'] = 'Vui lòng nhập địa chỉ';
-    }
-
-    if (empty(trim($data['password']))) {
-        $errors['password']['required'] = 'Vui lòng nhập mật khẩu';
-    } elseif (strlen(trim($data['password'])) < 8) {
-        $errors['password']['length'] = 'Vui lòng nhập mật khẩu lớn hơn 8 ký tự';
-    }
-
-    if (!empty($data['avatar']['name'])) {
-        $typeImage = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
-        if ($data['avatar']['size'] >= 2 * 1024 * 1024) {
-            $errors['avatar']['size'] = 'Ảnh chỉ nhỏ hơn 2M';
-        } else if (!in_array($data['avatar']['type'], $typeImage)) {
-            $errors['avatar']['type'] = 'Ảnh chỉ chấp nhận định dạng file: png, jpg, jpeg, gif';
-        }
-    }
-
-    if ($data['status'] === null) {
-        $errors['status']['required'] = 'Vui lòng chọn trạng thái';
-    } elseif (!in_array($_POST['status'], [0, 1])) {
-        $errors['status']['user'] = 'Trạng thái phải là kích hoặc hoặc không kích hoạt';
-    }
-
-    if ($data['role'] === null) {
-        $errors['role']['required'] = 'Vui lòng chọn vai trò';
-    } elseif (!in_array($data['role'], [0, 1])) {
-        $errors['role']['user'] = 'Vai trò phải là người dùng hoặc admin';
-    }
-    if (!empty($errors)) {
-        $_SESSION['errors'] = $errors;
-        redirect(BASE_URL_ADMIN . "?action=user-update&id=" . $id);
-        exit();
+    if (empty(trim($data['name']))) {
+        $errors['name']['required'] = 'Vui lòng nhập thông tin';
+    } else if (strlen(trim($data['name'])) > 20) {
+        $errors['name']['length'] = 'Vui lòng nhập độ dài tối đa 50 ký tự';
+    } else if (!checkUniqueNameForUpdate('categories', $id, $data['name'])) {
+        $errors['name']['unique'] = 'Tên category đã tồn tại, vui lòng nhập tên khác';
     }
 }
