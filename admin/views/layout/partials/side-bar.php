@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript: void(0);">
+                    <a href="<?= BASE_URL_ADMIN ?>?action=orders-list">
                         <i class="bx bx-store"></i>
                         <span key="t-ecommerce">Quản lý đơn hàng</span>
                     </a>
