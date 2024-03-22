@@ -28,14 +28,13 @@
                                     <div class="col-md-2 col-sm-3 col-4">
                                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                             <?php
-                                            // Chia chuỗi chứa các ảnh thành mảng
-                                            $thumbnails = explode(',', $product['ga_thumbnail']);
                                             foreach ($thumbnails as $key => $thumbnail) :
                                             ?>
                                                 <a class="nav-link <?= ($key == 0) ? 'active' : ''; ?>" id="product-<?php echo $key; ?>-tab" data-bs-toggle="pill" href="#product-<?php echo $key; ?>" role="tab" aria-controls="product-<?php echo $key; ?>" aria-selected="<?= ($key === 0) ? 'true' : 'false'; ?>">
                                                     <img src="<?= BASE_URL . $thumbnail ?>" alt="" class="img-fluid mx-auto d-block rounded">
                                                 </a>
                                             <?php endforeach; ?>
+                                            <select name="" id="" disabled="disabled"></select>
                                         </div>
                                     </div>
                                     <div class="col-md-7 offset-md-1 col-sm-9 col-8">
@@ -48,14 +47,7 @@
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
-                                        <div class="text-center">
-                                            <button type="button" class="btn btn-primary waves-effect waves-light mt-2 me-1">
-                                                <i class="bx bx-cart me-2"></i> Add to cart
-                                            </button>
-                                            <button type="button" class="btn btn-success waves-effect  mt-2 waves-light">
-                                                <i class="bx bx-shopping-bag me-2"></i>Buy now
-                                            </button>
-                                        </div>
+
                                     </div>
                                 </div>
 
@@ -87,28 +79,47 @@
                                 <p class="text-muted mb-4">
                                     <?= $product['p_over_view'] ?>
                                 </p>
-                                <div class="product-size">
-                                    <h5 class="font-size-15">Size :</h5>
-                                    <?php foreach ($productSize as $size) : ?>
-                                        <input type="radio" name="sizes[]" id="" value="<?= $size['pa_size_id'] ?>" checked>
-                                        <!-- <a href="javascript: void(0);" class="active"> -->
-                                        <p class="btn btn-info"><?= $size['pz_name'] ?></p>
-                                        <!-- </a> -->
-                                    <?php endforeach; ?>
-                                </div>
-                                <div class="product-color">
-                                    <h5 class="font-size-15">Color :</h5>
-                                    <?php foreach ($productColor as $color) : ?>
-                                        <a href="javascript: void(0);" class="active">
-                                            <input type="radio" name="color[]" id="" value="<?= $color['pa_color_id'] ?>">
-                                            <div class="product-color-item border rounded">
-                                                <span style="background-color: <?= $color['pc_color'] ?>; width: 50px; height:50px;" class="btn"> </span>
-                                            </div>
-                                            <p><?= $color['pc_name'] ?></p>
-                                        </a>
-                                    <?php endforeach; ?>
-                                </div>
-
+                                <form action="?action=add-cart" method="post">
+                                    <div class="d-flex">
+                                        <div class="product-size">
+                                            <h5 class="font-size-15">Size :</h5>
+                                            <select class="form-select" name="size" id="size_id">
+                                                <?php foreach ($sizes as $key => $value) : ?>
+                                                    <option value="<?= $key ?>"><?= $key ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                        <div class="product-color px-4">
+                                            <h5 class="font-size-15">Color :</h5>
+                                            <select class="form-select" name="color" id="color_id">
+                                                <?php foreach ($colors as $key => $value) : ?>
+                                                    <option value="<?= $key ?>"><?= $key ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                        <div class="product-size">
+                                            <h5 class="font-size-15">Quantity :</h5>
+                                            <input name="quantity" value="1" min="1" class="form-control" type="number" name="" id="">
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <?php if ($quantity > 0) :  ?>
+                                            <h5 class="font-size-15">
+                                                Tình trạng : Còn hàng
+                                            </h5>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="mt-3">
+                                        <input type="hidden" name="p_id" id="" value="<?= $product['p_id'] ?>">
+                                        <input type="hidden" name="p_price_regular" id="" value="<?= $product['p_price_regular'] ?>">
+                                            <button type="submit" class="btn btn-primary waves-effect waves-light mt-2 me-1">
+                                                <i class="bx bx-cart me-2"></i> Add to cart
+                                            </button>
+                                        <button type="button" class="btn btn-success waves-effect  mt-2 waves-light">
+                                            <i class="bx bx-shopping-bag me-2"></i>Buy now
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -130,7 +141,11 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Color</th>
-                                        <td>Black</td>
+                                        <td>
+                                            <?php foreach ($colors as $color => $value) : ?>
+                                                <?= $color ?>
+                                            <?php endforeach; ?>
+                                        </td>
                                     </tr>
 
                                 </tbody>

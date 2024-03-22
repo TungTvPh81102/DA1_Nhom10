@@ -54,7 +54,7 @@
                         </li>
                         <li><a href="<?= BASE_URL_ADMIN ?>?action=sizes-list" key="t-product-detail">Kích cỡ</a>
                         </li>
-                        <li><a href="ecommerce-product-detail.html" key="t-product-detail">Hình ảnh</a>
+                        <li><a href="<?= BASE_URL_ADMIN ?>?action=gallerys" key="t-product-detail">Hình ảnh</a>
                         </li>
                     </ul>
                 </li>

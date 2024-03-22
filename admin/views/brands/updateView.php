@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18">Quản lý danh mục</h4>
+                <h4 class="mb-sm-0 font-size-18">Quản lý thương hiệu</h4>
             </div>
         </div>
     </div>
@@ -16,6 +16,10 @@
                     <h6 class="m-0 font-weight-bold"><?= $title ?></h6>
                 </div>
                 <div class="card-body">
+                    <?php if (isset($_SESSION['success'])) : ?>
+                        <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
+                        <?php unset($_SESSION['success']); ?>
+                    <?php endif; ?>
                     <?php
                     if (isset($_SESSION['errors'])) {
                         $errorsMess = $_SESSION['errors'];
@@ -28,33 +32,16 @@
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
-                                    <label for="productname">Tên danh mục:</label>
-                                    <input name="name" id="productname" name="productname" type="text"
-                                        class="form-control mb-3" placeholder="Nhập tên danh mục"
-                                        value="<?= isset($_SESSION['data']) ? $_SESSION['data']['name'] : null  ?>">
+                                    <label for="productname">Tên thương hiệu:</label>
+                                    <input name="name" id="productname" type="text" class="form-control mb-3" placeholder="Nhập tên thương hiệu" value="<?= $brand['name']  ?>">
                                     <span class="text-danger"><?= formErrors('name', $errorsMess) ?></span>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="form-select">Danh mục con:</label>
-                                    <select name="parent_id" class="form-select mb-3">
-                                        <option
-                                            <?= isset($_SESSION['data']) &&  $_SESSION['data']['parent_id'] == 0 ? 'selected' : null ?>
-                                            value="0">No</option>
-                                        <option
-                                            <?= isset($_SESSION['data']) &&  $_SESSION['data']['parent_id'] == 1 ? 'selected' : null ?>
-                                            value="1">Yes</option>
-                                    </select>
-                                    <span class="text-danger"><?= formErrors('parent_id', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="form-select">Trạng thái:</label>
                                     <select name="status" class="form-select mb-3">
-                                        <option
-                                            <?= isset($_SESSION['data']) &&  $_SESSION['data']['status'] == 1 ? 'selected' : null ?>
-                                            value="1">Active</option>
-                                        <option
-                                            <?= isset($_SESSION['data']) &&  $_SESSION['data']['status'] == 0 ? 'selected' : null ?>
-                                            value="0">Inactive</option>
+                                        <option <?= $brand['status'] ? 'selected' : null ?> value="1">Active</option>
+                                        <option <?= !$brand['status'] ? 'selected' : null  ?> value="0">Inactive
+                                        </option>
                                     </select>
                                     <span class="text-danger"><?= formErrors('status', $errorsMess) ?></span>
                                 </div>
@@ -63,10 +50,10 @@
 
                         <div class="d-flex flex-wrap gap-2">
                             <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                Tạo mới
+                                Cập nhật
                             </button>
                             <button type="reset" class="btn btn-secondary waves-effect waves-light">Nhập lại</button>
-                            <a class="btn btn-info" href="?action=categories-list">Quay lại trang danh sách</a>
+                            <a class="btn btn-info" href="?action=brands-list">Quay lại trang danh sách</a>
                         </div>
                     </form>
 
@@ -78,8 +65,3 @@
     <!-- end row -->
 
 </div> <!-- container-fluid -->
-<?php
-if (isset($_SESSION['data'])) {
-    unset($_SESSION['data']);
-}
-?>
