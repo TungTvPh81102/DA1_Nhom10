@@ -16,17 +16,17 @@
                         <h6 class="m-0 font-weight-bold"><?= $title ?></h6>
                     </div>
                 </div>
+                <?php
+                if (isset($_SESSION['success'])) {
+                    echo '<div class="alert alert-success mb-3">' . $_SESSION['success'] . '</div>';
+                    unset($_SESSION['success']);
+                }
+                if (isset($_SESSION['errors'])) {
+                    echo '<div class="alert alert-danger mb-3">' . $_SESSION['errors'] . '</div>';
+                    unset($_SESSION['errors']);
+                }
+                ?>
                 <div class="card">
-                    <?php
-                    if (isset($_SESSION['success'])) {
-                        echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
-                        unset($_SESSION['success']);
-                    }
-                    if (isset($_SESSION['errors'])) {
-                        echo '<div class="alert alert-danger">' . $_SESSION['errors'] . '</div>';
-                        unset($_SESSION['errors']);
-                    }
-                    ?>
                     <div class="card-body py-3 d-flex justify-content-between align-items-center border-bottom">
                         <h6 class="m-0 font-weight-bold">Thông tin khách hàng</h6>
                     </div>
