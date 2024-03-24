@@ -8,7 +8,7 @@ define('DB_NAME', 'da1_group10');
 
 // Khai báo biến môi trường
 define('PATH_CONTROLLER', __DIR__ . '/../controllers/');
-define('PAHT_MODEL', __DIR__ . '/../models/');
+define('PATH_MODEL', __DIR__ . '/../models/');
 define('PATH_VIEW', __DIR__ . '/../views/');
 define('PATH_UPLOAD', __DIR__ . '/../');
 define('PATH_CONTROLLER_ADMIN', __DIR__ . '/../admin/controllers/');
