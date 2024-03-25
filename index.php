@@ -32,6 +32,7 @@ match ($action) {
     // LOGIN AND REGISTER CLIENT
     'login-client' => loginClient(),
     'register-client' => registerClient(),
+    'active-account' => activeAccount(),
 };
 
 

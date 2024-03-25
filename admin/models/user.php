@@ -33,20 +33,6 @@ if (!function_exists('checkUniqueEmailForUpdate')) {
     }
 }
 
-if (!function_exists('activeToken')) {
-    function activeToken($token)
-    {
-        try {
-            $sql = "SELECT id FROM users WHERE active_token = :active_token LIMIT 1";
-            $stmt = $GLOBALS['conn']->prepare($sql);
-            $stmt->bindParam(':active_token', $token);
-            $stmt->execute();
-            return $stmt->fetch();
-        } catch (\Exception $e) {
-            debug($e);
-        }
-    }
-}
 
 if (!function_exists('getUserAdmin')) {
     function getUserAdmin($data)
