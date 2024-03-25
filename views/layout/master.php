@@ -4,7 +4,7 @@
 <!-- Mirrored from demo-egenslab.b-cdn.net/html/eg-shop-fashion/v1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Mar 2024 03:00:18 GMT -->
 
 <head>
-    <title>EG Shop Fashion - Multipurpose e-Commerce HTML Template</title>
+    <title><?= $title ?? 'EG Shop Fashion' ?></title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

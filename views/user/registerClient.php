@@ -38,30 +38,51 @@
         <div class="row mt-100 justify-content-center">
             <div class="col-xxl-6 col-xl-6 col-lg-8 col-md-10">
                 <div class="reg-login-forms">
+                    <?php
+                    if (isset($_SESSION['errors'])) {
+                        $errorsMess = $_SESSION['errors'];
+                        unset($_SESSION['errors']);
+                    } else {
+                        $errorsMess = [];
+                    }
+                    ?>
                     <h4 class="reg-login-title text-center">Register Your Account</h4>
-                    <form action="#" method="POST" id="register-form">
+                    <?php
+                    if (isset($_SESSION['success'])) {
+                        echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
+                        unset($_SESSION['success']);
+                    }
+                    ?>
+                    <form action="" method="POST" id="register-form">
                         <div class="reg-input-group">
                             <label for="fname">First Name*</label>
-                            <input type="text" id="fname" placeholder="Your first name" required />
+                            <input name="first_name" type="text" id="fname" placeholder="Your first name" value="<?= isset($_SESSION['data']) ? $_SESSION['data']['first_name'] : null ?>" required />
+                            <span class="text-danger"><?= formErrors('first_name', $errorsMess) ?></span>
                         </div>
                         <div class="reg-input-group">
                             <label for="lname">Last Name*</label>
-                            <input type="text" id="lname" placeholder="Your last name" required />
+                            <input name="last_name" type="text" id="lname" placeholder="Your last name" value="<?= isset($_SESSION['data']) ? $_SESSION['data']['last_name'] : null ?>" required />
+                            <span class="text-danger"><?= formErrors('last_name', $errorsMess) ?></span>
                         </div>
                         <div class="reg-input-group">
                             <label for="email">Email *</label>
-                            <input type="email" id="email" placeholder="Your email" required />
+                            <input name="email" type="email" id="email" placeholder="Your email" value="<?= isset($_SESSION['data']) ? $_SESSION['data']['email'] : null ?>" required />
+                            <span class="text-danger"><?= formErrors('email', $errorsMess) ?></span>
                         </div>
                         <div class="reg-input-group">
                             <label for="password">Password *</label>
-                            <input type="password" id="password" placeholder="Enter a password" required />
+                            <input name="password" type="password" id="password" placeholder="Enter a password" required />
+                            <span class="text-danger"><?= formErrors('password', $errorsMess) ?></span>
+
                         </div>
                         <div class="reg-input-group">
                             <label for="sure-pass">Confirm Password *</label>
-                            <input type="password" id="sure-pass" placeholder="Confirm password" required />
+                            <input name="confirm_password" type="password" id="sure-pass" placeholder="Confirm password" required />
+                            <span class="text-danger"><?= formErrors('confirm_password', $errorsMess) ?></span>
+
                         </div>
                         <div class="reg-input-group reg-check-input d-flex align-items-center">
-                            <input type="checkbox" id="form-check" required />
+                            <input type="checkbox" id="form-check" />
                             <label for="form-check">I agree to the <a href="#">Terms & Policy</a></label>
                         </div>
                         <div class="reg-input-group reg-submit-input d-flex align-items-center">
@@ -87,3 +108,9 @@
         </div>
     </div>
 </div>
+
+<?php
+if (isset($_SESSION['data'])) {
+    unset($_SESSION['data']);
+}
+?>
