@@ -100,7 +100,8 @@
                                 <div class="mb-3">
                                     <label for="description">Nội dung</label>
                                     <textarea name="description" class="form-control" id="tinyeditor2" rows="5" placeholder="Nhập nội dung">
-                                    <?= isset($_SESSION['data']) ? $_SESSION['data']['description'] : null ?>
+                                        <?= $product['p_description'] ?>
+                                    
                                     </textarea>
                                 </div>
                                 <div class="mb-3">

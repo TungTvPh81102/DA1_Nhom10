@@ -39,14 +39,7 @@
                                         value="<?= $category['name']  ?>">
                                     <span class="text-danger"><?= formErrors('name', $errorsMess) ?></span>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="form-select">Danh mục con:</label>
-                                    <select name="parent_id" class="form-select mb-3">
-                                        <option <?= !$category['parent_id'] ? 'selected' : null ?> value="0">No</option>
-                                        <option <?= $category['parent_id'] ? 'selected' : null ?> value="1">Yes</option>
-                                    </select>
-                                    <span class="text-danger"><?= formErrors('parent_id', $errorsMess) ?></span>
-                                </div>
+
                                 <div class="mb-3">
                                     <label for="form-select">Trạng thái:</label>
                                     <select name="status" class="form-select mb-3">

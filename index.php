@@ -33,9 +33,16 @@ match ($action) {
     'login-client' => loginClient(),
     'register-client' => registerClient(),
     'active-account' => activeAccount(),
+    'forgot-password' => forgotPassword(),
+    'reset-password' => resetPassword(),
 
     // PRODUCT
+    'products' => shopProduct(),
+    'product-detail' => shopProductDetail(),
 
+    // CART
+    'add-to-cart' => addToCart(),
+    'view-cart' => viewCart(),
 };
 
 
