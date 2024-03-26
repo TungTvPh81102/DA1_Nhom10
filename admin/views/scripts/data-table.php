@@ -1,12 +1,11 @@
 <!-- Required datatable js -->
 <script>
-    $(document).ready(function() {
-        $('#dataTable').DataTable({
-            "order": false
-        });
+$(document).ready(function() {
+    $('#dataTable').DataTable({
+        "order": false
     });
+});
 </script>
-
 <script src="<?= BASE_URL ?>assets/admin/libs/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?= BASE_URL ?>assets/admin/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
 <!-- Buttons examples -->

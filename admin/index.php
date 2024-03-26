@@ -22,33 +22,74 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 // Điều hướng
 $action = $_GET['action'] ?? '/';
 
+// Kiểm tra xem user đăng nhập chưa
+// middleware_auth_check($action);
+
 match ($action) {
     // HOME DASHBOARD
     '/' => homeDashboard(),
 
     // LOGIN HỆ THỐNG
+    'login' => adminLogin(),
+    'logout' => adminLogout(),
+
 
     // CRUD SETTINGS
 
     // CRUD BANNERS
 
     // CRUD CATEGORIES
-
+    'categories-list' => categoriesList(),
+    'category-create' => categoryCreate(),
+    'category-detail' => categoryDetail(),
+    'category-update' => categoryUpdate(),
+    'category-delete' => categoryDelete(),
 
     // CRUD PRODUCTS
-
+    'products-list' => productsList(),
+    'product-create' => productsCreate(),
+    'product-detail' => productDetail(),
+    'product-update' => productUpdate(),
+    'product-delete' => productDelete(),
+    'gallerys' => gallerys(),
 
     // CRUD BRANDS
-
+    'brands-list' => brandsList(),
+    'brand-create' => brandCreate(),
+    'brand-detail' => brandDetail(),
+    'brand-update' => brandUpdate(),
+    'brand-delete' => brandDelete(),
 
     // CRUD COLORS
-
+    'colors-list' => colorsList(),
+    'color-create' => colorCreate(),
+    'color-update' => colorUpdate(),
+    'color-delete' => colorDelete(),
 
     // CRUD SIZES 
-
+    'sizes-list' => sizesList(),
+    'size-create' => sizeCreate(),
+    'size-update' => sizeUpdate(),
+    'size-delete' => sizeDelete(),
 
     // CRUD USER
+    'users-list' => usersList(),
+    'user-create' => userCreate(),
+    'user-detail' => userDetail(),
+    'user-update' => userUpdate(),
+    'user-delete' => userDelete(),
+    'active' => activeStatus(),
 
+    // QUẢN LÝ HÓA ĐƠN
+    'orders-list' => ordersList(),
+    'order-detail' => orderDetail(),
+    'complete-payment' => completePayment(),
+
+
+    // XỬ LÝ MUA SẢN PHẨM
+    'add-cart' => addCart(),
+    'cart-view' => cartView(),
+    'check-out' => checkOutView(),
 };
 
 
