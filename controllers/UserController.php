@@ -37,7 +37,7 @@ function registerClient()
             // Tiến hành gửi email
             sendMail($data['email'], $subject, $content);
 
-            $_SESSION['success'] = 'Đăng ký tài khoản thành công, kiểm tra email để xác thực tài khoản';
+            $_SESSION['success'] = 'Đăng ký tài khoản thành công, kiểm tra email để kích hoạt tài khoản';
             redirect(BASE_URL . "?action=register-client");
             exit();
         } else {
