@@ -37,6 +37,8 @@ match ($action) {
     // CRUD SETTINGS
 
     // CRUD BANNERS
+    'banners-list' => bannersList(),
+    'banner-create' => bannerCreate(),
 
     // CRUD CATEGORIES
     'categories-list' => categoriesList(),
