@@ -97,7 +97,8 @@
                                 <?php } ?>
                                 <h4
                                     class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
-                                    <a class="text-decoration-none text-reset" href="./shop/product-details-v1.html"
+                                    <a class="text-decoration-none text-reset"
+                                        href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['id'] ?>"
                                         previewlistener="true"><?= $product['name'] ?></a>
                                 </h4>
                                 <div class="d-flex align-items-center fs-12px justify-content-center">

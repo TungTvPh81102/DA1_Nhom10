@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Home Page 09 - Glowing - Bootstrap 5 HTML Templates</title>
+    <title>Glowing <?= $title ?? '- Thế giới thời trang' ?></title>
     <link rel="icon" href="<?= BASE_URL ?>assets/client/images/others/favicon.ico" />
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/client/vendors/lightgallery/css/lightgallery-bundle.min.css" />
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/client/vendors/fontawesome/css/all.min.css" />
@@ -65,7 +65,6 @@
     <script src="<?= BASE_URL ?>assets/client/vendors/gsap/ScrollTrigger.min.js"></script>
     <script src="<?= BASE_URL ?>assets/client/vendors/mapbox-gl/mapbox-gl.js"></script>
     <script src="<?= BASE_URL ?>assets/client/js/theme.min.js"></script>
-
 </body>
 
 

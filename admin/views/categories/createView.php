@@ -29,32 +29,14 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="productname">Tên danh mục:</label>
-                                    <input name="name" id="productname" name="productname" type="text"
-                                        class="form-control mb-3" placeholder="Nhập tên danh mục"
-                                        value="<?= isset($_SESSION['data']) ? $_SESSION['data']['name'] : null  ?>">
+                                    <input name="name" id="productname" name="productname" type="text" class="form-control mb-3" placeholder="Nhập tên danh mục" value="<?= isset($_SESSION['data']) ? $_SESSION['data']['name'] : null  ?>">
                                     <span class="text-danger"><?= formErrors('name', $errorsMess) ?></span>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="form-select">Danh mục con:</label>
-                                    <select name="parent_id" class="form-select mb-3">
-                                        <option
-                                            <?= isset($_SESSION['data']) &&  $_SESSION['data']['parent_id'] == 0 ? 'selected' : null ?>
-                                            value="0">No</option>
-                                        <option
-                                            <?= isset($_SESSION['data']) &&  $_SESSION['data']['parent_id'] == 1 ? 'selected' : null ?>
-                                            value="1">Yes</option>
-                                    </select>
-                                    <span class="text-danger"><?= formErrors('parent_id', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="form-select">Trạng thái:</label>
                                     <select name="status" class="form-select mb-3">
-                                        <option
-                                            <?= isset($_SESSION['data']) &&  $_SESSION['data']['status'] == 1 ? 'selected' : null ?>
-                                            value="1">Active</option>
-                                        <option
-                                            <?= isset($_SESSION['data']) &&  $_SESSION['data']['status'] == 0 ? 'selected' : null ?>
-                                            value="0">Inactive</option>
+                                        <option <?= isset($_SESSION['data']) &&  $_SESSION['data']['status'] == 1 ? 'selected' : null ?> value="1">Active</option>
+                                        <option <?= isset($_SESSION['data']) &&  $_SESSION['data']['status'] == 0 ? 'selected' : null ?> value="0">Inactive</option>
                                     </select>
                                     <span class="text-danger"><?= formErrors('status', $errorsMess) ?></span>
                                 </div>

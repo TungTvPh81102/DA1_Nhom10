@@ -19,7 +19,7 @@
                             <input name="stay-signed-in" type="checkbox" class="form-check-input rounded-0 me-3" id="staySignedIn" />
                             <label class="custom-control-label text-body" for="staySignedIn">Stay signed in</label>
                         </div>
-                        <a href="#" class="text-secondary">Forgot your password?</a>
+                        <a href="<?= BASE_URL ?>?action=forgot-password" class="text-secondary">Forgot your password?</a>
                     </div>
                     <button type="submit" value="Login" class="btn btn-dark btn-hover-bg-primary btn-hover-border-primary w-100">
                         Log In
