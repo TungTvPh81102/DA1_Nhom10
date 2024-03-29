@@ -39,14 +39,12 @@
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="code">Mã sản phẩm</label>
-                                    <input id="code" name="code" type="text" class="form-control mb-3"
-                                        placeholder="Tên sản phẩm" value="<?= $product['p_code'] ?>">
+                                    <input id="code" name="code" type="text" class="form-control mb-3" placeholder="Tên sản phẩm" value="<?= $product['p_code'] ?>">
                                     <span class="text-danger"><?= formErrors('code', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="name">Tên sản phẩm</label>
-                                    <input id="name" name="name" type="text" class="form-control mb-3"
-                                        placeholder="Tên sản phẩm" value="<?= $product['p_name'] ?>">
+                                    <input id="name" name="name" type="text" class="form-control mb-3" placeholder="Tên sản phẩm" value="<?= $product['p_name'] ?>">
                                     <span class="text-danger"><?= formErrors('name', $errorsMess) ?></span>
 
                                 </div>
@@ -55,8 +53,7 @@
                                     <select name="category_id" class="form-control select2 mb-3">
                                         <option value="">---Chọn danh mục sản phẩm---</option>
                                         <?php foreach ($categories as $category) : ?>
-                                        <option <?= $product['c_id'] == $category['id'] ? 'selected'  : null ?>
-                                            value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                                            <option <?= $product['c_id'] == $category['id'] ? 'selected'  : null ?> value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     <span class="text-danger"><?= formErrors('category_id', $errorsMess) ?></span>
@@ -66,9 +63,8 @@
                                     <select name="brand_id" class="form-control select2">
                                         <option value="">---Chọn thương hiệu sản phẩm---</option>
                                         <?php foreach ($brands as $brand) : ?>
-                                        <option <?= $product['b_id'] == $brand['id'] ? 'selected' : null ?>
-                                            value="<?= $brand['id'] ?>"><?= $brand['name'] ?>
-                                        </option>
+                                            <option <?= $product['b_id'] == $brand['id'] ? 'selected' : null ?> value="<?= $brand['id'] ?>"><?= $brand['name'] ?>
+                                            </option>
                                         <?php endforeach; ?>
                                     </select>
                                     <span class="text-danger"><?= formErrors('brand_id', $errorsMess) ?></span>
@@ -77,8 +73,7 @@
                                 <div class="mb-3">
                                     <label for="img_thumbnail" class="form-label">Ảnh đại diện</label>
                                     <div class="img_thumbnail mb-3">
-                                        <img style="width: 70px; height:100%;"
-                                            src="<?= BASE_URL . $product['p_img_thumbnail'] ?>" alt="">
+                                        <img style="width: 70px; height:100%;" src="<?= BASE_URL . $product['p_img_thumbnail'] ?>" alt="">
                                     </div>
                                     <input name="img_thumbnail" class="form-control mb-3" type="file" id="formFile">
                                     <span class="text-danger"><?= formErrors('img_thumbnail', $errorsMess) ?></span>
@@ -87,19 +82,16 @@
                                     <label for="thumbnails" class="form-label">Ảnh sản phẩm</label>
                                     <div class="thumbnails mb-3">
                                         <?php foreach ($thumbnails as $thumbnail) : ?>
-                                        <img style="width: 70px; height:100%; object-fit: cover;"
-                                            src="<?= BASE_URL . $thumbnail ?>" alt="" class="m-xl-2">
+                                            <img style="width: 70px; height:100%; object-fit: cover;" src="<?= BASE_URL . $thumbnail ?>" alt="" class="m-xl-2">
                                         <?php endforeach; ?>
                                     </div>
-                                    <input multiple name="thumbnails[]" class="form-control mb-3" type="file"
-                                        id="thumbnails">
+                                    <input multiple name="thumbnails[]" class="form-control mb-3" type="file" id="thumbnails">
                                     <span class="text-danger"><?= formErrors('thumbnails', $errorsMess) ?></span>
 
                                 </div>
                                 <div class="mb-4">
                                     <label for="over_view">Mô tả ngắn</label>
-                                    <textarea name="over_view" class="form-control" id="tinyeditor" rows="5"
-                                        placeholder="Mô tả ngắn">
+                                    <textarea name="over_view" class="form-control" id="tinyeditor" rows="5" placeholder="Mô tả ngắn">
                                         <?= $product['p_over_view'] ?>
                                     </textarea>
                                     <span class="text-danger mt-3"><?= formErrors('over_view', $errorsMess) ?></span>
@@ -107,28 +99,24 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="description">Nội dung</label>
-                                    <textarea name="description" class="form-control" id="tinyeditor2" rows="5"
-                                        placeholder="Nhập nội dung">
-                                    <?= isset($_SESSION['data']) ? $_SESSION['data']['description'] : null ?>
+                                    <textarea name="description" class="form-control" id="tinyeditor2" rows="5" placeholder="Nhập nội dung">
+                                        <?= $product['p_description'] ?>
+                                    
                                     </textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="price_regular">Giá gốc</label>
-                                    <input id="price_regular" name="price_regular" type="number"
-                                        class="form-control mb-3" placeholder="Nhập giá gốc"
-                                        value="<?= $product['p_price_regular'] ?>">
+                                    <input id="price_regular" name="price_regular" type="number" class="form-control mb-3" placeholder="Nhập giá gốc" value="<?= $product['p_price_regular'] ?>">
                                     <span class="text-danger"><?= formErrors('name', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="discount">Giảm giá</label>
-                                    <input id="discount" name="discount" type="number" class="form-control mb-3"
-                                        placeholder="Nhập giảm giá" value="<?= $product['p_discount'] ?>">
+                                    <input id="discount" name="discount" type="number" class="form-control mb-3" placeholder="Nhập giảm giá" value="<?= $product['p_discount'] ?>">
                                     <span class="text-danger"><?= formErrors('name', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="view">Số lượt xem</label>
-                                    <input id="view" name="view" type="number" class="form-control mb-3"
-                                        placeholder="Nhập số lượt xem" value="<?= $product['p_view'] ?>">
+                                    <input id="view" name="view" type="number" class="form-control mb-3" placeholder="Nhập số lượt xem" value="<?= $product['p_view'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -138,8 +126,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <table id="product_attributes"
-                                        class="table table-bordered dt-responsive  nowrap w-100">
+                                    <table id="product_attributes" class="table table-bordered dt-responsive  nowrap w-100">
                                         <thead>
                                             <tr>
                                                 <th>Kích cỡ</th>
@@ -149,13 +136,13 @@
                                         </thead>
                                         <tbody>
                                             <?php foreach ($sizes as $size_name => $size_id) : ?>
-                                            <input type="hidden" name="size_id[]" value="<?= $size_id ?>">
-                                            <tr>
-                                                <td><?= $size_name ?></td>
-                                                <?php foreach ($colors as $color_name => $color_id) : ?>
-                                                <input type="hidden" name="color_id[]" value="<?= $color_id ?>">
+                                                <input type="hidden" name="size_id[]" value="<?= $size_id ?>">
+                                                <tr>
+                                                    <td><?= $size_name ?></td>
+                                                    <?php foreach ($colors as $color_name => $color_id) : ?>
+                                                        <input type="hidden" name="color_id[]" value="<?= $color_id ?>">
 
-                                                <?php
+                                                        <?php
                                                         $colorQuantities = [];
                                                         foreach ($productAttributes as $attribute) {
                                                             if ($attribute['ps_id'] == $size_id && $attribute['pc_name'] == $color_name) {
@@ -164,18 +151,17 @@
                                                         }
                                                         ?>
 
-                                                <?php if (!empty($colorQuantities)) : ?>
-                                                <td><?= $color_name ?></td>
+                                                        <?php if (!empty($colorQuantities)) : ?>
+                                                            <td><?= $color_name ?></td>
 
-                                                <?php foreach ($colorQuantities as $quantity) : ?>
-                                                <td> <input type="number" name="quantity[]" value="<?= $quantity ?>"
-                                                        class="form-control">
-                                                </td>
-                                                <?php endforeach; ?>
+                                                            <?php foreach ($colorQuantities as $quantity) : ?>
+                                                                <td> <input type="number" name="quantity[]" value="<?= $quantity ?>" class="form-control">
+                                                                </td>
+                                                            <?php endforeach; ?>
 
-                                                <?php endif; ?>
-                                                <?php endforeach; ?>
-                                            </tr>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
@@ -184,6 +170,17 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="control-label">Hot</label>
+                                    <select name="hot" class="form-control select2">
+                                        <option <?= !$product['p_hot'] ? 'selected' : null  ?> value="0">
+                                            None
+                                        </option>
+                                        <option <?= $product['p_hot'] ? 'selected' : null ?> value="1">
+                                            HOT
+                                        </option>
+                                    </select>
+                                </div>
                                 <div class="mb-3">
                                     <label class="control-label">Trạng thái</label>
                                     <select name="status" class="form-control select2">

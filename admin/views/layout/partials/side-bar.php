@@ -76,6 +76,27 @@
                         <span key="t-ecommerce">Quản lý thống kê</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?= BASE_URL_ADMIN  ?>?action=banners-list">
+                        <i class="bx bx-store"></i>
+                        <span key="t-ecommerce">Quản lý banner</span>
+                    </a>
+                </li>
+                <li class="menu-title" key="t-apps">SETTINGS</li>
+
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-store"></i>
+                        <span key="t-ecommerce">Quản lý đường dẫn ảnh</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="<?= BASE_URL_ADMIN ?>?action=setting-form" key="t-products">Danh sách đường dẫn
+                            </a></li>
+                        <li><a href="<?= BASE_URL_ADMIN ?>?action=setting-save" key="t-product-detail">Tạo mới</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

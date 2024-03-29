@@ -179,8 +179,10 @@ function productUpdate()
             'discount' => $_POST['discount'] ?? $product['p_discount'],
             'status' => $_POST['status'] ?? $product['p_status'],
             'view' => $_POST['view'] ?? null,
+            'hot' => $_POST['hot'] ?? $product['p_hot'],
             'updated_at' => date('Y-m-d H:i:s')
         ];
+
 
         validateProductUpdate($id, $data);
 
@@ -197,7 +199,6 @@ function productUpdate()
             deleteProductGallery($id);
 
             $thumbnails = explode(",", $product['ga_thumbnail']);
-
 
             $uploadThumbnails = get_file_upload('thumbnails');
 
@@ -221,17 +222,16 @@ function productUpdate()
                         insert('gallerys', $dataGallerys);
                     }
                 }
-            } else {
+            }
 
-                // Nếu ảnh sản phẩm không có dữ liệu thì lấy dữ liệu cũ từ data
-                foreach ($thumbnails as $key => $value) {
-                    $dataGallerys = [
-                        'product_id' => $id,
-                        'thumbnail' => $thumbnails[$key],
-                        'updated_at' => date('Y-m-d H:i:s')
-                    ];
-                    insert('gallerys', $dataGallerys);
-                }
+            // Nếu ảnh sản phẩm không có dữ liệu thì lấy dữ liệu cũ từ data
+            foreach ($thumbnails as $key => $value) {
+                $dataGallerys = [
+                    'product_id' => $id,
+                    'thumbnail' => $thumbnails[$key],
+                    'updated_at' => date('Y-m-d H:i:s')
+                ];
+                insert('gallerys', $dataGallerys);
             }
 
 
@@ -249,9 +249,12 @@ function productUpdate()
                         'size_id' => $size,
                         'quantity' => $quantity,
                     ];
+                    // debug($dataProductAttribute);
                     insert('product_attribute', $dataProductAttribute);
                 }
             }
+
+            // die;
 
             $GLOBALS['conn']->commit();
         } catch (Exception $e) {

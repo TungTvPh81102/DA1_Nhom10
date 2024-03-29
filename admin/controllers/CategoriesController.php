@@ -20,7 +20,6 @@ function categoryCreate()
     if (!empty($_POST)) {
         $data = [
             'name' => $_POST['name'] ?? null,
-            'parent_id' => $_POST['parent_id'] ?? null,
             'status' => $_POST['status'] ?? null,
             'created_at' => date('Y-m-d H:i:s'),
         ];
@@ -65,7 +64,6 @@ function categoryUpdate()
     if (!empty($_POST)) {
         $data = [
             'name' => $_POST['name'] ?? $category['name'],
-            'parent_id' => $_POST['parent_id'] ?? $category['parent_id'],
             'status' => $_POST['status'] ?? $category['status'],
             'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -109,14 +107,6 @@ function validateCreate($data)
         }
     }
 
-    if ($data['parent_id'] === null) {
-        $errors['parent_id']['required'] = 'Vui lòng chọn';
-    } else {
-        if (!in_array($data['parent_id'], [0, 1])) {
-            $errors['parent_id']['unique'] = 'Danh mục con phải là Yes hoặc No';
-        }
-    }
-
     if ($data['status'] === null) {
         $errors['status']['required'] = 'Vui lòng chọn trạng thái';
     } else {
@@ -147,14 +137,6 @@ function validateUpdate($id, $data)
             $errors['name']['text'] = 'Tên nhanh mục phải là ký tự';
         } else if (!checkUniqueCategoryForUpdate('categories', $id, $data['name'])) {
             $errors['name']['unquied'] = 'Tên danh mục đã tồn tại';
-        }
-    }
-
-    if ($data['parent_id'] === null) {
-        $errors['parent_id']['required'] = 'Vui lòng chọn';
-    } else {
-        if (!in_array($data['parent_id'], [0, 1])) {
-            $errors['parent_id']['unique'] = 'Danh mục con phải là Yes hoặc No';
         }
     }
 

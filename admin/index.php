@@ -35,8 +35,13 @@ match ($action) {
 
 
     // CRUD SETTINGS
+    'setting-create' => settingCreate(),
+    'setting-form' => settingShowForm(),
+    'setting-save' => settingSave(),
 
     // CRUD BANNERS
+    'banners-list' => bannersList(),
+    'banner-create' => bannerCreate(),
 
     // CRUD CATEGORIES
     'categories-list' => categoriesList(),
