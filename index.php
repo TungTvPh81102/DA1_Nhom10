@@ -22,8 +22,18 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 // Điều hướng
 $action = $_GET['action'] ?? '/';
 
+$arrRouteNeedAuth = [
+    'add-to-cart',
+    'view-cart',
+    'cart-inc',
+    'cart-des',
+    'cart-del',
+    'order-check-out',
+    'order-purchase'
+];
+
 // Kiểm tra xem user đăng nhập chưa
-// middleware_auth_check($action);
+middleware_client_check($action, $arrRouteNeedAuth);
 
 match ($action) {
     // HOME DASHBOARD
@@ -35,14 +45,29 @@ match ($action) {
     'active-account' => activeAccount(),
     'forgot-password' => forgotPassword(),
     'reset-password' => resetPassword(),
+    'logout-client' => logoutClient(),
 
     // PRODUCT
     'products' => shopProduct(),
     'product-detail' => shopProductDetail(),
+    'search-product' => searchProduct(),
 
     // CART
     'add-to-cart' => addToCart(),
     'view-cart' => viewCart(),
+    'cart-inc' => cartInc(),
+    'cart-des' => cartDes(),
+    'cart-del' => cartDel(),
+
+    // ORDER
+    'order-check-out' => orderCheckOut(),
+    'order-purchase' => orderPurchase(),
+    'order-success' => orderSuccess(),
+    'online-payment' => onlinePayment(),
+    'payment-gateway' => paymentGateway(),
+
+    // SEARCH
+    // 'search-key' => searchKeywords(),
 };
 
 

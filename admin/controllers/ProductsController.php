@@ -130,8 +130,15 @@ function productDetail()
     $view = "products/showView";
 
     $productAttributes = getProductAttributeForProduct($id);
-    $sizes = array_column($productAttributes, 'ps_id', 'ps_name');
-    $colors = array_column($productAttributes, 'pc_id', 'pc_name');
+    $sizeID = array_column($productAttributes, 'ps_id');
+    $sizeName = array_column($productAttributes, 'ps_name');
+    $sizes = array_combine($sizeID, $sizeName);
+
+
+    $colorID = array_column($productAttributes, 'pc_id');
+    $colorName = array_column($productAttributes, 'pc_name');
+    $colors = array_combine($colorID, $colorName);
+
     $arrayQuantity = array_column($productAttributes, 'pa_quantity');
     $quantity = implode(',', $arrayQuantity);
     $thumbnails = explode(",", $product['ga_thumbnail']);

@@ -19,9 +19,25 @@ if (!function_exists('getIdUser')) {
     function getIdUser($email)
     {
         try {
-            $sql = "SELECT id FROM users WHERE email = :email LIMIT 1";
+            $sql = "SELECT id, status FROM users WHERE email = :email LIMIT 1";
             $stmt = $GLOBALS['conn']->prepare($sql);
             $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            return $stmt->fetch();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+
+if (!function_exists('getUserClient')) {
+    function getUserClient($data)
+    {
+        try {
+            $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(':email', $data['email']);
             $stmt->execute();
             return $stmt->fetch();
         } catch (\Exception $e) {

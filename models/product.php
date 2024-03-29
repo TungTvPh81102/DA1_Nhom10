@@ -1,4 +1,43 @@
 <?php
+if (!function_exists('listAllProductShop')) {
+    function listAllProductShop($categoryID, $brandID, $orderBy = 'DESC')
+    {
+        try {
+            $sql = "SELECT p.*, ca.name as ca_name, b.name as b_name FROM products p
+            INNER JOIN categories ca ON ca.id = p.category_id
+            INNER JOIN brands b ON b.id = p.brand_id WHERE 1
+            ";
+
+            if ($categoryID || $brandID) {
+                if (!empty($categoryID)) {
+                    $sql .= " AND ca.id = :categoryID";
+                }
+
+                if (!empty($brandID)) {
+                    $sql .= " AND b.id = :brandID";
+                }
+            }
+
+            $sql .= " ORDER BY p.price_regular $orderBy";
+
+            $stmt = $GLOBALS['conn']->prepare($sql);
+
+            if (!empty($categoryID)) {
+                $stmt->bindParam(':categoryID', $categoryID);
+            }
+
+            if (!empty($brandID)) {
+                $stmt->bindParam(':brandID', $brandID);
+            }
+
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
 if (!function_exists('productHot')) {
     function productHot()
     {
@@ -61,6 +100,51 @@ if (!function_exists('similarProducts')) {
             $stmt->bindParam(":product_id", $productID);
             $stmt->execute();
             return $stmt->fetchAll();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+if (!function_exists('getSeachProduct')) {
+    function getSeachProduct($keyword)
+    {
+        try {
+
+            $sql = "SELECT * FROM products";
+
+            $query = [];
+
+            if ($keyword) {
+                $query[] = "(name like '%$keyword%' OR over_view like '%$keyword%' OR description like '%$keyword%' )";
+            }
+
+            $queryStr = implode(' AND ', $query);
+
+
+            $sql .= ' WHERE ' . $queryStr;
+
+            $stmt = $GLOBALS['conn']->prepare($sql);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+if (!function_exists('downProductQuantity')) {
+    function downProductQuantity($productID, $quantity)
+    {
+        try {
+
+            $sql = "UPDATE product_attribute SET quantity = quantity - :quantity WHERE product_id = :product_id";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(":quantity", $quantity);
+            $stmt->bindParam(":product_id", $productID);
+            $stmt->execute();
         } catch (\Exception $e) {
             debug($e);
         }

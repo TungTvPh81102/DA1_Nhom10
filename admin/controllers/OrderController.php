@@ -71,7 +71,7 @@ function orderDetail()
 
         $arrStatus = [
             1 => [0, 2, 3, 4],
-            2 => [0, 1, 2, 3, 4],
+            2 => [3, 4],
             3 => [4],
             4 => [],
             0 => []
@@ -118,7 +118,6 @@ function addCart()
         $data = [
             'product_id' => $_POST['p_id'] ?? null,
             'quantity' => $_POST['quantity'] ?? null,
-            'price' => $_POST['p_price_regular'] ?? null,
             'size' => $_POST['size'] ?? null,
             'color' => $_POST['color'] ?? null,
             'created_at' => date('Y-m-d H:i:s')
@@ -129,20 +128,19 @@ function addCart()
             try {
                 $GLOBALS['conn']->beginTransaction();
 
-                $user = $_SESSION['user'];
-                $dataUserCart = [
-                    'user_id' => $user['id'],
-                    'created_at' => date('Y-m-d H:i:s')
-                ];
+                // $user = $_SESSION['user']['id'];
+                // $dataUserCart = [
+                //     'user_id' => $user['id'],
+                //     'created_at' => date('Y-m-d H:i:s')
+                // ];
 
-                $cartId = insert_get_last_id('carts', $dataUserCart);
+                $cartId = getCartIDAdmin($_SESSION['user']['id']);
 
                 if (!empty($cartId)) {
                     $dataCartItem = [
                         'cart_id' => $cartId ?? null,
                         'product_id' => $data['product_id'] ?? null,
                         'quantity' => $data['quantity'] ?? null,
-                        'price' => $data['price'] ?? null,
                         'size' => $data['size'] ?? null,
                         'color' => $data['color'] ?? null,
                         'created_at' => date('Y-m-d H:i:s'),

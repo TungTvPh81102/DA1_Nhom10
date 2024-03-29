@@ -1,44 +1,33 @@
 <?php
 function loginClient()
 {
-    $title = 'Đăng nhập';
     $view = 'user/loginClient';
     if (!empty($_POST)) {
         $data = [
-            'email' => $_POST['email'] ?? null,
-            // 'password' => $_POST['password'] ?? null
+            'email' => $_POST['email'],
+            'password' => $_POST['password'],
         ];
-        // debug($data);
-        // Kiểm tra tài khoản
-        $user = getUserbyEmail($data);
-        debug($user);
-        if ($user) {
-            if ($user['status'] == 0) {
-                $_SESSION['error'] = 'Tài khoản của bạn chưa được kích hoạt, vui lòng kiểm tra email để kích hoạt tài khoản.';
-                redirect(BASE_URL . "?action=login-client");
-            } else {
-                // Kiểm tra mật khẩu
-                $passwordHash = password_verify($data['password'], $user['password']);
-                if ($passwordHash) {
-                    // Đăng nhập thành công, lưu thông tin người dùng vào session và chuyển hướng đến trang chính
+        $user = getUserClient($data);
+        if (!empty($user)) {
+            $passwordHash = password_verify($data['password'], $user['password']);
+            if ($passwordHash) {
+                if ($user['status'] == 1) {
                     $_SESSION['user'] = $user;
-                    redirect(BASE_URL . '?action=home');
+                    redirect(BASE_URL);
                 } else {
-                    $_SESSION['error'] = 'Mật khẩu không đúng, vui lòng thử lại!';
-                    redirect(BASE_URL . "?action=login-client");
+                    $_SESSION['errors'] = 'Tài khoản chưa được kích hoạt vui lòng thử lại sau';
                 }
+            } else {
+                $_SESSION['errors'] = 'Mật khẩu chưa chính xác, vui lòng kiểm tra lại';
             }
         } else {
-            $_SESSION['error'] = 'Tài khoản không tồn tại, vui lòng thử lại!';
+            $_SESSION['errors'] = 'Tài khoản mật khẩu chưa chính xác, vui lòng kiếm tra lại';
             redirect(BASE_URL . "?action=login-client");
+            exit();
         }
-    } else {
-        $_SESSION['error'] = 'Vui lòng nhập đầy đủ thông tin.';
-        // redirect(BASE_URL . "?action=login-client");
     }
     require_once PATH_VIEW . 'layout/master.php';
 }
-
 function registerClient()
 {
     $title = 'Đăng ký tài khoản';
@@ -181,6 +170,15 @@ function resetPassword()
     require_once PATH_VIEW . 'layout/master.php';
 }
 
+
+function logoutClient()
+{
+    if (!empty($_SESSION['user'])) {
+        unset($_SESSION['user']);
+    }
+    redirect(BASE_URL . "?action=login-client");
+    exit();
+}
 
 function validateRegister($data)
 {
