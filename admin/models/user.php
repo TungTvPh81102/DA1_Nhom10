@@ -33,20 +33,6 @@ if (!function_exists('checkUniqueEmailForUpdate')) {
     }
 }
 
-if (!function_exists('activeToken')) {
-    function activeToken($token)
-    {
-        try {
-            $sql = "SELECT id FROM users WHERE active_token = :active_token LIMIT 1";
-            $stmt = $GLOBALS['conn']->prepare($sql);
-            $stmt->bindParam(':active_token', $token);
-            $stmt->execute();
-            return $stmt->fetch();
-        } catch (\Exception $e) {
-            debug($e);
-        }
-    }
-}
 
 if (!function_exists('getUserAdmin')) {
     function getUserAdmin($data)
@@ -56,6 +42,21 @@ if (!function_exists('getUserAdmin')) {
             $stmt = $GLOBALS['conn']->prepare($sql);
             $stmt->bindParam(':email', $data['email']);
             $stmt->execute();
+            return $stmt->fetch();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+if (!function_exists('getUserbyEmail')) {
+    function getUserbyEmail($email)
+    {
+        try {
+            $sql = "SELECT * FROM users WHERE email = :email";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();   
             return $stmt->fetch();
         } catch (\Exception $e) {
             debug($e);

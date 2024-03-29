@@ -79,6 +79,7 @@ if (!function_exists('showOneProduct')) {
                 p.discount as p_discount,
                 p.status as p_status,
                 p.view as p_view,
+                p.hot as p_hot,
                 p.created_at as p_created_at,
                 p.updated_at as p_updated_at,
                 c.name as c_name,

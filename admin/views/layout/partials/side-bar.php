@@ -76,6 +76,12 @@
                         <span key="t-ecommerce">Quản lý thống kê</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?= BASE_URL_ADMIN  ?>?action=banners-list">
+                        <i class="bx bx-store"></i>
+                        <span key="t-ecommerce">Quản lý banner</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
