@@ -16,5 +16,5 @@ define('PATH_MODEL_ADMIN', __DIR__ . '/../admin/models/');
 define('PATH_VIEW_ADMIN', __DIR__ . '/../admin/views/');
 
 // BASE URL
-define('BASE_URL', 'http://localhost/project/');
-define('BASE_URL_ADMIN', 'http://localhost/project/admin/');
+define('BASE_URL', 'http://localhost/DA1/');
+define('BASE_URL_ADMIN', 'http://localhost/DA1/admin/');
