@@ -1,9 +1,44 @@
 <?php
 function loginClient()
 {
+    $title = 'Đăng nhập';
     $view = 'user/loginClient';
+    if (!empty($_POST)) {
+        $data = [
+            'email' => $_POST['email'] ?? null,
+            // 'password' => $_POST['password'] ?? null
+        ];
+        // debug($data);
+        // Kiểm tra tài khoản
+        $user = getUserbyEmail($data);
+        debug($user);
+        if ($user) {
+            if ($user['status'] == 0) {
+                $_SESSION['error'] = 'Tài khoản của bạn chưa được kích hoạt, vui lòng kiểm tra email để kích hoạt tài khoản.';
+                redirect(BASE_URL . "?action=login-client");
+            } else {
+                // Kiểm tra mật khẩu
+                $passwordHash = password_verify($data['password'], $user['password']);
+                if ($passwordHash) {
+                    // Đăng nhập thành công, lưu thông tin người dùng vào session và chuyển hướng đến trang chính
+                    $_SESSION['user'] = $user;
+                    redirect(BASE_URL . '?action=home');
+                } else {
+                    $_SESSION['error'] = 'Mật khẩu không đúng, vui lòng thử lại!';
+                    redirect(BASE_URL . "?action=login-client");
+                }
+            }
+        } else {
+            $_SESSION['error'] = 'Tài khoản không tồn tại, vui lòng thử lại!';
+            redirect(BASE_URL . "?action=login-client");
+        }
+    } else {
+        $_SESSION['error'] = 'Vui lòng nhập đầy đủ thông tin.';
+        // redirect(BASE_URL . "?action=login-client");
+    }
     require_once PATH_VIEW . 'layout/master.php';
 }
+
 function registerClient()
 {
     $title = 'Đăng ký tài khoản';

@@ -48,3 +48,18 @@ if (!function_exists('getUserAdmin')) {
         }
     }
 }
+
+if (!function_exists('getUserbyEmail')) {
+    function getUserbyEmail($email)
+    {
+        try {
+            $sql = "SELECT * FROM users WHERE email = :email";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();   
+            return $stmt->fetch();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
