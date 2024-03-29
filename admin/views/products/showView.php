@@ -34,7 +34,6 @@
                                                     <img src="<?= BASE_URL . $thumbnail ?>" alt="" class="img-fluid mx-auto d-block rounded">
                                                 </a>
                                             <?php endforeach; ?>
-                                            <select name="" id="" disabled="disabled"></select>
                                         </div>
                                     </div>
                                     <div class="col-md-7 offset-md-1 col-sm-9 col-8">
@@ -85,7 +84,7 @@
                                             <h5 class="font-size-15">Size :</h5>
                                             <select class="form-select" name="size" id="size_id">
                                                 <?php foreach ($sizes as $key => $value) : ?>
-                                                    <option value="<?= $key ?>"><?= $key ?></option>
+                                                    <option value="<?= $key ?>"><?= $value ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -93,7 +92,7 @@
                                             <h5 class="font-size-15">Color :</h5>
                                             <select class="form-select" name="color" id="color_id">
                                                 <?php foreach ($colors as $key => $value) : ?>
-                                                    <option value="<?= $key ?>"><?= $key ?></option>
+                                                    <option value="<?= $key ?>"><?= $value ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -112,9 +111,9 @@
                                     <div class="mt-3">
                                         <input type="hidden" name="p_id" id="" value="<?= $product['p_id'] ?>">
                                         <input type="hidden" name="p_price_regular" id="" value="<?= $product['p_price_regular'] ?>">
-                                            <button type="submit" class="btn btn-primary waves-effect waves-light mt-2 me-1">
-                                                <i class="bx bx-cart me-2"></i> Add to cart
-                                            </button>
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light mt-2 me-1">
+                                            <i class="bx bx-cart me-2"></i> Add to cart
+                                        </button>
                                         <button type="button" class="btn btn-success waves-effect  mt-2 waves-light">
                                             <i class="bx bx-shopping-bag me-2"></i>Buy now
                                         </button>

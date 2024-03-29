@@ -26,7 +26,7 @@ function authLogin()
         ];
         $user = getUserAdmin($data);
         if (!empty($user)) {
-            $paswordHash =  password_verify($_POST['password'], $user['password']);
+            $paswordHash =  password_verify($data['password'], $user['password']);
             if ($paswordHash) {
                 if ($user['status'] == 1 && $user['role'] == 1) {
                     $_SESSION['user'] = $user;

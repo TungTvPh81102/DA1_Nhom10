@@ -2,6 +2,30 @@
 function loginClient()
 {
     $view = 'user/loginClient';
+    if (!empty($_POST)) {
+        $data = [
+            'email' => $_POST['email'],
+            'password' => $_POST['password'],
+        ];
+        $user = getUserClient($data);
+        if (!empty($user)) {
+            $passwordHash = password_verify($data['password'], $user['password']);
+            if ($passwordHash) {
+                if ($user['status'] == 1) {
+                    $_SESSION['user'] = $user;
+                    redirect(BASE_URL);
+                } else {
+                    $_SESSION['errors'] = 'Tài khoản chưa được kích hoạt vui lòng thử lại sau';
+                }
+            } else {
+                $_SESSION['errors'] = 'Mật khẩu chưa chính xác, vui lòng kiểm tra lại';
+            }
+        } else {
+            $_SESSION['errors'] = 'Tài khoản mật khẩu chưa chính xác, vui lòng kiếm tra lại';
+            redirect(BASE_URL . "?action=login-client");
+            exit();
+        }
+    }
     require_once PATH_VIEW . 'layout/master.php';
 }
 function registerClient()
@@ -146,6 +170,15 @@ function resetPassword()
     require_once PATH_VIEW . 'layout/master.php';
 }
 
+
+function logoutClient()
+{
+    if (!empty($_SESSION['user'])) {
+        unset($_SESSION['user']);
+    }
+    redirect(BASE_URL . "?action=login-client");
+    exit();
+}
 
 function validateRegister($data)
 {

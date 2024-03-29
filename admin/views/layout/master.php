@@ -19,7 +19,8 @@
     }
     ?>
     <!-- Bootstrap Css -->
-    <link href="<?= BASE_URL ?>assets/admin/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="<?= BASE_URL ?>assets/admin/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet"
+        type="text/css" />
     <!-- Icons Css -->
     <link href="<?= BASE_URL ?>assets/admin/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
@@ -81,8 +82,8 @@
         require_once PATH_VIEW_ADMIN  . 'scripts/' . $script3 . '.php';
     }
     ?>
-        <!-- App js -->
-        <script src="<?= BASE_URL ?>assets/admin/js/app.js"></script>
+    <!-- App js -->
+    <script src="<?= BASE_URL ?>assets/admin/js/app.js"></script>
 </body>
 
 

@@ -440,15 +440,6 @@
                             <div
                                 class="icons-actions d-none d-xl-flex justify-content-end ms-auto fs-28px text-body-emphasis">
                                 <div class="px-5 d-none d-xl-inline-block">
-                                    <a class="lh-1 color-inherit text-decoration-none"
-                                        href="<?= BASE_URL ?>?action=login-client" data-bs-toggle="modal"
-                                        data-bs-target="#signInModal">
-                                        <svg class="icon icon-user-light">
-                                            <use xlink:href="#icon-user-light"></use>
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div class="px-5 d-none d-xl-inline-block">
                                     <a class="position-relative lh-1 color-inherit text-decoration-none"
                                         href="shop/wishlist.html" previewlistener="true">
                                         <svg class="icon icon-star-light">
@@ -471,7 +462,7 @@
                                             style="--square-size: 18px">3</span>
                                     </a>
                                 </div>
-                                <div class="color-modes position-relative ps-5">
+                                <div style="margin-right: 10px;" class="color-modes position-relative ps-5">
                                     <a class="bd-theme btn btn-link nav-link dropdown-toggle d-inline-flex align-items-center justify-content-center text-primary p-0 position-relative rounded-circle"
                                         href="#" aria-expanded="true" data-bs-toggle="dropdown" data-bs-display="static"
                                         aria-label="Toggle theme (light)">
@@ -518,6 +509,34 @@
                                         </li>
                                     </ul>
                                 </div>
+                                <?php if (isset($_SESSION['user']) && (is_array($_SESSION['user']))) { ?>
+                                <div class="dropdown me-10">
+                                    <a class="lh-1 color-inherit text-decoration-none"
+                                        href="<?= BASE_URL ?>?action=login-client" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <svg class="icon icon-user-light">
+                                            <use xlink:href="#icon-user-light"></use>
+                                        </svg>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end py-5" style="min-width: unset">
+                                        <a class="dropdown-item py-1" href="#">French</a>
+                                        <a class="dropdown-item py-1" href="#">Spanish</a>
+                                        <a class="dropdown-item py-1" href="#">Korean</a>
+                                        <a class="dropdown-item py-1" href="<?= BASE_URL ?>?action=logout-client"> <i
+                                                style="margin-right: 4px;"
+                                                class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                                    </div>
+                                </div>
+                                <?php } else {  ?>
+                                <div class="px-5 d-none d-xl-inline-block">
+                                    <a class="lh-1 color-inherit text-decoration-none"
+                                        href="<?= BASE_URL ?>?action=login-client">
+                                        <svg class="icon icon-user-light">
+                                            <use xlink:href="#icon-user-light"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

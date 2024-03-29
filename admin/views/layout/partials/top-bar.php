@@ -5,19 +5,20 @@
             <div class="navbar-brand-box">
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="<?= BASE_URL ?>assets/admin/images/logo.svg" alt="" height="22">
+                        <img src="<?= BASE_URL ?>assets\admin\images\logo-white.png" alt="" height="22">
                     </span>
+                    <!-- D:\laragon\htdocs\project\assets\admin\images\logo-white.png -->
                     <span class="logo-lg">
-                        <img src="<?= BASE_URL ?>assets/admin/images/logo-dark.png" alt="" height="17">
+                        <img src="<?= BASE_URL ?>assets\admin\images\logo-white.png" alt="" height="17">
                     </span>
                 </a>
 
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="<?= BASE_URL ?>assets/admin/images/logo-light.svg" alt="" height="22">
+                        <img src="<?= BASE_URL ?>assets\admin\images\logo-white.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="<?= BASE_URL ?>assets/admin/images/logo-light.png" alt="" height="19">
+                        <img src="<?= BASE_URL ?>assets\admin\images\logo-white.png" alt="" height="19">
                     </span>
                 </a>
             </div>

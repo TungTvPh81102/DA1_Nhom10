@@ -44,8 +44,10 @@
                                             <tr class="product">
                                                 <td>
                                                     <h5 class="font-size-14 text-truncate"><a href="ecommerce-product-detail.html" class="text-dark"><?= $cart['p_name'] ?></a></h5>
-                                                    <p class="mb-0">Color : <span class="fw-medium"><?= $cart['ca_size'] ?></span></p>
-                                                    <p class="mb-0">Size : <span class="fw-medium"><?= $cart['ca_color'] ?></span></p>
+                                                    <p class="mb-0">Color : <span class="fw-medium"><?= $cart['ca_size'] ?></span>
+                                                    </p>
+                                                    <p class="mb-0">Size : <span class="fw-medium"><?= $cart['ca_color'] ?></span>
+                                                    </p>
                                                 </td>
                                                 <td>
                                                     <img style="object-fit: cover; height:100%;" src="<?= BASE_URL . $cart['p_img_thumbnail'] ?>" alt="product-img" title="product-img" class="avatar-md">
@@ -55,7 +57,8 @@
                                                     if ($cart['p_discount'] > 0) {
                                                     ?>
                                                         <span class="fw-medium"><?= number_format($priceSale, 0) . " VNĐ" ?></span>
-                                                        <p class="mb-0"><del><span class="fw-medium"><?= number_format($cart['p_price_regular'], 0) . " VNĐ" ?></del></span></p>
+                                                        <p class="mb-0"><del><span class="fw-medium"><?= number_format($cart['p_price_regular'], 0) . " VNĐ" ?></del></span>
+                                                        </p>
                                                     <?php } else { ?>
                                                         <span class="fw-medium"><?= number_format($cart['p_price_regular'], 0) . " VNĐ" ?></span>
                                                     <?php } ?>
@@ -77,6 +80,7 @@
 
                                 </table>
                             </div>
+
                             <div class="row mt-4">
                                 <div class="col-sm-6">
                                     <a href="ecommerce-products.html" class="btn btn-secondary">
@@ -91,7 +95,7 @@
                             </div> <!-- end row-->
                         <?php } else { ?>
                             <div class="alert alert-danger">Không có sản phẩm nào trong giỏ hàng</div>
-                    <?php }                  
+                    <?php }
                     } ?>
                 </div>
             </div>
