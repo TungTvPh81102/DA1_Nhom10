@@ -180,6 +180,23 @@ function logoutClient()
     exit();
 }
 
+function myAccount()
+{
+    $view = 'user/myAccount';
+    $title = 'My Account';
+    if (!empty($_POST)) {
+        $data = [
+            'first_name' => $_POST['first_name'] ?? $_SESSION['user']['first_name'],
+            'last_name' => $_POST['last_name'] ?? $_SESSION['user']['last_name'],
+            'email' => $_POST['email'] ?? $_SESSION['user']['email'],
+            'phone_number' => $_POST['phone_number'] ?? $_SESSION['user']['phone_number'],
+            'address' => $_POST['address'] ?? $_SESSION['user']['address'],
+            'avatar' => get_file_upload('avatar') ?? $_SESSION['user']['avatar'],
+        ];
+    }
+    require_once PATH_VIEW . 'layout/master.php';
+}
+
 function validateRegister($data)
 {
     $errors = [];

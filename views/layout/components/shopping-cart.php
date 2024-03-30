@@ -11,8 +11,7 @@
                 <thead>
                     <tr class="fw-500">
                         <td colspan="3" class="border-bottom pb-6">
-                            <i
-                                class="far fa-check fs-12px border me-4 px-2 py-1 text-body-emphasis border-dark rounded-circle"></i>
+                            <i class="far fa-check fs-12px border me-4 px-2 py-1 text-body-emphasis border-dark rounded-circle"></i>
                             Your cart is saved for the next
                             <span class="text-body-emphasis">4m34s</span>
                         </td>
@@ -28,8 +27,7 @@
                         <td class="shop-product">
                             <div class="d-flex align-items-center">
                                 <div class="me-6">
-                                    <img src="<?= BASE_URL ?>assets/client/images/products/product-03-75x100.jpg"
-                                        width="60" height="80" alt="natural coconut cleansing oil" />
+                                    <img src="<?= BASE_URL ?>assets/client/images/products/product-03-75x100.jpg" width="60" height="80" alt="natural coconut cleansing oil" />
                                 </div>
                                 <div class>
                                     <p class="card-text mb-1">
@@ -44,11 +42,8 @@
                         </td>
                         <td class="align-middle p-0">
                             <div class="input-group position-relative shop-quantity">
-                                <a href="#" class="shop-down position-absolute z-index-2"><i
-                                        class="far fa-minus"></i></a>
-                                <input name="number[]" type="number"
-                                    class="form-control form-control-sm px-6 py-4 fs-6 text-center border-0" value="1"
-                                    required />
+                                <a href="#" class="shop-down position-absolute z-index-2"><i class="far fa-minus"></i></a>
+                                <input name="number[]" type="number" class="form-control form-control-sm px-6 py-4 fs-6 text-center border-0" value="1" required />
                                 <a href="#" class="shop-up position-absolute z-index-2"><i class="far fa-plus"></i>
                                 </a>
                             </div>
@@ -63,8 +58,7 @@
                         <td class="shop-product">
                             <div class="d-flex align-items-center">
                                 <div class="me-6">
-                                    <img src="<?= BASE_URL ?>assets/client/images/products/product-06-75x100.jpg"
-                                        width="60" height="80" alt="natural coconut cleansing oil" />
+                                    <img src="<?= BASE_URL ?>assets/client/images/products/product-06-75x100.jpg" width="60" height="80" alt="natural coconut cleansing oil" />
                                 </div>
                                 <div class>
                                     <p class="card-text mb-1">
@@ -77,11 +71,8 @@
                         </td>
                         <td class="align-middle p-0">
                             <div class="input-group position-relative shop-quantity">
-                                <a href="#" class="shop-down position-absolute z-index-2"><i
-                                        class="far fa-minus"></i></a>
-                                <input name="number[]" type="number"
-                                    class="form-control form-control-sm px-6 py-4 fs-6 text-center border-0" value="1"
-                                    required />
+                                <a href="#" class="shop-down position-absolute z-index-2"><i class="far fa-minus"></i></a>
+                                <input name="number[]" type="number" class="form-control form-control-sm px-6 py-4 fs-6 text-center border-0" value="1" required />
                                 <a href="#" class="shop-up position-absolute z-index-2"><i class="far fa-plus"></i>
                                 </a>
                             </div>
@@ -96,8 +87,7 @@
                         <td class="shop-product">
                             <div class="d-flex align-items-center">
                                 <div class="me-6">
-                                    <img src="<?= BASE_URL ?>assets/client/images/products/product-09-75x100.jpg"
-                                        width="60" height="80" alt="natural coconut cleansing oil" />
+                                    <img src="<?= BASE_URL ?>assets/client/images/products/product-09-75x100.jpg" width="60" height="80" alt="natural coconut cleansing oil" />
                                 </div>
                                 <div class>
                                     <p class="card-text mb-1">
@@ -110,11 +100,8 @@
                         </td>
                         <td class="align-middle p-0">
                             <div class="input-group position-relative shop-quantity">
-                                <a href="#" class="shop-down position-absolute z-index-2"><i
-                                        class="far fa-minus"></i></a>
-                                <input name="number[]" type="number"
-                                    class="form-control form-control-sm px-6 py-4 fs-6 text-center border-0" value="1"
-                                    required />
+                                <a href="#" class="shop-down position-absolute z-index-2"><i class="far fa-minus"></i></a>
+                                <input name="number[]" type="number" class="form-control form-control-sm px-6 py-4 fs-6 text-center border-0" value="1" required />
                                 <a href="#" class="shop-up position-absolute z-index-2"><i class="far fa-plus"></i>
                                 </a>
                             </div>
@@ -129,9 +116,8 @@
             <span class="text-body-emphasis">Total price:</span>
             <span class="cart-total fw-bold text-body-emphasis">$106.00</span>
         </div>
-        <a href="https://templates.g5plus.net/shop/checkout.html" class="btn btn-dark w-100 mb-7"
-            title="Check Out">Check Out</a>
-        <a href="https://templates.g5plus.net/shop/shopping-cart.html" class="btn btn-outline-dark w-100"
-            title="View shopping cart">View shopping cart</a>
+        <a href="<?= BASE_URL ?>?action=order-check-out" class="btn btn-dark w-100 mb-7" title="Check Out">Check Out</a>
+        <a href="<?= BASE_URL ?>?action=view-cart" class="btn btn-outline-dark w-100" title="View shopping cart">View
+            shopping cart</a>
     </div>
 </div>

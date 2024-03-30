@@ -519,7 +519,9 @@
                                         </svg>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end py-5" style="min-width: unset">
-                                        <a class="dropdown-item py-1" href="#">French</a>
+                                        <a class="dropdown-item py-1" href="<?= BASE_URL ?>?action=my-account">
+                                            <i class="fa-solid fa-circle-user"></i> My Account
+                                        </a>
                                         <a class="dropdown-item py-1" href="#">Spanish</a>
                                         <a class="dropdown-item py-1" href="#">Korean</a>
                                         <a class="dropdown-item py-1" href="<?= BASE_URL ?>?action=logout-client"> <i

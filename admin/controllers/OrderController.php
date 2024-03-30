@@ -123,18 +123,23 @@ function addCart()
             'created_at' => date('Y-m-d H:i:s')
         ];
 
+        // debug($_POST);
+
 
         if (!empty($_SESSION['user'])) {
             try {
                 $GLOBALS['conn']->beginTransaction();
 
-                // $user = $_SESSION['user']['id'];
-                // $dataUserCart = [
-                //     'user_id' => $user['id'],
-                //     'created_at' => date('Y-m-d H:i:s')
-                // ];
+                $user = $_SESSION['user']['id'];
 
-                $cartId = getCartIDAdmin($_SESSION['user']['id']);
+                $dataUserCart = [
+                    'user_id' => $user,
+                    'created_at' => date('Y-m-d H:i:s')
+                ];
+
+                $cartId = insert_get_last_id('carts', $dataUserCart);
+
+                // $cartId = getCartIDAdmin($_SESSION['user']['id']);
 
                 if (!empty($cartId)) {
                     $dataCartItem = [

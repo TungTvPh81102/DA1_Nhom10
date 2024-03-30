@@ -26,24 +26,33 @@
                             <div class="product-detai-imgs">
                                 <div class="row">
                                     <div class="col-md-2 col-sm-3 col-4">
-                                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                            aria-orientation="vertical">
                                             <?php
                                             foreach ($thumbnails as $key => $thumbnail) :
                                             ?>
-                                                <a class="nav-link <?= ($key == 0) ? 'active' : ''; ?>" id="product-<?php echo $key; ?>-tab" data-bs-toggle="pill" href="#product-<?php echo $key; ?>" role="tab" aria-controls="product-<?php echo $key; ?>" aria-selected="<?= ($key === 0) ? 'true' : 'false'; ?>">
-                                                    <img src="<?= BASE_URL . $thumbnail ?>" alt="" class="img-fluid mx-auto d-block rounded">
-                                                </a>
+                                            <a class="nav-link <?= ($key == 0) ? 'active' : ''; ?>"
+                                                id="product-<?php echo $key; ?>-tab" data-bs-toggle="pill"
+                                                href="#product-<?php echo $key; ?>" role="tab"
+                                                aria-controls="product-<?php echo $key; ?>"
+                                                aria-selected="<?= ($key === 0) ? 'true' : 'false'; ?>">
+                                                <img src="<?= BASE_URL . $thumbnail ?>" alt=""
+                                                    class="img-fluid mx-auto d-block rounded">
+                                            </a>
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
                                     <div class="col-md-7 offset-md-1 col-sm-9 col-8">
                                         <div class="tab-content" id="v-pills-tabContent">
                                             <?php foreach ($thumbnails as $key => $thumbnail) : ?>
-                                                <div class="tab-pane fade <?= ($key == 0) ? 'show active' : ''; ?>" id="product-<?php echo $key; ?>" role="tabpanel" aria-labelledby="product-<?php echo $key; ?>-tab">
-                                                    <div>
-                                                        <img src="<?= BASE_URL . $thumbnail ?>" alt="" class="img-fluid mx-auto d-block rounded">
-                                                    </div>
+                                            <div class="tab-pane fade <?= ($key == 0) ? 'show active' : ''; ?>"
+                                                id="product-<?php echo $key; ?>" role="tabpanel"
+                                                aria-labelledby="product-<?php echo $key; ?>-tab">
+                                                <div>
+                                                    <img src="<?= BASE_URL . $thumbnail ?>" alt=""
+                                                        class="img-fluid mx-auto d-block rounded">
                                                 </div>
+                                            </div>
                                             <?php endforeach; ?>
                                         </div>
 
@@ -67,9 +76,10 @@
                                 </p>
                                 <p class="text-muted mb-4">( 152 Customers Review )</p>
                                 <?php if ($product['p_discount'] > 0) { ?>
-                                    <h6 class="text-success text-uppercase"><?= $product['p_discount'] ?> % Off</h6>
+                                <h6 class="text-success text-uppercase"><?= $product['p_discount'] ?> % Off</h6>
                                 <?php } ?>
-                                <h5 class="mb-4">Price : <span class="text-muted me-2"><del><?= number_format($product['p_price_regular'], 0) . ' VNĐ' ?></del></span>
+                                <h5 class="mb-4">Price : <span
+                                        class="text-muted me-2"><del><?= number_format($product['p_price_regular'], 0) . ' VNĐ' ?></del></span>
                                     <?php
                                     $priceSale = $product['p_price_regular'] - ($product['p_price_regular'] * ($product['p_discount'] / 100));
                                     ?>
@@ -83,8 +93,9 @@
                                         <div class="product-size">
                                             <h5 class="font-size-15">Size :</h5>
                                             <select class="form-select" name="size" id="size_id">
-                                                <?php foreach ($sizes as $key => $value) : ?>
-                                                    <option value="<?= $key ?>"><?= $value ?></option>
+                                                <?php foreach ($sizes as $key => $value) :
+                                                ?>
+                                                <option value="<?= $value ?>"><?= $value ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -92,26 +103,29 @@
                                             <h5 class="font-size-15">Color :</h5>
                                             <select class="form-select" name="color" id="color_id">
                                                 <?php foreach ($colors as $key => $value) : ?>
-                                                    <option value="<?= $key ?>"><?= $value ?></option>
+                                                <option value="<?= $value ?>"><?= $value ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
                                         <div class="product-size">
                                             <h5 class="font-size-15">Quantity :</h5>
-                                            <input name="quantity" value="1" min="1" class="form-control" type="number" name="" id="">
+                                            <input name="quantity" value="1" min="1" class="form-control" type="number"
+                                                name="" id="">
                                         </div>
                                     </div>
                                     <div class="mt-3">
                                         <?php if ($quantity > 0) :  ?>
-                                            <h5 class="font-size-15">
-                                                Tình trạng : Còn hàng
-                                            </h5>
+                                        <h5 class="font-size-15">
+                                            Tình trạng : Còn hàng
+                                        </h5>
                                         <?php endif; ?>
                                     </div>
                                     <div class="mt-3">
                                         <input type="hidden" name="p_id" id="" value="<?= $product['p_id'] ?>">
-                                        <input type="hidden" name="p_price_regular" id="" value="<?= $product['p_price_regular'] ?>">
-                                        <button type="submit" class="btn btn-primary waves-effect waves-light mt-2 me-1">
+                                        <input type="hidden" name="p_price_regular" id=""
+                                            value="<?= $product['p_price_regular'] ?>">
+                                        <button type="submit"
+                                            class="btn btn-primary waves-effect waves-light mt-2 me-1">
                                             <i class="bx bx-cart me-2"></i> Add to cart
                                         </button>
                                         <button type="button" class="btn btn-success waves-effect  mt-2 waves-light">
@@ -142,7 +156,7 @@
                                         <th scope="row">Color</th>
                                         <td>
                                             <?php foreach ($colors as $color => $value) : ?>
-                                                <?= $color ?>
+                                            <?= $color ?>
                                             <?php endforeach; ?>
                                         </td>
                                     </tr>
@@ -162,79 +176,79 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Your existing code here...
+document.addEventListener("DOMContentLoaded", function() {
+    // Your existing code here...
 
-        // Function to update price and quantity based on selected size and color
-        function updatePriceAndQuantity() {
-            var selectedSize = document.querySelector('input[name="sizes[]"]:checked').value;
-            var selectedColor = document.querySelector('input[name="color[]"]:checked').value;
+    // Function to update price and quantity based on selected size and color
+    function updatePriceAndQuantity() {
+        var selectedSize = document.querySelector('input[name="sizes[]"]:checked').value;
+        var selectedColor = document.querySelector('input[name="color[]"]:checked').value;
 
-            // Fetch the price and quantity based on the selected size and color
-            var selectedProduct = getProductDetails(selectedSize, selectedColor);
-            var priceElement = document.querySelector('#product-price');
-            if (selectedProduct.quantity == 0) {
-                priceElement.innerHTML = 'Out of Stock';
-            } else {
-                priceElement.innerHTML = '<span class="text-muted me-2"><del>$240 USD</del></span><b>$' +
-                    selectedProduct.price + ' USD</b>';
-            }
-
-            if (selectedProduct.quantity == 0) {
-                number_product.textContent = ' Hết hàng trong kho !';
-            } else {
-                number_product.textContent = 'Còn ' + selectedProduct.quantity + ' Sản Phẩm Trong Kho';
-            }
-
-            maxQquantity = selectedProduct.quantity;
-            if (element_number_product.textContent > selectedProduct.quantity) {
-                element_number_product.textContent = selectedProduct.quantity;
-                element_number_product.textContent = selectedProduct.quantity;
-                quantityProduct.value = selectedProduct.quantity;
-            }
+        // Fetch the price and quantity based on the selected size and color
+        var selectedProduct = getProductDetails(selectedSize, selectedColor);
+        var priceElement = document.querySelector('#product-price');
+        if (selectedProduct.quantity == 0) {
+            priceElement.innerHTML = 'Out of Stock';
+        } else {
+            priceElement.innerHTML = '<span class="text-muted me-2"><del>$240 USD</del></span><b>$' +
+                selectedProduct.price + ' USD</b>';
         }
 
-        // Function to fetch product details based on size and color
-        function getProductDetails(size, color) {
-            // You need to fetch product details from your data source ($sanphamct) based on selected size and color
-            // Replace this with your actual implementation
-            var productDetails = {
-                price: 0, // Fetch the actual price based on size and color
-                quantity: 0 // Fetch the actual quantity based on size and color
-            };
-            // Replace the hardcoded price and quantity with fetched values
-            if (size === 'S' && color === 'red') {
-                productDetails.price = 100;
-                productDetails.quantity = 5;
-            } else if (size === 'M' && color === 'blue') {
-                productDetails.price = 120;
-                productDetails.quantity = 8;
-            } else if (size === 'L' && color === 'green') {
-                productDetails.price = 150;
-                productDetails.quantity = 10;
-            } else if (size === 'XL' && color === 'yellow') {
-                productDetails.price = 180;
-                productDetails.quantity = 3;
-            }
-            return productDetails;
+        if (selectedProduct.quantity == 0) {
+            number_product.textContent = ' Hết hàng trong kho !';
+        } else {
+            number_product.textContent = 'Còn ' + selectedProduct.quantity + ' Sản Phẩm Trong Kho';
         }
 
-        // Event listeners for size and color selection
-        document.querySelectorAll('input[name="sizes[]"]').forEach(function(sizeInput) {
-            sizeInput.addEventListener('click', function() {
-                updatePriceAndQuantity();
-            });
+        maxQquantity = selectedProduct.quantity;
+        if (element_number_product.textContent > selectedProduct.quantity) {
+            element_number_product.textContent = selectedProduct.quantity;
+            element_number_product.textContent = selectedProduct.quantity;
+            quantityProduct.value = selectedProduct.quantity;
+        }
+    }
+
+    // Function to fetch product details based on size and color
+    function getProductDetails(size, color) {
+        // You need to fetch product details from your data source ($sanphamct) based on selected size and color
+        // Replace this with your actual implementation
+        var productDetails = {
+            price: 0, // Fetch the actual price based on size and color
+            quantity: 0 // Fetch the actual quantity based on size and color
+        };
+        // Replace the hardcoded price and quantity with fetched values
+        if (size === 'S' && color === 'red') {
+            productDetails.price = 100;
+            productDetails.quantity = 5;
+        } else if (size === 'M' && color === 'blue') {
+            productDetails.price = 120;
+            productDetails.quantity = 8;
+        } else if (size === 'L' && color === 'green') {
+            productDetails.price = 150;
+            productDetails.quantity = 10;
+        } else if (size === 'XL' && color === 'yellow') {
+            productDetails.price = 180;
+            productDetails.quantity = 3;
+        }
+        return productDetails;
+    }
+
+    // Event listeners for size and color selection
+    document.querySelectorAll('input[name="sizes[]"]').forEach(function(sizeInput) {
+        sizeInput.addEventListener('click', function() {
+            updatePriceAndQuantity();
         });
-
-        document.querySelectorAll('input[name="color[]"]').forEach(function(colorInput) {
-            colorInput.addEventListener('click', function() {
-                updatePriceAndQuantity();
-            });
-        });
-
-        // Initialize default price and quantity based on default size and color
-        updatePriceAndQuantity();
-
-        // Your existing code here...
     });
+
+    document.querySelectorAll('input[name="color[]"]').forEach(function(colorInput) {
+        colorInput.addEventListener('click', function() {
+            updatePriceAndQuantity();
+        });
+    });
+
+    // Initialize default price and quantity based on default size and color
+    updatePriceAndQuantity();
+
+    // Your existing code here...
+});
 </script>
