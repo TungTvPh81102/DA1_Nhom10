@@ -46,6 +46,7 @@ match ($action) {
     'forgot-password' => forgotPassword(),
     'reset-password' => resetPassword(),
     'logout-client' => logoutClient(),
+    'my-account' => myAccount(),
 
     // PRODUCT
     'products' => shopProduct(),

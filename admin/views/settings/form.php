@@ -20,8 +20,8 @@
                 <div class="card-body">
                     <!-- Hiển thị thông báo thành công -->
                     <?php if (isset($_SESSION['success'])) : ?>
-                    <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
-                    <?php unset($_SESSION['success']); ?>
+                        <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
+                        <?php unset($_SESSION['success']); ?>
                     <?php endif; ?>
                     <form action="<?= BASE_URL_ADMIN . '?action=setting-save' ?>" method="post">
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
@@ -36,16 +36,15 @@
                                 <tr>
                                     <td>Logo</td>
                                     <td>
-                                        <input type="text" class="form-control" name="logo"
-                                            value="<?= $settings['logo'] ?? null ?>">
+                                        <input type="text" class="form-control" name="logo" value="<?= $settings['logo'] ?? null ?>">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <? =$settings['key']?>
+                                        <?= $settings['key'] ?>
                                     </td>
                                     <td>
-                                        <? =$settings['value']?>
+                                        <?= $settings['value'] ?>
                                     </td>
                                 </tr>
                             </tbody>
