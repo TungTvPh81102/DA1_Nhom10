@@ -99,7 +99,7 @@ function userUpdate()
         ];
         validateUserUpdate($id, $data);
         $avatar = $data['avatar'];
-        if (is_array($avatar) && is_array($avatar) && $avatar['size'] > 0) {
+        if (is_array($avatar)  && $avatar['size'] > 0) {
             $data['avatar'] = upload_file($avatar, "uploads/users/");
             if (!empty($avatar) && !empty($user['avatar'] && file_exists(PATH_UPLOAD . $user['avatar'])) && !empty($data['avatar'])) {
                 unlink(PATH_UPLOAD . $user['avatar']);

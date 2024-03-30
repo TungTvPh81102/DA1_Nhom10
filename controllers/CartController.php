@@ -80,6 +80,34 @@ function viewCart()
     $view = 'cart/viewCart';
     // unset($_SESSION['cart']);
     // debug($_SESSION['cart']);
+    $today = date('Y-m-d');
+    if (!empty($_SESSION['cart'])) {
+        if (!empty($_POST)) {
+            $coupon = checkCoupon($_POST['code']);
+            if (is_array($coupon) && !empty($coupon)) {
+                $dataCoupon = [
+                    'code' => $coupon['code'],
+                    'number' => $coupon['number'],
+                    'condition' => $coupon['condition'],
+                    'created_at' => $coupon['created_at'],
+                    'expires_at' => $coupon['expires_at'],
+                    'maximum_percent' => $coupon['maximum_percent']
+                ];
+                if ($today >= $dataCoupon['created_at'] && $today <= $dataCoupon['expires_at']) {
+                    $_SESSION['coupon'] = $dataCoupon;
+                    $_SESSION['success'] = 'Thêm mã giảm giá thành công';
+                } else {
+                    unset($_SESSION['coupon']);
+                    $_SESSION['errors'] = 'Mã đã hết hạn sử dụng, vui lòng nhập mã khác';
+                }
+            } else {
+                unset($_SESSION['coupon']);
+                $_SESSION['errors'] = 'Mã giảm giá không tồn tại hoặc đã hết hạn';
+            }
+        } else {
+            unset($_SESSION['coupon']);
+        }
+    }
     require_once PATH_VIEW . 'layout/master.php';
 }
 

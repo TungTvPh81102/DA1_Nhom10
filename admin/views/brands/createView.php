@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18">Quản lý thương hiệu</h4>
+                <h4 class="mb-sm-0 font-size-18">Quản lý mã giảm giá</h4>
             </div>
         </div>
     </div>
@@ -29,20 +29,14 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="productname">Tên thương hiệu:</label>
-                                    <input name="name" id="productname" type="text" class="form-control mb-3"
-                                        placeholder="Nhập tên thương hiệu"
-                                        value="<?= isset($_SESSION['data']) ? $_SESSION['data']['name'] : null  ?>">
+                                    <input name="name" id="productname" type="text" class="form-control mb-3" placeholder="Nhập tên thương hiệu" value="<?= isset($_SESSION['data']) ? $_SESSION['data']['name'] : null  ?>">
                                     <span class="text-danger"><?= formErrors('name', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="form-select">Trạng thái:</label>
                                     <select name="status" class="form-select mb-3">
-                                        <option
-                                            <?= isset($_SESSION['data']) &&  $_SESSION['data']['status'] == 1 ? 'selected' : null ?>
-                                            value="1">Active</option>
-                                        <option
-                                            <?= isset($_SESSION['data']) &&  $_SESSION['data']['status'] == 0 ? 'selected' : null ?>
-                                            value="0">Inactive</option>
+                                        <option <?= isset($_SESSION['data']) &&  $_SESSION['data']['status'] == 1 ? 'selected' : null ?> value="1">Active</option>
+                                        <option <?= isset($_SESSION['data']) &&  $_SESSION['data']['status'] == 0 ? 'selected' : null ?> value="0">Inactive</option>
                                     </select>
                                     <span class="text-danger"><?= formErrors('status', $errorsMess) ?></span>
                                 </div>

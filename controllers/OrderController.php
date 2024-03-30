@@ -7,6 +7,13 @@ function orderCheckOut()
 
 
         if ($_POST['paymethod'] == 1) {
+
+            if (isset($_SESSION['coupon'])) {
+                $totalMoney = calculator_total_coupon(false);
+            } else {
+                $totalMoney = caculator_total_order(false);
+            }
+
             $data = [
                 'order_code' => 'TH' . rand(1, 1000),
                 'user_id' => $_SESSION['user']['id'],
@@ -19,10 +26,11 @@ function orderCheckOut()
                 'phone' => $_POST['phone'] ?? null,
                 'note' => $_POST['note'] ?? null,
                 'paymethod' => $_POST['paymethod'] ?? null,
-                'total_money' => caculator_total_order(false),
+                'total_money' =>  $totalMoney,
                 'status_delivery' => 1,
                 'order_date' => date('Y-m-d H:i:s')
             ];
+
 
             $_SESSION['dataOrder'] = $data;
             $vnp_TmnCode = "SH7S871O"; //Mã định danh merchant kết nối (Terminal Id)
@@ -234,6 +242,41 @@ function orderSuccess()
 function onlinePayment()
 {
     $view = 'order/OnlinePayment';
+    require_once PATH_VIEW . 'layout/master.php';
+}
+
+function myOrders()
+{
+    $view = 'order/myOrders';
+    $title = 'My Orders';
+    if (isset($_SESSION['user'])) {
+        $userID = $_SESSION['user']['id'];
+        $orders = listAllUserOrder($userID);
+
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $statusDelivery = 0;
+            $data = [
+                'status_delivery' => $statusDelivery,
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+            update('orders', $id, $data);
+            redirect(BASE_URL . '?action=my-orders');
+        }
+    }
+    require_once PATH_VIEW . 'layout/master.php';
+}
+
+function showOrder()
+{
+    $id = $_GET['id'];
+    $orderDetail = orderDetail($id);
+    if (empty($orderDetail)) {
+        e404();
+    }
+    $view = 'order/OrderDetail';
+    $title = 'Order Details';
+
     require_once PATH_VIEW . 'layout/master.php';
 }
 

@@ -147,6 +147,28 @@ if (!function_exists('middleware_client_check')) {
     }
 }
 
+function setUpStatus($status)
+{
+    switch ($status) {
+        case 1:
+            $show = '<span class="btn btn-warning btn-sm waves-effect waves-light">Chờ xác nhận</span>';
+            break;
+        case 2:
+            $show = '<span class="btn btn-info btn-sm waves-effect waves-light">Chờ lấy hàng</span>';
+            break;
+        case 3:
+            $show = '<span class="btn btn-primary btn-sm waves-effect waves-light">Đang giao hàng</span>';
+            break;
+        case 4:
+            $show = '<span class="btn btn-success btn-sm waves-effect waves-light">Giao hàng thành công</span>';
+            break;
+        default:
+            $show = '<span class="btn btn-danger btn-sm waves-effect waves-light">Đã hủy hàng</span>';
+            break;
+    }
+    return $show;
+}
+
 if (!function_exists('caculator_total_order')) {
     function caculator_total_order($flag = true)
     {
@@ -157,6 +179,27 @@ if (!function_exists('caculator_total_order')) {
                 $total += $price * $item['quantity'];
             }
             return $flag ? number_format($total, 0) : $total;
+        }
+        return 0;
+    }
+}
+
+if (!function_exists('calculator_total_coupon')) {
+    function calculator_total_coupon($flag = true)
+    {
+        if (isset($_SESSION['coupon'])) {
+            $total = caculator_total_order(false);
+            if ($_SESSION['coupon']['condition'] == 1) {
+                $discount = ($total * $_SESSION['coupon']['number']) / 100;
+                if ($discount > $_SESSION['coupon']['maximum_percent']) {
+                    $discount = $_SESSION['coupon']['maximum_percent'];
+                }
+                $totalCoupon = $total - $discount;
+                return $flag ? number_format($totalCoupon, 0) : $totalCoupon;
+            } elseif ($_SESSION['coupon']['condition'] == 2) {
+                $totalCoupon =  $total - $_SESSION['coupon']['number'];
+                return $flag ? number_format($totalCoupon, 0) : $totalCoupon;
+            }
         }
         return 0;
     }

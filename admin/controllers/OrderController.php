@@ -25,28 +25,6 @@ function ordersList()
 }
 
 
-function setUpStatus($status)
-{
-    switch ($status) {
-        case 1:
-            $show = '<span class="btn btn-warning btn-sm waves-effect waves-light">Chờ xác nhận</span>';
-            break;
-        case 2:
-            $show = '<span class="btn btn-info btn-sm waves-effect waves-light">Chờ lấy hàng</span>';
-            break;
-        case 3:
-            $show = '<span class="btn btn-primary btn-sm waves-effect waves-light">Đang giao hàng</span>';
-            break;
-        case 4:
-            $show = '<span class="btn btn-success btn-sm waves-effect waves-light">Giao hàng thành công</span>';
-            break;
-        default:
-            $show = '<span class="btn btn-danger btn-sm waves-effect waves-light">Đã hủy hàng</span>';
-            break;
-    }
-    return $show;
-}
-
 function orderDetail()
 {
     $id = $_GET['order_id'];
