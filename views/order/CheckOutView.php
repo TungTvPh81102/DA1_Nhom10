@@ -76,20 +76,14 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card-body px-10 py-8">
-                        <div class="d-flex align-items-center mb-2">
-                            <span>Subtotal:</span>
-                            <span class="d-block ms-auto text-body-emphasis fw-bold">$99.00</span>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <span>Shipping:</span>
-                            <span class="d-block ms-auto text-body-emphasis fw-bold">$0</span>
-                        </div>
-                    </div>
                     <div class="card-footer bg-transparent py-5 px-0 mx-10">
                         <div class="d-flex align-items-center fw-bold mb-6">
                             <span class="text-body-emphasis p-0">Total pricre:</span>
-                            <span class="d-block ms-auto text-body-emphasis fs-4 fw-bold"><?= caculator_total_order() . ' đ' ?></span>
+                            <?php if (isset($_SESSION['coupon']) && is_array($_SESSION['coupon'])) { ?>
+                                <span class="d-block ms-auto text-body-emphasis fs-4 fw-bold"><?= calculator_total_coupon() . ' đ' ?></span>
+                            <?php } else { ?>
+                                <span class="d-block ms-auto text-body-emphasis fs-4 fw-bold"><?= caculator_total_order() . ' đ' ?></span>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -223,6 +217,9 @@
                             <div class="tab-pane fade active show" id="paypal-tab" role="tabpanel">
                                 <div class="">
                                     <input type="radio" name="paymethod" id="vnpay" value="1"> Thanh toán VN PAY
+                                </div>
+                                <div class="">
+                                    <input type="radio" name="paymethod" id="vnpay" value="2"> Thanh toán MOMO
                                 </div>
                             </div>
                         </div>

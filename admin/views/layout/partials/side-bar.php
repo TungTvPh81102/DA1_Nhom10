@@ -82,6 +82,12 @@
                         <span key="t-ecommerce">Quản lý banner</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?= BASE_URL_ADMIN  ?>?action=coupons-list">
+                        <i class="bx bx-sticker"></i>
+                        <span key="t-ecommerce">Quản lý mã giảm giá</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
