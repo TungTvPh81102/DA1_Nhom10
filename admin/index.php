@@ -35,6 +35,8 @@ match ($action) {
 
 
     // CRUD SETTINGS
+    'setting-form' => settingShowForm(),
+    'setting-save' => settingSave(),
 
     // CRUD BANNERS
     'banners-list' => bannersList(),
@@ -57,7 +59,9 @@ match ($action) {
 
     // QUẢN LÝ MÃ GIẢM GIÁ
     'coupons-list' => couponList(),
-    'coupon-create' => couponAdd(),
+    'coupon-create' => couponCreate(),
+    'coupon-update' => couponUpdate(),
+    'coupon-delete' => couponDelete(),
 
     // CRUD BRANDS
     'brands-list' => brandsList(),

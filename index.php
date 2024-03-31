@@ -11,6 +11,9 @@ require_once "./commons/helper.php";
 require_once "./commons/connect-db.php";
 require_once "./commons/model.php";
 
+// Dữ liệu GLOBAL SETTINGS
+$settings = settings();
+
 // Required file trong controllers và models
 require_file(PATH_CONTROLLER);
 require_file(PATH_MODEL);

@@ -22,17 +22,3 @@ if (!function_exists('settingUpdateByKey')) {
         }
     }
 }
-
-// if (!function_exists('list-settings')) {
-//     function listAll()
-//     {
-//         try {
-//             $sql = "SELECT * FROM settings ";
-//             $stmt = $GLOBALS['conn']->prepare($sql);
-//             $stmt->execute();
-//             return $stmt->fetchAll();
-//         } catch (\Exception $e) {
-//             debug($e);
-//         }
-//     }
-// }

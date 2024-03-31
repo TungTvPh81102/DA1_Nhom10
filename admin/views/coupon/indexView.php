@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18">Quản lý thương hiệu</h4>
+                <h4 class="mb-sm-0 font-size-18">Quản lý mã giảm giá</h4>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
                                 <th>ID</th>
                                 <th>Tên mã giảm giá</th>
                                 <th>Mã giảm giá</th>
-                                <th>Số lượng giảm giá</th>
+                                <th>Số lượng mã</th>
                                 <th>Điều kiện giảm</th>
                                 <th>Số tiền giảm</th>
                                 <th>Ngày bắt đầu</th>
@@ -47,27 +47,28 @@
                                     <td><?= $coupon['id'] ?></td>
                                     <td><?= $coupon['name'] ?></td>
                                     <td><?= $coupon['code'] ?> </td>
-                                    <td><?= $coupon['time'] ?></td>
+                                    <td><?= $coupon['quantity'] ?></td>
                                     <td><?= $coupon['condition'] == 1 ? 'Giảm theo %' : 'Giảm theo số tiền' ?></td>
                                     <td><?= $coupon['condition'] == 1 ? 'Giảm ' . $coupon['number'] . ' %' : 'Giảm ' . number_format($coupon['number'], 0) . ' đ' ?>
                                     </td>
                                     <td><?= $coupon['created_at'] ? $coupon['created_at'] : 'Chưa có dữ liệu' ?></td>
                                     <td><?= $coupon['expires_at'] ? $coupon['expires_at'] : 'Chưa có dữ liệu' ?></td>
-                                    <td><?= $coupon['status'] ? 'Đã kích hoạt' : 'Chưa kích hoạt' ?></td>
+                                    <td><?= $coupon['status'] ? '<span class="text-success">Đã kích hoạt</span>' : '<span class="text-danger">Chưa kích hoạt</span>' ?>
+                                    </td>
                                     <td>
                                         <?php
                                         if ($today >= $coupon['created_at'] && $today <= $coupon['expires_at']) {
-                                            echo 'Còn hạn';
+                                            echo '<span class="text-success">Còn hạn</span>';
                                         } else {
-                                            echo 'Đã hết hạn';
+                                            echo '<span class="text-danger">Đã hết hạn</span>';
                                         }
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="<?= BASE_URL_ADMIN ?>?action=brand-detail&id=<?= $coupon['id'] ?>" class="btn btn-info">
-                                            Chi tiết
+                                        <a href="<?= BASE_URL_ADMIN ?>?action=coupon-update&id=<?= $coupon['id'] ?>" class="btn btn-info">
+                                            Sửa
                                         </a>
-                                        <a onclick="return confirm('Bạn có chắc muốn xóa thương hiệu: <?= $coupon['name'] ?> không?')" href="<?= BASE_URL_ADMIN ?>?action=coupon-delelte&id=<?= $coupon['id'] ?>" class="btn btn-danger">
+                                        <a onclick="return confirm('Bạn có chắc muốn xóa mã giảm giá: <?= $coupon['name'] ?> không?')" href="<?= BASE_URL_ADMIN ?>?action=coupon-delelte&id=<?= $coupon['id'] ?>" class="btn btn-danger">
                                             Xóa
                                         </a>
                                     </td>
