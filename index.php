@@ -32,7 +32,7 @@ $arrRouteNeedAuth = [
     'cart-des',
     'cart-del',
     'order-check-out',
-    'order-purchase'
+    'order-success'
 ];
 
 // Kiểm tra xem user đăng nhập chưa
@@ -72,10 +72,7 @@ match ($action) {
 
     // ORDER
     'order-check-out' => orderCheckOut(),
-    'order-purchase' => orderPurchase(),
     'order-success' => orderSuccess(),
-    'online-payment' => onlinePayment(),
-    'payment-gateway' => paymentGateway(),
 
     // SEARCH
     // 'search-key' => searchKeywords(),

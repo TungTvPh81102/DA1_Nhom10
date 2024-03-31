@@ -41,6 +41,10 @@
                         foreach ($_SESSION['cart'] as $item) :
                             $subTotal = ($item['discount'] ?: $item['price_regular']) * $item['quantity'];
                             $total += $subTotal;
+                            $sizeID = $item['size'];
+                            $sizeName = getSizeName([$sizeID]);
+                            $colorID = $item['color'];
+                            $colors = getColorName([$colorID]);
                         ?>
                             <tr class="position-relative">
                                 <th scope="row" class="pe-5 ps-8 py-7 shop-product">
@@ -63,10 +67,14 @@
 
                                             </p>
                                             <div class="d-flex">
-
-                                                <p style="margin-right: 10px;" class="fw-500 mb-1 text-body-emphasis">Size:
-                                                    <?= $item['size'] ?></p>
-                                                <p class="fw-500 mb-1 text-body-emphasis">Màu: <?= $item['color'] ?></p>
+                                                <?php foreach ($sizeName as $size) : ?>
+                                                    <p style="margin-right: 10px;" class="fw-500 mb-1 text-body-emphasis">Size:
+                                                        <?= $size ?>
+                                                    </p>
+                                                <?php endforeach; ?>
+                                                <?php foreach ($colors as $color) :       ?>
+                                                    <p class="fw-500 mb-1 text-body-emphasis">Màu: <?= $color ?></p>
+                                                <?php endforeach; ?>
                                             </div>
 
                                         </div>
@@ -83,7 +91,7 @@
                                     </p>
                                 </td>
                                 <td class="align-middle text-end pe-8">
-                                    <a onclick="return confirm('Bạn có muốn xóa sản phẩm: <?= $item['name'] ?> không ?')" href="<?= BASE_URL ?>?action=cart-del&productID=<?= $item['id'] ?>" class="d-block text-secondary">
+                                    <a onclick="return confirm('Bạn có muốn xóa sản phẩm: <?= $item['name'] ?> không ?')" href="<?= BASE_URL ?>?action=cart-del&productID=<?= $item['id'] ?>&sizeID=<?= $item['size'] ?>&colorID=<?= $item['color'] ?>" class="d-block text-secondary">
                                         <i class="fa fa-times"></i>
                                     </a>
                                 </td>

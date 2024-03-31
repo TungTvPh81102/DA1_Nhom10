@@ -40,6 +40,7 @@ if (!function_exists('showOrderDetail')) {
                 p.code as p_code,
                 p.img_thumbnail as p_img_thumbnail,
                 od.price as od_price,
+                od.id as od_id,
                 od.quantity as ods_quantity,
                 ods.status_delivery as ods_status_delivery
                 FROM `order_detail` od
