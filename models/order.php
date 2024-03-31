@@ -25,7 +25,8 @@ if (!function_exists('orderDetail')) {
                 p.img_thumbnail as p_img_thumbnail,
                 od.price as od_price,
                 od.quantity as ods_quantity,
-                ods.status_delivery as ods_status_delivery
+                ods.status_delivery as ods_status_delivery,
+                ods.total_money as ods_total_money
                 FROM `order_detail` od
                 INNER JOIN orders ods ON ods.id = od.order_id
                 INNER JOIN products p ON p.id = od.product_id

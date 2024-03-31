@@ -15,7 +15,6 @@
             <div class="card">
                 <div class="card-body py-3 d-flex justify-content-between align-items-center border-bottom">
                     <h6 class="m-0 font-weight-bold">Danh sách đường dẫn ảnh</h6>
-                    <a class="btn btn-primary" href="?action=setting-create">Tạo mới</a>
                 </div>
                 <div class="card-body">
                     <!-- Hiển thị thông báo thành công -->
@@ -40,11 +39,21 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>Top Bar Title</td>
                                     <td>
-                                        <?= $settings['key'] ?>
+                                        <input type="text" class="form-control" name="topbar-title" value="<?= $settings['topbar-title'] ?? null ?>">
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td>URL Facebook</td>
                                     <td>
-                                        <?= $settings['value'] ?>
+                                        <input type="text" class="form-control" name="url-facebook" value="<?= $settings['url-facebook'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Good Email</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="good-email" value="<?= $settings['good-email'] ?? null ?>">
                                     </td>
                                 </tr>
                             </tbody>

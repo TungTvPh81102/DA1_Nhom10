@@ -174,11 +174,15 @@ function orderSuccess()
                     'product_id' => $item['id'],
                     'quantity' => $item['quantity'],
                     'price' => $item['discount'] ?: $item['price_regular'],
+                    'coupon' => $_SESSION['coupon']['code'],
                     'created_at' => date('Y-m-d H:i:s')
                 ];
                 insert('order_detail', $orderDetail);
                 downProductQuantity($item['id'], $item['quantity']);
             }
+            // if (isset($_SESSION['coupon'])) {
+            //     updateQuantityCoupon($_SESSION['coupon']['id'], $_SESSION['coupon']['time']);
+            // }
 
             // Tạo truy vấn thêm thông tin thanh toán vào bảng Payment
             $dataPayment = [
@@ -206,6 +210,7 @@ function orderSuccess()
             unset($_SESSION['cart']);
             unset($_SESSION['cartID']);
             unset($_SESSION['dataOrder']);
+            unset($_SESSION['coupon']);
 
             $GLOBALS['conn']->commit();
         } catch (Exception $e) {
@@ -233,7 +238,6 @@ function orderSuccess()
             $i = 1;
         }
     }
-
 
     $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
     require_once PATH_VIEW . 'layout/master.php';

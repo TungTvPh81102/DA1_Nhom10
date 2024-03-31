@@ -204,3 +204,24 @@ if (!function_exists('calculator_total_coupon')) {
         return 0;
     }
 }
+
+if (!function_exists('settings')) {
+    function settings()
+    {
+        $fileSettings = PATH_UPLOAD . 'uploads/settings/settings.json';
+        if (file_exists($fileSettings)) {
+            $data = json_decode(file_get_contents($fileSettings), true);
+        } else {
+            $settings = listAll('settings');
+
+            $keys = array_column($settings, 'key');
+            $values = array_column($settings, 'value');
+
+            $data =  array_combine($keys, $values);
+
+            // Tạo file
+            file_put_contents($fileSettings, json_encode($data));
+        }
+        return $data;
+    }
+}

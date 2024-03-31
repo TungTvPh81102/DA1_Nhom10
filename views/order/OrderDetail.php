@@ -33,16 +33,17 @@
                                     $subTotal = $item['od_price'] * $item['ods_quantity'];
                                     $total += $subTotal;
                                 ?>
-                                    <tr>
-                                        <td>#<?= $item['p_code'] ?></td>
-                                        <td><?= $item['p_name'] ?></td>
-                                        <td>
-                                            <img style="width: 70px; object-fit: cover;" src="<?= BASE_URL . $item['p_img_thumbnail'] ?>" alt="">
-                                        </td>
-                                        <td><?= $item['ods_quantity'] ?> </td>
-                                        <td><?= number_format($item['od_price'], 0) . ' đ' ?> </td>
-                                        <td><?= number_format($subTotal, 0) . ' đ'  ?></td>
-                                    </tr>
+                                <tr>
+                                    <td>#<?= $item['p_code'] ?></td>
+                                    <td><?= $item['p_name'] ?></td>
+                                    <td>
+                                        <img style="width: 70px; object-fit: cover;"
+                                            src="<?= BASE_URL . $item['p_img_thumbnail'] ?>" alt="">
+                                    </td>
+                                    <td><?= $item['ods_quantity'] ?> </td>
+                                    <td><?= number_format($item['od_price'], 0) . ' đ' ?> </td>
+                                    <td><?= number_format($subTotal, 0) . ' đ'  ?></td>
+                                </tr>
                                 <?php endforeach ?>
                                 <tr>
                                     <td colspan="4" class="fw-bold">Total</td>
