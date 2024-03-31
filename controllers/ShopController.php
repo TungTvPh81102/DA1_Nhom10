@@ -35,12 +35,11 @@ function shopProductDetail()
 
     $sizeID = array_column($productAttributes, 'ps_id');
     $sizeName = array_column($productAttributes, 'ps_name');
-    $sizes = array_combine($sizeID, $sizeName);
+    $sizes = array_combine($sizeName, $sizeID);
 
-
-    $colorID = array_column($productAttributes, 'pc_name');
-    $colorName = array_column($productAttributes, 'pc_color');
-    $colors = array_combine($colorID, $colorName);
+    $colorID = array_column($productAttributes, 'pc_id');
+    $color = array_column($productAttributes, 'pc_color');
+    $colors = array_combine($color, $colorID);
 
     $quantity = array_column($productAttributes, 'pa_quantity');
     $quantity = implode(',', $quantity);

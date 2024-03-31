@@ -37,9 +37,9 @@
                                     <td><?= $item['paymethod'] ? 'Đã thanh toán' : 'Chưa thanh toán' ?></td>
                                     <td>
                                         <a class="btn btn-sm btn-primary" href="<?= BASE_URL ?>?action=show-order&id=<?= $item['id'] ?>">Chi tiết</a>
-                                        <?php if ($item['status_delivery'] == 0) { ?>
+                                        <?php if ($item['status_delivery'] == 4 || $item['status_delivery'] == 0) { ?>
                                             <a class="btn btn-sm btn-danger" href="">Xóa đơn hàng</a>
-                                        <?php } else { ?>
+                                        <?php } elseif ($item['status_delivery'] == 1) { ?>
                                             <a onclick="return confirm('Bạn có muốn hủy đơn hàng: <?= $item['order_code'] ?> không?')" href="<?= BASE_URL ?>?action=my-orders&id=<?= $item['id'] ?>" class="btn btn-sm btn-danger">Hủy đơn</a>
                                         <?php } ?>
                                     </td>

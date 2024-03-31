@@ -150,13 +150,12 @@
                     <span class="fw-semibold text-body-emphasis me-7">Size: </span>
                     <ul class="list-inline d-flex justify-content-start mb-0">
                         <?php foreach ($sizes as $key => $value) :
-
                         ?>
                         <li class="list-inline-item me-4 fw-semibold">
-                            <input value="<?= $value ?>" type="radio" id="<?= $key ?>" name="size_id"
-                                class="product-info-size d-none">
-                            <label for="<?= $key ?>" class="fs-14px p-4 d-block rounded text-decoration-none border"
-                                data-var="<?= $value ?>"><?= $value ?></label>
+                            <input value="<?= $value ?>" type="radio" id=<?= $value ?> name="size_id"
+                                class="product-info-size d-none" checked="">
+                            <label for="<?= $value ?>" class="fs-14px p-4 d-block rounded text-decoration-none border"
+                                data-var="<?= $value ?>"><?= $key ?></label>
                         </li>
                         <?php endforeach; ?>
                     </ul>
@@ -165,12 +164,13 @@
                     <label class="mb-2 pb-4"><span class="fw-semibold text-body-emphasis me-2 pe-4">Color:</span>
                         <ul class="list-inline d-flex justify-content-start mb-0">
                             <?php foreach ($colors as $key => $value) :
+
                             ?>
                             <li class="list-inline-item list-color-product selected p-3">
-                                <input value="<?= $key ?>" type="radio" id="<?= $key ?>" name="color_id"
+                                <input value="<?= $value ?>" type="radio" id="<?= $value ?>" name="color_id"
                                     class="product-info-size d-none" checked="">
-                                <label style="background-color: <?= $value ?>;" for="<?= $key ?>"
-                                    class="d-block color-item border" data-var="<?= $value ?>"></label>
+                                <label style="background-color: <?= $key ?>" for="<?= $value ?>"
+                                    class="d-block color-item border" data-var="<?= $key ?>"></label>
                             </li>
                             <?php endforeach; ?>
                         </ul>

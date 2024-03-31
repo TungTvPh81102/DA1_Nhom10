@@ -35,33 +35,33 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="">Tên khách hàng</label>
-                                    <input class="form-control" type="text" value="<?= $orderByCustomer['full_name'] ?>">
+                                    <input name="full_name" class="form-control" type="text" value="<?= $orderByCustomer['full_name'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Số điện thoại</label>
-                                    <input class="form-control" type="text" value="<?= $orderByCustomer['phone'] ?>">
+                                    <input name="phone" class="form-control" type="text" value="<?= $orderByCustomer['phone'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Country</label>
-                                    <input class="form-control" type="text" value="<?= $orderByCustomer['country'] ?>">
+                                    <input name="country" class="form-control" type="text" value="<?= $orderByCustomer['country'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Address</label>
-                                    <input class="form-control" type="text" value="<?= $orderByCustomer['address'] ?>">
+                                    <input name="address" class="form-control" type="text" value="<?= $orderByCustomer['address'] ?>">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="">City</label>
-                                    <input class="form-control" type="text" value="<?= $orderByCustomer['city'] ?>">
+                                    <input name="city" class="form-control" type="text" value="<?= $orderByCustomer['city'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Email</label>
-                                    <input class="form-control" type="text" value="<?= $orderByCustomer['email'] ?>">
+                                    <input name="email" class="form-control" type="text" value="<?= $orderByCustomer['email'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Note</label>
-                                    <textarea class="form-control" id="example-textarea" rows="1" placeholder="Write some note..">
+                                    <textarea name="note" class="form-control" id="example-textarea" rows="1" placeholder="Write some note..">
                                     <?= $orderByCustomer['note'] ?>
                                     </textarea>
                                 </div>
@@ -123,14 +123,18 @@
                                         <td>
                                             <img class="rounded" style="width: 70px; height: 100%;" src="<?= BASE_URL . $order['p_img_thumbnail'] ?>" alt="">
                                         </td>
-                                        <td><?= $order['ods_quantity'] ?></td>
+                                        <td>
+                                            <input style="width: 100px;" class="form-control text-center" type="number" name="quantity[<?= $order['od_id'] ?>]" id="" value="<?= $order['ods_quantity'] ?>">
+                                        </td>
                                         <td><?= number_format($order['od_price'], 0) . " VNĐ" ?></td>
                                         <td><?= number_format($subTotal, 0) . " VNĐ" ?></td>
                                     </tr>
                                 <?php $count++;
                                 endforeach; ?>
-                                <td colspan="5" class="fw-bold">Tổng thanh toán</td>
-                                <td class="text-center" colspan="3"><?= number_format($total, 0) . " VNĐ" ?></td>
+                                <td colspan="5" class="fw-bold">Tổng tiền</td>
+                                <td class="text-center" colspan="3">
+                                    <?= number_format($total, 0) . " VNĐ" ?>
+                                </td>
                             </tbody>
                         </table>
                         <a class="btn btn-info" href="<?= BASE_URL_ADMIN . "?action=orders-list" ?>">Quay lại trang danh
