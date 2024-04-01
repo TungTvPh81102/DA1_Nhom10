@@ -75,7 +75,7 @@ if (!function_exists('getUserClient')) {
             return $stmt->fetch();
         } catch (\Exception $e) {
             debug($e);
-        }
+        }   
     }
 }
 

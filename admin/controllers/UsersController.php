@@ -91,7 +91,7 @@ function userUpdate()
             'email' => $_POST['email'] ?? $user['email'],
             'phone_number' => $_POST['phone_number'] ?? $user['phone_number'],
             'address' => $_POST['address'] ?? $user['address'],
-            'password' => password_hash($_POST['password'] ?? $user['password'], PASSWORD_DEFAULT),
+            'password' => $_POST['password'] ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $user['password'],
             'avatar' => get_file_upload('avatar', $user['avatar']),
             'status' => $_POST['status'] ?? $user['status'],
             'role' => $_POST['role'] ?? $user['role'],

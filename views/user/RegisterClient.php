@@ -74,6 +74,10 @@
                     <a href="#" class="btn btn-outline-primary w-100 px-2 font-weight-500 me-5"><i class="fab fa-facebook-f me-4" style="color: #2E58B2"></i>Facebook</a>
                     <a href="#" class="btn btn-outline-primary w-100 px-2 font-weight-500 mt-0"><i class="fab fa-google me-4" style="color: #DD4B39"></i>Google</a>
                 </div>
+                <span class="d-inline-block fs-15 lh-12 mt-10 d-flex justify-content-center">Do you already have an account?
+                    <a href="<?= BASE_URL ?>?action=login-client" class="text-primary">Sign in
+                        now</a>
+                </span>
             </form>
         </div>
     </div>
