@@ -11,7 +11,7 @@ function adminLogout()
 {
 
     if (!empty($_SESSION['user'])) {
-        session_destroy();
+        unset($_SESSION['user']);
     }
     redirect(BASE_URL_ADMIN . "?action=logout");
     exit();

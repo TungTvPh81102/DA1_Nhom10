@@ -59,3 +59,19 @@ if (!function_exists('getViewCart')) {
         }
     }
 }
+
+if (!function_exists('checkCoupon')) {
+    function checkCoupon($code)
+    {
+
+        try {
+            $sql = "SELECT * FROM coupons WHERE code = :code LIMIT 1";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(':code', $code);
+            $stmt->execute();
+            return $stmt->fetch();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}

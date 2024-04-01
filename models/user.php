@@ -15,6 +15,39 @@ if (!function_exists('checkUniqueEmail')) {
     }
 }
 
+if (!function_exists('checkUniqueEmailForUpdate')) {
+    function checkUniqueEmailForUpdate($tableName, $id, $email)
+    {
+        try {
+            $sql = "SELECT * FROM $tableName WHERE email = :email AND id <> :id LIMIT 1";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $data = $stmt->fetch();
+            return empty($data) ? true : false; // Nếu mà email trùng lặp thì -> false. Còn rỗng nghĩa là ko trùng thì true
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+if (!function_exists('checkPasswordUpdate')) {
+    function checkPasswordUpdate($password)
+    {
+        try {
+            $sql = "SELECT * FROM users WHERE password = :password LIMIT 1";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(':password', $password);
+            $stmt->execute();
+            return $stmt->fetch();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+
 if (!function_exists('getIdUser')) {
     function getIdUser($email)
     {
@@ -35,7 +68,7 @@ if (!function_exists('getUserClient')) {
     function getUserClient($data)
     {
         try {
-            $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
+            $sql = "SELECT * FROM users WHERE email = :email";
             $stmt = $GLOBALS['conn']->prepare($sql);
             $stmt->bindParam(':email', $data['email']);
             $stmt->execute();

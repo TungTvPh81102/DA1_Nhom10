@@ -269,3 +269,64 @@ if (!function_exists('getProductAttributeForProduct')) {
         }
     }
 }
+
+if (!function_exists('getUserbyEmail')) {
+    function getUserbyEmail($email)
+    {
+        try {
+            $sql = "SELECT * FROM users WHERE email = :email";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            return $stmt->fetch();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+if (!function_exists('getSizeName')) {
+    function getSizeName($id)
+    {
+
+        try {
+            $sql = "
+            SELECT pz.name as pz_name FROM product_attribute pa
+            INNER JOIN product_size pz ON pz.id = pa.size_id 
+            WHERE pa.size_id = :size_id";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $data = [];
+            foreach ($id as $sizeID) {
+                $stmt->bindParam(':size_id', $sizeID);
+                $stmt->execute();
+                $data[] = $stmt->fetchColumn();
+            }
+            return $data;
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+if (!function_exists('getColorName')) {
+    function getColorName($id)
+    {
+
+        try {
+            $sql = "
+            SELECT pc.name as pc_name FROM product_attribute pa
+            INNER JOIN product_color pc ON pc.id = pa.color_id 
+            WHERE pa.color_id = :color_id";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $data = [];
+            foreach ($id as $colorID) {
+                $stmt->bindParam(':color_id', $colorID);
+                $stmt->execute();
+                $data[] = $stmt->fetchColumn();
+            }
+            return $data;
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}

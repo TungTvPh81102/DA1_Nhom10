@@ -23,7 +23,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 $action = $_GET['action'] ?? '/';
 
 // Kiểm tra xem user đăng nhập chưa
-// middleware_auth_check($action);
+middleware_auth_check($action);
 
 match ($action) {
     // HOME DASHBOARD
@@ -35,6 +35,8 @@ match ($action) {
 
 
     // CRUD SETTINGS
+    'setting-form' => settingShowForm(),
+    'setting-save' => settingSave(),
 
     // CRUD BANNERS
     'banners-list' => bannersList(),
@@ -54,6 +56,12 @@ match ($action) {
     'product-update' => productUpdate(),
     'product-delete' => productDelete(),
     'gallerys' => gallerys(),
+
+    // QUẢN LÝ MÃ GIẢM GIÁ
+    'coupons-list' => couponList(),
+    'coupon-create' => couponCreate(),
+    'coupon-update' => couponUpdate(),
+    'coupon-delete' => couponDelete(),
 
     // CRUD BRANDS
     'brands-list' => brandsList(),

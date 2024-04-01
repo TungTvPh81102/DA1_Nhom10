@@ -11,6 +11,9 @@ require_once "./commons/helper.php";
 require_once "./commons/connect-db.php";
 require_once "./commons/model.php";
 
+// Dữ liệu GLOBAL SETTINGS
+$settings = settings();
+
 // Required file trong controllers và models
 require_file(PATH_CONTROLLER);
 require_file(PATH_MODEL);
@@ -29,7 +32,7 @@ $arrRouteNeedAuth = [
     'cart-des',
     'cart-del',
     'order-check-out',
-    'order-purchase'
+    'order-success'
 ];
 
 // Kiểm tra xem user đăng nhập chưa
@@ -47,6 +50,14 @@ match ($action) {
     'reset-password' => resetPassword(),
     'logout-client' => logoutClient(),
 
+    // MY ACCOUNT
+    'my-account' => myAccount(),
+    'change-password' => changePassword(),
+
+    // ORDER
+    'my-orders' => myOrders(),
+    'show-order' => showOrder(),
+
     // PRODUCT
     'products' => shopProduct(),
     'product-detail' => shopProductDetail(),
@@ -61,10 +72,7 @@ match ($action) {
 
     // ORDER
     'order-check-out' => orderCheckOut(),
-    'order-purchase' => orderPurchase(),
     'order-success' => orderSuccess(),
-    'online-payment' => onlinePayment(),
-    'payment-gateway' => paymentGateway(),
 
     // SEARCH
     // 'search-key' => searchKeywords(),

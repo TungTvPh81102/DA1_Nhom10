@@ -37,10 +37,6 @@
                             <input id="address" name="address" type="text" class="form-control mb-3" placeholder="Address" value="<?= $user['address'] ?>" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="password">Password</label>
-                            <input id="password" name="password" type="password" class="form-control mb-3" placeholder="Enter Password" value="<?= $user['password'] ?>" readonly>
-                        </div>
-                        <div class="mb-3">
                             <label for="avatar">Avatar</label>
                             <div class="img">
                                 <img style="width: 120px;" src="<?= BASE_URL .  $user['avatar'] ?>" alt="" class="rounded-2">

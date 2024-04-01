@@ -9,7 +9,7 @@ function loginClient()
         ];
         $user = getUserClient($data);
         if (!empty($user)) {
-            $passwordHash = password_verify($data['password'], $user['password']);
+            $passwordHash = password_verify($_POST['password'], $user['password']);
             if ($passwordHash) {
                 if ($user['status'] == 1) {
                     $_SESSION['user'] = $user;
@@ -180,6 +180,81 @@ function logoutClient()
     exit();
 }
 
+function myAccount()
+{
+    $view = 'user/myAccount';
+    $title = 'My Account';
+    $userID = $_SESSION['user']['id'];
+
+    if (!empty($_POST)) {
+        $data = [
+            'first_name' => $_POST['first_name'] ?? $_SESSION['user']['first_name'],
+            'last_name' => $_POST['last_name'] ?? $_SESSION['user']['last_name'],
+            'email' => $_POST['email'] ?? $_SESSION['user']['email'],
+            'phone_number' => $_POST['phone_number'] ?? $_SESSION['user']['phone_number'],
+            'address' => $_POST['address'] ?? $_SESSION['user']['address'],
+            'avatar' => get_file_upload('avatar') ?? $_SESSION['user']['avatar'],
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
+        validateUpdateUserClient($userID, $data);
+
+        $avatar = $data['avatar'];
+
+        if (is_array($avatar) && $avatar['size'] > 0) {
+            $data['avatar'] = upload_file($avatar, 'uploads/users/');
+            if (
+                !empty($data['avatar']) &&
+                !empty($_SESSION['user']['avatar']) &&
+                file_exists(PATH_UPLOAD . $_SESSION['user']['avatar']) &&
+                !empty($data['avatar'])
+            ) {
+                unlink(PATH_UPLOAD . $_SESSION['user']['avatar']);
+            }
+        } else {
+            $data['avatar'] = $_SESSION['user']['avatar'];
+        }
+
+        update('users', $userID, $data);
+        $_SESSION['user'] = getUserbyEmail($data['email']);
+        $_SESSION['success'] = 'Cập nhật thông tin thành công';
+        redirect(BASE_URL . '?action=my-account');
+    }
+    require_once PATH_VIEW . 'layout/master.php';
+}
+
+function changePassword()
+{
+    $view = 'user/changePassword';
+    $title = 'Change Password';
+    $user = showOne('users', $_SESSION['user']['id']);
+    if (!empty($_POST)) {
+        $passwordNew = $_POST['password_new'];
+        $confirmPassword = $_POST['confirm_password'];
+
+        if (!password_verify($_POST['password_old'], $user['password'])) {
+            $_SESSION['errors'] = 'Mật khẩu cũ chưa chính xác';
+        } else {
+            if (strlen(trim($passwordNew)) < 6 || strlen(trim($passwordNew)) > 50) {
+                $_SESSION['errors'] = 'Mật khẩu mới dài từ 6 đến 50 ký tự';
+            } else if ($confirmPassword !== $passwordNew) {
+                $_SESSION['errors'] = 'Xác nhận mật khẩu chưa chính xác';
+            }
+        }
+        if (empty($_SESSION['errors'])) {
+            $data = [
+                'password' => password_hash($_POST['password_new'] ?? null, PASSWORD_DEFAULT),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ];
+            update('users',  $user['id'], $data);
+            $_SESSION['success'] = 'Cập nhật thông tin thành công';
+        }
+        redirect(BASE_URL . '?action=change-password');
+    }
+    require_once PATH_VIEW . 'layout/master.php';
+}
+
+
 function validateRegister($data)
 {
     $errors = [];
@@ -216,6 +291,61 @@ function validateRegister($data)
         $_SESSION['errors'] = $errors;
         $_SESSION['data'] = $data;
         redirect(BASE_URL . '?action=register-client');
+        exit();
+    }
+}
+
+function validateUpdateUserClient($id, $data)
+{
+
+    $errors = [];
+
+    if (empty(trim($data['first_name']))) {
+        $errors['first_name']['required'] = 'Vui lòng nhập thông tin';
+    } else if (strlen(trim($data['first_name'])) > 20) {
+        $errors['first_name']['length'] = 'Vui lòng nhập độ dài tối đa 20 ký tự';
+    }
+
+    if (empty(trim($data['last_name']))) {
+        $errors['last_name']['required'] = 'Vui lòng nhập thông tin';
+    } elseif (strlen(trim($data['last_name'])) > 20) {
+        $errors['last_name']['length'] = 'Vui lòng nhập độ dài tối đa 50 ký tự';
+    }
+
+    if (empty(trim($data['email']))) {
+        $errors['email']['required'] = 'Vui lòng nhập địa chỉ email';
+    } else {
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['email']['emailcheck'] = 'Email nhập vào sai định dạng, vui lòng kiểm tra lại';
+        } else if (!checkUniqueEmailForUpdate('users', $id, $data['email'])) {
+            $errors['email']['unique'] = 'Email đã tồn tại trên hệ thống, vui lòng nhập email khác';
+        }
+    }
+
+    if (empty(trim($data['phone_number']))) {
+        $errors['phone_number']['required'] = 'Vui lòng nhập số điện thoại';
+    } else {
+        if (strlen(trim($data['phone_number'])) > 11) {
+            $errors['phone_number']['length'] = 'Số điện thoại chỉ tối đa 11 ký tự';
+        }
+    }
+
+    if (empty(trim($data['address']))) {
+        $errors['address']['required'] = 'Vui lòng nhập địa chỉ';
+    }
+
+    if (!empty($data['avatar']['name']) && is_array($data['avatar']) && $data['avatar']['size'] > 0) {
+        $typeImage = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'];
+        if ($data['avatar']['size'] >= 2 * 1024 * 1024) {
+            $errors['avatar']['size'] = 'Ảnh chỉ nhỏ hơn 2M';
+        } else if (!in_array($data['avatar']['type'], $typeImage)) {
+            $errors['avatar']['type'] = 'Ảnh chỉ chấp nhận định dạng file: png, jpg, jpeg, gif';
+        }
+    }
+
+    if (!empty($errors)) {
+        $_SESSION['errors'] = $errors;
+        redirect(BASE_URL . "?action=my-account");
         exit();
     }
 }

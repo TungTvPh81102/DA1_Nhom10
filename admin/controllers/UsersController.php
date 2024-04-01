@@ -91,7 +91,7 @@ function userUpdate()
             'email' => $_POST['email'] ?? $user['email'],
             'phone_number' => $_POST['phone_number'] ?? $user['phone_number'],
             'address' => $_POST['address'] ?? $user['address'],
-            'password' => password_hash($_POST['password'] ?? $user['password'], PASSWORD_DEFAULT),
+            'password' => $_POST['password'] ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $user['password'],
             'avatar' => get_file_upload('avatar', $user['avatar']),
             'status' => $_POST['status'] ?? $user['status'],
             'role' => $_POST['role'] ?? $user['role'],
@@ -99,7 +99,7 @@ function userUpdate()
         ];
         validateUserUpdate($id, $data);
         $avatar = $data['avatar'];
-        if (is_array($avatar) && is_array($avatar) && $avatar['size'] > 0) {
+        if (is_array($avatar)  && $avatar['size'] > 0) {
             $data['avatar'] = upload_file($avatar, "uploads/users/");
             if (!empty($avatar) && !empty($user['avatar'] && file_exists(PATH_UPLOAD . $user['avatar'])) && !empty($data['avatar'])) {
                 unlink(PATH_UPLOAD . $user['avatar']);

@@ -2,6 +2,7 @@
 function addToCart()
 {
     if (!empty($_POST)) {
+
         $productID = $_POST['product_id'] ?? null;
         $quantity = $_POST['quantity'] ?? 1;
         $size = $_POST['size_id'] ?? null;
@@ -24,7 +25,7 @@ function addToCart()
                 if ($item['id'] == $productID && $item['size'] == $size && $item['color'] == $color) {
                     // Nếu sản phẩm đã tồn tại, cập nhật số lượng
                     $_SESSION['cart'][$key]['quantity'] += $quantity;
-                    $focheckProduct = true;
+                    $checkProduct = true;
                     break;
                 }
             }
@@ -78,8 +79,34 @@ function addToCart()
 function viewCart()
 {
     $view = 'cart/viewCart';
-    // unset($_SESSION['cart']);
-    // debug($_SESSION['cart']);
+    $today = date('Y-m-d');
+    if (!empty($_SESSION['cart'])) {
+        if (!empty($_POST)) {
+            $coupon = checkCoupon($_POST['code']);
+            if (is_array($coupon) && !empty($coupon)) {
+                $dataCoupon = [
+                    'id' => $coupon['id'],
+                    'code' => $coupon['code'],
+                    'quantity' => $coupon['quantity'],
+                    'number' => $coupon['number'],
+                    'condition' => $coupon['condition'],
+                    'created_at' => $coupon['created_at'],
+                    'expires_at' => $coupon['expires_at'],
+                    'maximum_percent' => $coupon['maximum_percent']
+                ];
+                if ($today >= $dataCoupon['created_at'] && $today <= $dataCoupon['expires_at'] && !empty($dataCoupon['number'])) {
+                    $_SESSION['coupon'] = $dataCoupon;
+                    $_SESSION['success'] = 'Thêm mã giảm giá thành công';
+                } else {
+                    unset($_SESSION['coupon']);
+                    $_SESSION['errors'] = 'Mã đã hết hạn sử dụng, hoặc hết số lượng, vui lòng nhập mã khác';
+                }
+            } else {
+                unset($_SESSION['coupon']);
+                $_SESSION['errors'] = 'Mã giảm giá không tồn tại hoặc đã hết hạn';
+            }
+        }
+    }
     require_once PATH_VIEW . 'layout/master.php';
 }
 
@@ -140,6 +167,8 @@ function cartDes()
 function cartDel()
 {
     $productID = $_GET['productID'];
+    $sizeID = $_GET['sizeID'];
+    $colorID = $_GET['colorID'];
 
     // Kiểm tra sản phẩm có tồn tại không
     $product = showOne('products', $productID);
@@ -150,13 +179,13 @@ function cartDel()
     // Xóa bản ghi trong session và cart_items
     if (isset($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $key => $item) {
-            if ($item['id'] == $productID) {
+            if ($item['id'] == $productID && $item['size'] == $sizeID && $item['color'] == $colorID) {
                 unset($_SESSION['cart'][$key]);
-
                 // Xóa bản ghi trong cart_items 
                 if (!empty($_SESSION['cartID'])) {
                     deleteCartItemByCartIDAndProductID($_SESSION['cartID'], $productID, $item['size'], $item['color']);
                 }
+
                 break;
             }
         }

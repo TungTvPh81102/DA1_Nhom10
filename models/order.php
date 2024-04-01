@@ -1,37 +1,21 @@
 <?php
-if (!function_exists('getStatusOrderById')) {
-    function getStatusOrderById($id)
+if (!function_exists('listAllUserOrder')) {
+    function listAllUserOrder($userID)
     {
         try {
-            $sql = "SELECT status_delivery FROM orders WHERE id = :id LIMIT 1";
+            $sql = "SELECT * FROM orders WHERE user_id = :user_id";
             $stmt = $GLOBALS['conn']->prepare($sql);
-            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':user_id', $userID);
             $stmt->execute();
-            return $stmt->fetch();
+            return $stmt->fetchAll();
         } catch (Exception $e) {
             debug($e);
         }
     }
 }
 
-if (!function_exists('updateStatusOrderById')) {
-    function updateStatusOrderById($id, $status, $updatedAt)
-    {
-        try {
-            $sql = "UPDATE orders SET status_delivery = :status_delivery, updated_at = '$updatedAt' WHERE id = :id";
-            $stmt = $GLOBALS['conn']->prepare($sql);
-            $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':status_delivery', $status);
-            $stmt->execute();
-        } catch (Exception $e) {
-            debug($e);
-        }
-    }
-}
-
-
-if (!function_exists('showOrderDetail')) {
-    function showOrderDetail($order_id)
+if (!function_exists('orderDetail')) {
+    function orderDetail($order_id)
     {
         try {
             $sql = "
@@ -40,9 +24,9 @@ if (!function_exists('showOrderDetail')) {
                 p.code as p_code,
                 p.img_thumbnail as p_img_thumbnail,
                 od.price as od_price,
-                od.id as od_id,
                 od.quantity as ods_quantity,
-                ods.status_delivery as ods_status_delivery
+                ods.status_delivery as ods_status_delivery,
+                ods.total_money as ods_total_money
                 FROM `order_detail` od
                 INNER JOIN orders ods ON ods.id = od.order_id
                 INNER JOIN products p ON p.id = od.product_id
@@ -58,8 +42,8 @@ if (!function_exists('showOrderDetail')) {
     }
 }
 
-if (!function_exists('orderByCustomer')) {
-    function orderByCustomer($id)
+if (!function_exists('orderCustomer')) {
+    function orderCustomer($id)
     {
         try {
             $sql = "SELECT * FROM orders WHERE id = :id";
@@ -67,6 +51,25 @@ if (!function_exists('orderByCustomer')) {
             $stmt->bindParam(':id', $id);
             $stmt->execute();
             return $stmt->fetch();
+        } catch (Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+
+if (!function_exists('updateStatusOrder')) {
+    function updateStatusOrder($id, $status, $updateAt)
+    {
+        try {
+            $sql = "
+            UPDATE orders SET 
+            status_delivery = :status_delivery, 
+            updated_at = '$updateAt' WHERE id = :id";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':status_delivery', $status);
+            $stmt->execute();
         } catch (Exception $e) {
             debug($e);
         }

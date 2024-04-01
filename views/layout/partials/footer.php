@@ -53,13 +53,11 @@
             <div class="col-lg-5 col-12 mb-11 mb-lg-0">
                 <h3 class="mb-4">Good emails.</h3>
                 <p class="lh-2">
-                    Enter your email below to be the first to know about new
-                    collections and product launches.
+                    <?= $GLOBALS['settings']['good-email'] ?>
                 </p>
                 <form class="pt-8">
                     <div class="input-group position-relative">
-                        <input type="email" class="form-control bg-body rounded-left"
-                            placeholder="Enter your email address" />
+                        <input type="email" class="form-control bg-body rounded-left" placeholder="Enter your email address" />
                         <button type="submit" class="btn btn-dark btn-hover-bg-primary btn-hover-border-primary ms-0">
                             Subscribe
                         </button>
@@ -87,17 +85,12 @@
             </div>
             <div class="col-sm-12 col-lg-4 text-md-center order-1 order-lg-2">
                 <a class="d-inline-block" href="<?= BASE_URL ?>">
-                    <img class="lazy-image img-fluid light-mode-img" src="#"
-                        data-src="<?= BASE_URL ?>assets/client/images/others/logo.png" width="179" height="26"
-                        alt="Glowing - Bootstrap 5 HTML Templates" />
-                    <img class="lazy-image dark-mode-img img-fluid" src="#"
-                        data-src="<?= BASE_URL ?>assets/client/images/others/logo-white.png" width="179" height="26"
-                        alt="Glowing - Bootstrap 5 HTML Templates" />
+                    <img class="lazy-image img-fluid light-mode-img" src="#" data-src="<?= BASE_URL ?>assets/client/images/others/logo.png" width="179" height="26" alt="Glowing - Bootstrap 5 HTML Templates" />
+                    <img class="lazy-image dark-mode-img img-fluid" src="#" data-src="<?= BASE_URL ?>assets/client/images/others/logo-white.png" width="179" height="26" alt="Glowing - Bootstrap 5 HTML Templates" />
                 </a>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-4 order-3 text-sm-start text-lg-end mt-11 mt-lg-0">
-                <img src="#" data-src="<?= BASE_URL ?>assets/client/img_1.png" width="313" height="28" alt="Paypal"
-                    class="img-fluid lazy-image" />
+                <img src="#" data-src="<?= BASE_URL ?>assets/client/img_1.png" width="313" height="28" alt="Paypal" class="img-fluid lazy-image" />
             </div>
         </div>
     </div>

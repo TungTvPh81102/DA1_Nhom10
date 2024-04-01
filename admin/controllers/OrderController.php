@@ -25,28 +25,6 @@ function ordersList()
 }
 
 
-function setUpStatus($status)
-{
-    switch ($status) {
-        case 1:
-            $show = '<span class="btn btn-warning btn-sm waves-effect waves-light">Chờ xác nhận</span>';
-            break;
-        case 2:
-            $show = '<span class="btn btn-info btn-sm waves-effect waves-light">Chờ lấy hàng</span>';
-            break;
-        case 3:
-            $show = '<span class="btn btn-primary btn-sm waves-effect waves-light">Đang giao hàng</span>';
-            break;
-        case 4:
-            $show = '<span class="btn btn-success btn-sm waves-effect waves-light">Giao hàng thành công</span>';
-            break;
-        default:
-            $show = '<span class="btn btn-danger btn-sm waves-effect waves-light">Đã hủy hàng</span>';
-            break;
-    }
-    return $show;
-}
-
 function orderDetail()
 {
     $id = $_GET['order_id'];
@@ -65,27 +43,71 @@ function orderDetail()
 
 
     if (!empty($_POST)) {
-        $status_delivery = $_POST['status_delivery'];
-        $updateTime = date("Y-m-d H:i:s");
+        $data = [
+            'full_name' => $_POST['full_name'] ?? $orderDetail['full_name'],
+            'phone' => $_POST['phone'] ?? $orderByCustomer['phone'],
+            'country' => $_POST['country'] ?? $orderByCustomer['country'],
+            'address' => $_POST['address'] ?? $orderByCustomer['address'],
+            'city' => $_POST['city'] ?? $orderByCustomer['city'],
+            'email' => $_POST['email'] ?? $orderByCustomer['email'],
+            'note' => $_POST['note'] ?? $orderByCustomer['note'],
+            'total_money' => $orderByCustomer['total_money'],
+            'status_delivery' => $_POST['status_delivery'] ?? $orderByCustomer['status_delivery'],
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
         $checkStatus =  $orderByCustomer['status_delivery'];
 
         $arrStatus = [
-            1 => [0, 2, 3, 4],
-            2 => [3, 4],
-            3 => [4],
-            4 => [],
-            0 => []
+            1 => [0, 1, 2, 3, 4],
+            2 => [2, 3, 4],
+            3 => [3, 4],
+            4 => [4],
+            0 => [0]
         ];
 
+        if (in_array($data['status_delivery'], $arrStatus[$checkStatus])) {
+            try {
+                $GLOBALS['conn']->beginTransaction();
 
-        if (in_array($status_delivery, $arrStatus[$checkStatus])) {
-            updateStatusOrderById($id, $status_delivery, $updateTime);
-            $_SESSION['success'] = 'Cập nhật trạng thái đơn hàng thành công';
-            redirect(BASE_URL_ADMIN . "?action=order-detail&order_id=$id");
-            exit();
+                if ($checkStatus == 1 || $checkStatus == 2) {
+                    update('orders', $id, $data);
+                    $newTotal = 0;
+                    foreach ($orderDetail as $order) {
+                        $orderDetailID =  $order['od_id'];;
+                        $quantity = $_POST['quantity'][$orderDetailID] ?? $order['ods_quantity'];
+                        $dataOrderDetail = [
+                            'quantity' => $quantity,
+                            'updated_at' => date('Y-m-d H:i:s')
+                        ];
+                        update('order_detail', $orderDetailID, $dataOrderDetail);
+                        $subTotal = $order['od_price'] * $quantity;
+                        $newTotal += $subTotal;
+                    }
+
+                    if ($newTotal !== $orderByCustomer['total_money']) {
+                        $data['total_money'] = $newTotal;
+                        update('orders', $id, $data);
+                    }
+                } elseif ($checkStatus == 3 || $checkStatus == 4) {
+                    $data = [
+                        'status_delivery' => $_POST['status_delivery'] ?? $orderByCustomer['status_delivery'],
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ];
+                    update('orders', $id, $data);
+                }
+
+                $GLOBALS['conn']->commit();
+
+
+                $_SESSION['success'] = 'Cập nhật đơn hàng thành công';
+                redirect(BASE_URL_ADMIN . "?action=order-detail&order_id=$id");
+            } catch (\Throwable $th) {
+                $GLOBALS['conn']->rollBack();
+                debug($th);
+            }
         } else {
-            // Nếu chuyển đổi trạng thái không được phép, hiển thị thông báo lỗi và chuyển hướng người dùng về trang chi tiết đơn hàng
-            $_SESSION['errors'] = 'Không thể chuyển từ trạng thái hiện tại sang trạng thái đã chọn.';
+            $_SESSION['errors'] = 'Đơn hàng đang được giao hoặc giao thành công, không thể cập nhật thông tin';
             redirect(BASE_URL_ADMIN . "?action=order-detail&order_id=$id");
             exit();
         }
@@ -123,18 +145,23 @@ function addCart()
             'created_at' => date('Y-m-d H:i:s')
         ];
 
+        // debug($_POST);
+
 
         if (!empty($_SESSION['user'])) {
             try {
                 $GLOBALS['conn']->beginTransaction();
 
-                // $user = $_SESSION['user']['id'];
-                // $dataUserCart = [
-                //     'user_id' => $user['id'],
-                //     'created_at' => date('Y-m-d H:i:s')
-                // ];
+                $user = $_SESSION['user']['id'];
 
-                $cartId = getCartIDAdmin($_SESSION['user']['id']);
+                $dataUserCart = [
+                    'user_id' => $user,
+                    'created_at' => date('Y-m-d H:i:s')
+                ];
+
+                $cartId = insert_get_last_id('carts', $dataUserCart);
+
+                // $cartId = getCartIDAdmin($_SESSION['user']['id']);
 
                 if (!empty($cartId)) {
                     $dataCartItem = [

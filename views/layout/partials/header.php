@@ -11,7 +11,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item ms-6">
-                        <a href="#" title="Facebook">
+                        <a href="<?= $GLOBALS['settings']['url-facebook'] ?? null ?>" title="Facebook">
                             <svg class="icon">
                                 <use xlink:href="#facebook"></use>
                             </svg>
@@ -35,7 +35,7 @@
             </div>
             <div class="w-100 text-center">
                 <p class="mb-0 fs-14px fw-bold text-primary text-uppercase">
-                    Free shipping on all U.S. orders $50+
+                    <?= $GLOBALS['settings']['topbar-title'] ?? null ?>
                 </p>
             </div>
             <div class="w-50 d-none d-lg-block">
@@ -85,9 +85,9 @@
                         </div>
                         <div class="d-flex mx-auto">
                             <a href="<?= BASE_URL ?>" class="navbar-brand px-8 py-4 mx-auto" previewlistener="true">
-                                <img class="light-mode-img" src="<?= BASE_URL ?>assets/client/logo.png" width="179"
+                                <img class="light-mode-img" src="<?= $GLOBALS['settings']['logo'] ?>" width="179"
                                     height="26" alt="Glowing - Bootstrap 5 HTML Templates">
-                                <img class="dark-mode-img" src="<?= BASE_URL ?>assets/client/logo-white.png" width="179"
+                                <img class="dark-mode-img" src="<?= $GLOBALS['settings']['logo'] ?>" width="179"
                                     height="26" alt="Glowing - Bootstrap 5 HTML Templates">
                             </a>
                         </div>
@@ -519,9 +519,22 @@
                                         </svg>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end py-5" style="min-width: unset">
-                                        <a class="dropdown-item py-1" href="#">French</a>
-                                        <a class="dropdown-item py-1" href="#">Spanish</a>
-                                        <a class="dropdown-item py-1" href="#">Korean</a>
+                                        <a class="dropdown-item py-1" href="<?= BASE_URL ?>?action=my-account">
+                                            <i style="margin-right: 2px;" class="fa-solid fa-circle-user"></i>
+                                            My Account
+                                        </a>
+                                        <?php if ($_SESSION['user']['role'] == 1) { ?>
+                                        <a class="dropdown-item py-1" href="<?= BASE_URL_ADMIN ?>">
+                                            <i style="margin-right: 2px;" class="fa-solid fa-user-tie"></i>
+                                            Admin Dashboard
+                                        </a>
+                                        <?php } ?>
+                                        <a class="dropdown-item py-1" href="<?= BASE_URL ?>?action=change-password">
+                                            <i style="margin-right: 2px;" class="fa-solid fa-lock"></i> Change Password
+                                        </a>
+                                        <a class="dropdown-item py-1" href="<?= BASE_URL ?>?action=my-orders">
+                                            <i style="margin-right: 2px;" class="fa-solid fa-bag-shopping"></i> Orders
+                                        </a>
                                         <a class="dropdown-item py-1" href="<?= BASE_URL ?>?action=logout-client"> <i
                                                 style="margin-right: 4px;"
                                                 class="fa-solid fa-right-from-bracket"></i>Logout</a>
