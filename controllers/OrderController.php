@@ -101,7 +101,7 @@ function orderSuccess()
     $vnp_HashSecret = "FZSLXCHBHGZGLCGSBNNJFWPSYMGEZHJY"; //Secret key
     $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     $vnp_Returnurl = "http://localhost/project/?action=order-success";
-    $vnp_SecureHash = $_GET['vnp_SecureHash'];
+    $vnp_SecureHash = $_GET['vnp_SecureHash'] ?? null;
 
     if (isset($_GET['vnp_SecureHash']) && isset($_GET['vnp_TxnRef']) && $_GET['vnp_ResponseCode'] == 0 && (!empty($_GET['vnp_TransactionNo']))) {
 
