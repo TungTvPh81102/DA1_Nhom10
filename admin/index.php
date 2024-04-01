@@ -100,6 +100,9 @@ match ($action) {
     'add-cart' => addCart(),
     'cart-view' => cartView(),
     'check-out' => checkOutView(),
+
+    // QUẢN LÝ THỐNG KÊ
+    'statistical-management' => statisticalManagement(),
 };
 
 
