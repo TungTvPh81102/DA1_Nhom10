@@ -29,7 +29,6 @@ function orderDetail()
 {
     $id = $_GET['order_id'];
     $orderDetail = showOrderDetail($id);
-    // debug($orderDetail);
     $orderByCustomer = orderByCustomer($id);
     if (empty($orderDetail)) {
         e404();
@@ -95,6 +94,14 @@ function orderDetail()
                         'updated_at' => date('Y-m-d H:i:s')
                     ];
                     update('orders', $id, $data);
+
+                    if ($_POST['status_delivery'] == 4) {
+                        $data = [
+                            'payment_status' => 1,
+                            'updated_at' => date('Y-m-d H:i:s')
+                        ];
+                        update('orders', $id, $data);
+                    }
                 }
 
                 $GLOBALS['conn']->commit();

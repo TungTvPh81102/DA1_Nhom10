@@ -65,7 +65,7 @@ if (!function_exists('checkCoupon')) {
     {
 
         try {
-            $sql = "SELECT * FROM coupons WHERE code = :code LIMIT 1";
+            $sql = "SELECT * FROM coupons WHERE code = :code  LIMIT 1";
             $stmt = $GLOBALS['conn']->prepare($sql);
             $stmt->bindParam(':code', $code);
             $stmt->execute();
