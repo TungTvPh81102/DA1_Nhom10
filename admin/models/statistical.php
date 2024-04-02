@@ -79,7 +79,7 @@ if (!function_exists('statisProductByOrder')) {
     function statisProductByOrder()
     {
         try {
-            $sql = " SELECT p.name as p_name, o.quantity as o_quantity FROM order_detail o
+            $sql = " SELECT p.name as p_name, SUM(o.quantity) as o_quantity FROM order_detail o
             INNER JOIN products p ON p.id = o.product_id GROUP BY p.id, o.quantity LIMIT 10
             ";
             $stmt = $GLOBALS['conn']->prepare($sql);
