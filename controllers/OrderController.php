@@ -124,6 +124,7 @@ function orderSuccess()
                 ];
                 insert('order_detail', $orderDetail);
                 downProductQuantity($item['id'], $item['size'], $item['color'], $item['quantity']);
+                updateQuantityCoupon($_SESSION['coupon']['id'], $item['quantity']);
             }
 
             // Tạo truy vấn thêm thông tin thanh toán vào bảng Payment
@@ -142,6 +143,7 @@ function orderSuccess()
                 'vnp_TxnRef' => $_GET['vnp_TxnRef'],
                 'vnp_SecureHash' => $_GET['vnp_SecureHash']
             ];
+
 
             insert('payment', $dataPayment);
 
