@@ -129,50 +129,25 @@
                         </div>
                     </div>
                     <div class="mb-7">
-                        <label class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Country</label>
-                        <input name="country" type="text" class="form-control" id="city" name="city" required="">
+                        <label class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Zipcode</label>
+                        <input class="form-control" type="text" name="zipcode" id="" placeholder="Nhập mã bưu điện">
                     </div>
                     <div class="mb-7">
-                        <div class="row">
-                            <div class="col-md-4 mb-md-0 mb-7">
-                                <label for="state" class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Address</label>
-                                <input type="text" class="form-control" id="state" name="address" required="">
-                            </div>
-                            <div class="col-md-4 mb-md-0 mb-7">
-                                <label for="city" class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">City</label>
-                                <input type="text" class="form-control" id="city" name="city" required="">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="zip" class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">zip
-                                    code</label>
-                                <input type="text" class="form-control" id="zip" name="zipcode" required="">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="mb-7">
                         <div class="form-group">
                             <label for="">Tỉnh/Thành phố</label>
-                            <select name="province" id="province">
-                                <option value="">---Chọn 1 tỉnh</option>
-                                <?php foreach ($resultProvince as $item) : ?>
-                                <option value="<?= $item['rod'] ?>"><?= $item['name'] ?></option>
-
-                                <?php endforeach; ?>
-                            </select>
+                            <input class="form-control mb-5" type="text" name="province" id="" placeholder="Nhập tỉnh thành phố">
                         </div>
                         <div class="form-group">
                             <label for="">Quận/Huyện</label>
-                            <select name="district" id="district">
-                                <option value="">---Chọn quận huyên</option>
-                            </select>
+                            <input class="form-control mb-5" type="text" name="district" id="" placeholder="Nhập quận huyện">
+
                         </div>
                         <div class="form-group">
                             <label for="">Phường xã</label>
-                            <select name="wards" id="wards">
-                                <option value="">---Chọn phường xã</option>
-                            </select>
+                            <input class="form-control mb-5" type="text" name="ward" id="" placeholder="Nhập phường xã">
+
                         </div>
-                    </div> -->
+                    </div>
                     <div class="mb-7">
                         <label for="note" class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Note</label>
                         <textarea placeholder="Note" class="form-control" name="note" id="" cols="30" rows="4"></textarea>

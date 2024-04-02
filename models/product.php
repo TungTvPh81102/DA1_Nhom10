@@ -155,3 +155,19 @@ if (!function_exists('downProductQuantity')) {
         }
     }
 }
+
+if (!function_exists('updateViewProduct')) {
+    function updateViewProduct($productID, $view)
+    {
+        try {
+            $newView = $view + 1;
+            $sql = "UPDATE products SET view = :newView WHERE id = :product_id";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(":product_id", $productID);
+            $stmt->bindParam(":newView", $newView);
+            $stmt->execute();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}

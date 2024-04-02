@@ -79,9 +79,7 @@
                                             <use xlink:href="#icon-arrows-left-right-light"></use>
                                         </svg>
                                     </a>
-                                </div><a href="#"
-                                    class="btn btn-add-to-cart btn-dark btn-hover-bg-primary btn-hover-border-primary position-absolute z-index-2 text-nowrap btn-sm px-6 py-3 lh-2">Add
-                                    To Cart</a>
+
                             </figure>
                             <div class="card-body text-center p-0">
                                 <span
@@ -217,7 +215,7 @@
                             <div class="position-absolute product-flash z-index-2">
 
                                 <span
-                                    class="badge badge-product-flash on-sale bg-primary"><?= '-'. $percent . '%' ?></span>
+                                    class="badge badge-product-flash on-sale bg-primary"><?= '-' . $percent . '%' ?></span>
                             </div>
                             <?php endif; ?>
                             <div class="position-absolute d-flex z-index-2 product-actions  vertical"><a
@@ -245,9 +243,7 @@
                                         <use xlink:href="#icon-arrows-left-right-light"></use>
                                     </svg>
                                 </a>
-                            </div><a href="#"
-                                class="btn btn-add-to-cart btn-dark btn-hover-bg-primary btn-hover-border-primary position-absolute z-index-2 text-nowrap btn-sm px-6 py-3 lh-2">Add
-                                To Cart</a>
+                            </div>
                         </figure>
                         <div class="card-body text-center p-0">
                             <span

@@ -21,7 +21,7 @@
                                 <th>Date</th>
                                 <th>Address</th>
                                 <th>Status</th>
-                                <th>Paymethod</th>
+                                <th>Payment Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -30,11 +30,11 @@
                                 <tr>
                                     <td>#<?= $item['order_code'] ?></td>
                                     <td><?= $item['order_date'] ?></td>
-                                    <td><?= $item['country'] . ', ' . $item['address'] . ', ' . $item['address'] ?></td>
+                                    <td><?= $item['ward'] . ', ' . $item['district'] . ', ' . $item['province'] ?></td>
                                     <td>
                                         <?= $status = setUpStatus($item['status_delivery']) ?>
                                     </td>
-                                    <td><?= $item['paymethod'] ? 'Đã thanh toán' : 'Chưa thanh toán' ?></td>
+                                    <td><?= $item['payment_status'] ? 'Đã thanh toán' : 'Chưa thanh toán' ?></td>
                                     <td>
                                         <a class="btn btn-sm btn-primary" href="<?= BASE_URL ?>?action=show-order&id=<?= $item['id'] ?>">Chi tiết</a>
                                         <?php if ($item['status_delivery'] == 4 || $item['status_delivery'] == 0) { ?>
