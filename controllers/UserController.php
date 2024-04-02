@@ -243,7 +243,7 @@ function changePassword()
         }
         if (empty($_SESSION['errors'])) {
             $data = [
-                'password' => password_hash($_POST['password_new'] ?? null, PASSWORD_DEFAULT),
+                'password' => $_POST['password'] ? password_hash($_POST['password_new'], PASSWORD_DEFAULT) : $user['password'],
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
             update('users',  $user['id'], $data);
