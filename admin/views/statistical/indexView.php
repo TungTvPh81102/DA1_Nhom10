@@ -24,6 +24,7 @@
         </div>
         <div class="card-body">
             <div id="myfirstchart" style="height: 250px;"></div>
+
             <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
                 <thead>
                     <tr>

@@ -36,7 +36,7 @@ function orderCheckOut()
             $vnp_TmnCode = "SH7S871O"; //Mã định danh merchant kết nối (Terminal Id)
             $vnp_HashSecret = "FZSLXCHBHGZGLCGSBNNJFWPSYMGEZHJY"; //Secret key
             $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-            $vnp_Returnurl = "http://localhost/project/?action=order-success";
+            $vnp_Returnurl = "http://localhost/project/?action=order-success&status=complete";
 
             $vnp_TxnRef = $data['order_code']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
             $vnp_OrderInfo = 'Thanh toán hóa đơn';
@@ -87,6 +87,59 @@ function orderCheckOut()
             }
 
             redirect($vnp_Url);
+        } else {
+            if (isset($_SESSION['coupon'])) {
+                $totalMoney = calculator_total_coupon(false);
+            } else {
+                $totalMoney = caculator_total_order(false);
+            }
+            $data = [
+                'order_code' => 'TH' . rand(1, 1000),
+                'user_id' => $_SESSION['user']['id'],
+                'full_name' => $_POST['full_name'] ?? null,
+                'country' => $_POST['country'] ?? null,
+                'address' => $_POST['address'] ?? null,
+                'city' => $_POST['city'] ?? null,
+                'zipcode' => $_POST['zipcode'] ?? null,
+                'email' => $_POST['email'] ?? null,
+                'phone' => $_POST['phone'] ?? null,
+                'note' => $_POST['note'] ?? null,
+                'paymethod' => $_POST['paymethod'] ?? null,
+                'total_money' =>  $totalMoney,
+                'status_delivery' => 1,
+                'order_date' => date('Y-m-d H:i:s')
+            ];
+            try {
+                $GLOBALS['conn']->beginTransaction();
+                $orderID = insert_get_last_id('orders', $data);
+                foreach ($_SESSION['cart'] as $item) {
+                    $orderDetail = [
+                        'order_id' => $orderID,
+                        'product_id' => $item['id'],
+                        'quantity' => $item['quantity'],
+                        'price' => $item['discount'] ?: $item['price_regular'],
+                        'coupon' => $_SESSION['coupon']['code'] ?? null,
+                        'created_at' => date('Y-m-d H:i:s')
+                    ];
+                    insert('order_detail', $orderDetail);
+                    downProductQuantity($item['id'], $item['size'], $item['color'], $item['quantity']);
+                    updateQuantityCoupon($_SESSION['coupon']['id'], $item['quantity']);
+                }
+                deleteCartItemByCartID($_SESSION['cartID']);
+                deleteRow('carts', $_SESSION['cartID']);
+
+                // Xóa sesion liên quan đến giỏ hàng và dữ liệu đơn hàng
+                unset($_SESSION['cart']);
+                unset($_SESSION['cartID']);
+                unset($_SESSION['coupon']);
+
+                $GLOBALS['conn']->commit();
+
+                redirect(BASE_URL . '?action=order-success&status=complete');
+            } catch (Exception $e) {
+                $GLOBALS['conn']->rollBack();
+                debug($e);
+            }
         }
     }
     // $resultProvince = listAll('province');
@@ -103,7 +156,7 @@ function orderSuccess()
     $vnp_TmnCode = "SH7S871O"; //Mã định danh merchant kết nối (Terminal Id)
     $vnp_HashSecret = "FZSLXCHBHGZGLCGSBNNJFWPSYMGEZHJY"; //Secret key
     $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    $vnp_Returnurl = "http://localhost/project/?action=order-success";
+    $vnp_Returnurl = "http://localhost/project/?action=order-success&status=complete";
     $vnp_SecureHash = $_GET['vnp_SecureHash'] ?? null;
 
     if (isset($_GET['vnp_SecureHash']) && isset($_GET['vnp_TxnRef']) && $_GET['vnp_ResponseCode'] == 0 && (!empty($_GET['vnp_TransactionNo']))) {
@@ -184,11 +237,6 @@ function orderSuccess()
     }
 
     $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
-
-    if (!isset($_SESSION['dataOrder']) || empty($_SESSION['dataOrder'])) {
-        redirect(BASE_URL . '?action=login-client');
-        exit();
-    }
 
     require_once PATH_VIEW . 'layout/master.php';
 }

@@ -67,6 +67,20 @@
                                             value="<?= $settings['good-email'] ?? null ?>">
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>Thanks</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="thanks"
+                                            value="<?= $settings['thanks'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fail</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="fail"
+                                            value="<?= $settings['fail'] ?? null ?>">
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <button type="submit" class="btn btn-success">Save</button>

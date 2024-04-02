@@ -5,6 +5,7 @@ function statisticalManagement()
     $view = "statistical/indexView";
     $script = '../scripts/e-chart';
     $script2 = '../scripts/data-table';
+    $script3 = "../scripts/chart";
     $style = '../styles/e-chart';
     $style2 = '../styles/data-table';
     $totalRevenue = totalRevenue();
@@ -15,6 +16,7 @@ function statisticalManagement()
     $productView = statisProducts();
     $productByCategory = statisProductsByCategoryAndBrand();
     $productByOrder = statisProductByOrder();
+
     require_once PATH_VIEW_ADMIN . 'layout/master.php';
 }
 

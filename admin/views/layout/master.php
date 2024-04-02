@@ -66,9 +66,6 @@
     <!-- apexcharts -->
     <script src="<?= BASE_URL ?>assets/admin/libs/apexcharts/apexcharts.min.js"></script>
 
-    <!-- dashboard init -->
-    <script src="<?= BASE_URL ?>assets/admin/js/pages/dashboard.init.js"></script>
-
     <?php
     if (isset($script) && ($script)) {
         require_once PATH_VIEW_ADMIN . 'scripts/' . $script . '.php';
