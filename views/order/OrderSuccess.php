@@ -16,7 +16,7 @@
 
 <?php
 $vnp_SecureHash = $_GET['vnp_SecureHash'] ?? null;
-if (isset($_GET['complete']) || ($vnp_SecureHash == 0) && $secureHash == $vnp_SecureHash) {
+if (isset($_GET['status'])) {
 ?>
     <section class="z-index-2 position-relative pb-2 mb-12 text-center" data-animated-id="1">
         <img style="height: 300px; object-fit: cover;" src="<?= $GLOBALS['settings']['thanks'] ?>" alt="">

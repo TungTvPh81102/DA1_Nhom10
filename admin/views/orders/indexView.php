@@ -33,6 +33,7 @@
                                     <th>Số ĐT</th>
                                     <th>Tổng TT</th>
                                     <th>Phương thức TT</th>
+                                    <th>Trạng thái TT</th>
                                     <th>Trạng thái</th>
                                     <th>Ngày đặt hàng</th>
                                     <th>Ngày cập nhật</th>
@@ -46,33 +47,38 @@
                                 $count = 1;
                                 foreach ($orders as $order) :
                                 ?>
-                                    <tr>
-                                        <input type="hidden" name="id" value="<?= $order['id'] ?>">
-                                        <td><?= $count ?></td>
-                                        <td><?= $order['full_name'] ?></td>
-                                        <td><?= $order['phone'] ?></td>
-                                        <td><?= number_format($order['total_money'], 0) . ' VNĐ' ?></td>
+                                <tr>
+                                    <input type="hidden" name="id" value="<?= $order['id'] ?>">
+                                    <td><?= $count ?></td>
+                                    <td><?= $order['full_name'] ?></td>
+                                    <td><?= $order['phone'] ?></td>
+                                    <td><?= number_format($order['total_money'], 0) . ' VNĐ' ?></td>
 
-                                        <td>
-                                            <?= $order['paymethod'] ?
-                                                '<span class="btn btn-success btn-sm waves-effect waves-light">Thanh toán Online</span>' :
-                                                '<span class="btn btn-info btn-sm waves-effect waves-light">Thanh toán khi nhận hàng</span>' ?>
-                                        </td>
-                                        <td>
-                                            <?php
+                                    <td>
+                                        <?= $order['paymethod'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $order['payment_status'] ?
+                                                '<span class="btn btn-success btn-sm waves-effect waves-light">Đã thanh toán</span>' :
+                                                '<span class="btn btn-info btn-sm waves-effect waves-light">Chưa thanh toán</span>' ?>
+                                    </td>
+                                    <td>
+                                        <?php
                                             $status = setUpStatus($order['status_delivery']);
                                             echo $status;
                                             ?>
-                                        </td>
-                                        <td><?= $order['order_date'] ?></td>
-                                        <td><?= $order['updated_at'] ?></td>
-                                        <td>
+                                    </td>
+                                    <td><?= $order['order_date'] ?></td>
+                                    <td><?= $order['updated_at'] ?></td>
+                                    <td>
 
-                                            <a href="<?= BASE_URL_ADMIN ?>?action=order-detail&order_id=<?= $order['id'] ?>" class="btn btn-success">Sửa đơn hàng</a>
-                                            <a href="<?= BASE_URL_ADMIN ?>?action=complete-payment&order_id=<?= $order['id'] ?>" class="btn btn-info">Xem hóa đơn</a>
+                                        <a href="<?= BASE_URL_ADMIN ?>?action=order-detail&order_id=<?= $order['id'] ?>"
+                                            class="btn btn-success">Sửa đơn hàng</a>
+                                        <a href="<?= BASE_URL_ADMIN ?>?action=complete-payment&order_id=<?= $order['id'] ?>"
+                                            class="btn btn-info">Xem hóa đơn</a>
 
-                                        </td>
-                                    </tr>
+                                    </td>
+                                </tr>
                                 <?php
                                     $count++;
                                 endforeach;
