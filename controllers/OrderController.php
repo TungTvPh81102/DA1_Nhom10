@@ -96,6 +96,9 @@ function orderCheckOut()
 
 function orderSuccess()
 {
+
+
+    $title = 'Đặt hàng';
     $view = 'order/OrderSuccess';
     $vnp_TmnCode = "SH7S871O"; //Mã định danh merchant kết nối (Terminal Id)
     $vnp_HashSecret = "FZSLXCHBHGZGLCGSBNNJFWPSYMGEZHJY"; //Secret key
@@ -179,6 +182,12 @@ function orderSuccess()
     }
 
     $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
+
+    if (!isset($_SESSION['dataOrder']) || empty($_SESSION['dataOrder'])) {
+        redirect(BASE_URL . '?action=login-client');
+        exit();
+    }
+
     require_once PATH_VIEW . 'layout/master.php';
 }
 
