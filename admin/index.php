@@ -103,6 +103,7 @@ match ($action) {
 
     // QUẢN LÝ THỐNG KÊ
     'statistical-management' => statisticalManagement(),
+    'ajax-statistical' => statisticalAjax()
 };
 
 

@@ -20,8 +20,8 @@
                 <div class="card-body">
                     <!-- Hiển thị thông báo thành công -->
                     <?php if (isset($_SESSION['success'])) : ?>
-                        <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
-                        <?php unset($_SESSION['success']); ?>
+                    <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
+                    <?php unset($_SESSION['success']); ?>
                     <?php endif; ?>
                     <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                         <thead>
@@ -43,36 +43,40 @@
                         <tbody>
                             <?php foreach ($coupons as $coupon) :
                             ?>
-                                <tr>
-                                    <td><?= $coupon['id'] ?></td>
-                                    <td><?= $coupon['name'] ?></td>
-                                    <td><?= $coupon['code'] ?> </td>
-                                    <td><?= $coupon['quantity'] ?></td>
-                                    <td><?= $coupon['condition'] == 1 ? 'Giảm theo %' : 'Giảm theo số tiền' ?></td>
-                                    <td><?= $coupon['condition'] == 1 ? 'Giảm ' . $coupon['number'] . ' %' : 'Giảm ' . number_format($coupon['number'], 0) . ' đ' ?>
-                                    </td>
-                                    <td><?= $coupon['created_at'] ? $coupon['created_at'] : 'Chưa có dữ liệu' ?></td>
-                                    <td><?= $coupon['expires_at'] ? $coupon['expires_at'] : 'Chưa có dữ liệu' ?></td>
-                                    <td><?= $coupon['status'] ? '<span class="text-success">Đã kích hoạt</span>' : '<span class="text-danger">Chưa kích hoạt</span>' ?>
-                                    </td>
-                                    <td>
-                                        <?php
+                            <tr>
+                                <td><?= $coupon['id'] ?></td>
+                                <td><?= $coupon['name'] ?></td>
+                                <td><?= $coupon['code'] ?> </td>
+                                <td><?= $coupon['quantity'] ? $coupon['quantity'] : '<span class="text-danger">Hết mã</span>' ?>
+                                </td>
+                                <td><?= $coupon['condition'] == 1 ? 'Giảm theo %' : 'Giảm theo số tiền' ?></td>
+                                <td><?= $coupon['condition'] == 1 ? 'Giảm ' . $coupon['number'] . ' %' : 'Giảm ' . number_format($coupon['number'], 0) . ' đ' ?>
+                                </td>
+                                <td><?= $coupon['created_at'] ? $coupon['created_at'] : 'Chưa có dữ liệu' ?></td>
+                                <td><?= $coupon['expires_at'] ? $coupon['expires_at'] : 'Chưa có dữ liệu' ?></td>
+                                <td><?= $coupon['status'] ? '<span class="text-success">Đã kích hoạt</span>' : '<span class="text-danger">Chưa kích hoạt</span>' ?>
+                                </td>
+                                <td>
+                                    <?php
                                         if ($today >= $coupon['created_at'] && $today <= $coupon['expires_at']) {
                                             echo '<span class="text-success">Còn hạn</span>';
                                         } else {
                                             echo '<span class="text-danger">Đã hết hạn</span>';
                                         }
                                         ?>
-                                    </td>
-                                    <td>
-                                        <a href="<?= BASE_URL_ADMIN ?>?action=coupon-update&id=<?= $coupon['id'] ?>" class="btn btn-info">
-                                            Sửa
-                                        </a>
-                                        <a onclick="return confirm('Bạn có chắc muốn xóa mã giảm giá: <?= $coupon['name'] ?> không?')" href="<?= BASE_URL_ADMIN ?>?action=coupon-delelte&id=<?= $coupon['id'] ?>" class="btn btn-danger">
-                                            Xóa
-                                        </a>
-                                    </td>
-                                </tr>
+                                </td>
+                                <td>
+                                    <a href="<?= BASE_URL_ADMIN ?>?action=coupon-update&id=<?= $coupon['id'] ?>"
+                                        class="btn btn-info">
+                                        Sửa
+                                    </a>
+                                    <a onclick="return confirm('Bạn có chắc muốn xóa mã giảm giá: <?= $coupon['name'] ?> không?')"
+                                        href="<?= BASE_URL_ADMIN ?>?action=coupon-delelte&id=<?= $coupon['id'] ?>"
+                                        class="btn btn-danger">
+                                        Xóa
+                                    </a>
+                                </td>
+                            </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
