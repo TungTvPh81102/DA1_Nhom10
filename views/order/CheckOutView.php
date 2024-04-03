@@ -5,7 +5,8 @@
                 <ol class="breadcrumb justify-content-center py-1 mb-0">
                     <li class="breadcrumb-item"><a title="Home" href="../index.html" previewlistener="true">Home</a>
                     </li>
-                    <li class="breadcrumb-item"><a title="Shop" href="../shop/shop-layout-v2.html" previewlistener="true">Shop</a></li>
+                    <li class="breadcrumb-item"><a title="Shop" href="../shop/shop-layout-v2.html"
+                            previewlistener="true">Shop</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Check Out</li>
                 </ol>
             </nav>
@@ -33,43 +34,49 @@
                                 </thead>
                                 <tbody>
                                     <?php if (!empty($_SESSION['cart'])) { ?>
-                                        <?php
+                                    <?php
                                         $total = 0;
                                         foreach ($_SESSION['cart'] as $item) :
                                             $subTotal = ($item['discount'] ?: $item['price_regular']) * $item['quantity'];
                                             $total += $subTotal;
                                         ?>
-                                            <tr class="position-relative">
-                                                <th scope="row" class="pe-5 ps-8 py-7 shop-product">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="me-7">
-                                                            <img style="height: 100%; object-fit: cover;" src="<?= BASE_URL . $item['img_thumbnail'] ?>" data-src="../assets/images/products/product-03-75x100.jpg" class="loaded" width="75" height="100" alt="Natural Coconut Cleansing Oil" loading="lazy" data-ll-status="loaded">
-                                                        </div>
-                                                        <div class="">
-                                                            <p class="fw-500 mb-1 text-body-emphasis"><?= $item['name'] ?></p>
-                                                            <p class="card-text">
-                                                                <span class="fs-15px fw-bold text-body-emphasis">
-                                                                    <?= number_format($item['discount'], 0) . ' đ' ?: number_format($item['price_regular'], 0) . ' đ' ?>
-                                                                    x<?= $item['quantity'] ?>
-                                                                </span>
-                                                            </p>
-                                                            <div class="d-flex">
-                                                                <p style="margin-right: 10px;" class="fw-500 mb-1 text-body-emphasis">Size:
-                                                                    <?= $item['size'] ?></p>
-                                                                <p class="fw-500 mb-1 text-body-emphasis">Màu:
-                                                                    <?= $item['color'] ?></p>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </th>
-                                                <td class="align-middle">
-                                                    <p class="mb-0 text-body-emphasis fw-bold mr-xl-11">
-                                                        <?= number_format(($item['discount'] ?: $item['price_regular']) * $item['quantity'], 0) . ' đ' ?>
+                                    <tr class="position-relative">
+                                        <th scope="row" class="pe-5 ps-8 py-7 shop-product">
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-7">
+                                                    <img style="height: 100%; object-fit: cover;"
+                                                        src="<?= BASE_URL . $item['img_thumbnail'] ?>"
+                                                        data-src="../assets/images/products/product-03-75x100.jpg"
+                                                        class="loaded" width="75" height="100"
+                                                        alt="Natural Coconut Cleansing Oil" loading="lazy"
+                                                        data-ll-status="loaded">
+                                                </div>
+                                                <div class="">
+                                                    <p class="fw-500 mb-1 text-body-emphasis"><?= $item['name'] ?></p>
+                                                    <p class="card-text">
+                                                        <span class="fs-15px fw-bold text-body-emphasis">
+                                                            <?= number_format($item['discount'], 0) . ' đ' ?: number_format($item['price_regular'], 0) . ' đ' ?>
+                                                            x<?= $item['quantity'] ?>
+                                                        </span>
                                                     </p>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
+                                                    <div class="d-flex">
+                                                        <p style="margin-right: 10px;"
+                                                            class="fw-500 mb-1 text-body-emphasis">Size:
+                                                            <?= $item['size'] ?></p>
+                                                        <p class="fw-500 mb-1 text-body-emphasis">Màu:
+                                                            <?= $item['color'] ?></p>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="align-middle">
+                                            <p class="mb-0 text-body-emphasis fw-bold mr-xl-11">
+                                                <?= number_format(($item['discount'] ?: $item['price_regular']) * $item['quantity'], 0) . ' đ' ?>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
                                     <?php   } ?>
 
                                 </tbody>
@@ -80,9 +87,11 @@
                         <div class="d-flex align-items-center fw-bold mb-6">
                             <span class="text-body-emphasis p-0">Total pricre:</span>
                             <?php if (isset($_SESSION['coupon']) && is_array($_SESSION['coupon'])) { ?>
-                                <span class="d-block ms-auto text-body-emphasis fs-4 fw-bold"><?= calculator_total_coupon() . ' đ' ?></span>
+                            <span
+                                class="d-block ms-auto text-body-emphasis fs-4 fw-bold"><?= calculator_total_coupon() . ' đ' ?></span>
                             <?php } else { ?>
-                                <span class="d-block ms-auto text-body-emphasis fs-4 fw-bold"><?= caculator_total_order() . ' đ' ?></span>
+                            <span
+                                class="d-block ms-auto text-body-emphasis fs-4 fw-bold"><?= caculator_total_order() . ' đ' ?></span>
                             <?php } ?>
                         </div>
                     </div>
@@ -94,7 +103,8 @@
                         <a href="#" data-bs-toggle="modal" data-bs-target="#signInModal">Click here to login</a>
                     </p>
                     <p>Have a coupon?
-                        <a data-bs-toggle="collapse" href="#collapsecoupon" role="button" aria-expanded="false" aria-controls="collapsecoupon">Click here to enter your code</a>
+                        <a data-bs-toggle="collapse" href="#collapsecoupon" role="button" aria-expanded="false"
+                            aria-controls="collapsecoupon">Click here to enter your code</a>
                     </p>
                     <div class="collapse" id="collapsecoupon">
                         <div class="card mw-60 border-0">
@@ -102,8 +112,10 @@
                                 <p class="card-text text-body-emphasis mb-8">
                                     If you have a coupon code, please apply it below.</p>
                                 <div class="input-group position-relative">
-                                    <input type="email" class="form-control bg-body rounded-end" placeholder="Your Email*">
-                                    <button type="submit" class="btn btn-dark btn-hover-bg-primary btn-hover-border-primary">
+                                    <input type="email" class="form-control bg-body rounded-end"
+                                        placeholder="Your Email*">
+                                    <button type="submit"
+                                        class="btn btn-dark btn-hover-bg-primary btn-hover-border-primary">
                                         Apply Coupon
                                     </button>
                                 </div>
@@ -114,17 +126,22 @@
                     <div class="mb-7">
                         <label class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Full name</label>
                         <div class="">
-                            <input type="text" class="form-control" id="first-name" name="full_name" placeholder="First Name" required="" value="<?= $_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name'] ?>">
+                            <input type="text" class="form-control" id="first-name" name="full_name"
+                                placeholder="First Name" required=""
+                                value="<?= $_SESSION['user']['first_name'] . ' ' . $_SESSION['user']['last_name'] ?>">
                         </div>
                     </div>
                     <div class="mb-7">
                         <label class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">info</label>
                         <div class="row">
                             <div class="col-md-6 mb-md-0 mb-7">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required="" value="<?= $_SESSION['user']['email'] ?>">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                    required="" value="<?= $_SESSION['user']['email'] ?>">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number" required="" value="<?= $_SESSION['user']['phone_number'] ?>">
+                                <input type="text" class="form-control" id="phone" name="phone"
+                                    placeholder="Phone number" required=""
+                                    value="<?= $_SESSION['user']['phone_number'] ?>">
                             </div>
                         </div>
                     </div>
@@ -135,11 +152,13 @@
                     <div class="mb-7">
                         <div class="form-group">
                             <label for="">Tỉnh/Thành phố</label>
-                            <input class="form-control mb-5" type="text" name="province" id="" placeholder="Nhập tỉnh thành phố">
+                            <input class="form-control mb-5" type="text" name="province" id=""
+                                placeholder="Nhập tỉnh thành phố">
                         </div>
                         <div class="form-group">
                             <label for="">Quận/Huyện</label>
-                            <input class="form-control mb-5" type="text" name="district" id="" placeholder="Nhập quận huyện">
+                            <input class="form-control mb-5" type="text" name="district" id=""
+                                placeholder="Nhập quận huyện">
 
                         </div>
                         <div class="form-group">
@@ -150,7 +169,8 @@
                     </div>
                     <div class="mb-7">
                         <label for="note" class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Note</label>
-                        <textarea placeholder="Note" class="form-control" name="note" id="" cols="30" rows="4"></textarea>
+                        <textarea placeholder="Note" class="form-control" name="note" id="" cols="30"
+                            rows="4"></textarea>
                     </div>
                 </div>
                 <div class="checkout mb-7">
@@ -159,18 +179,19 @@
                         <div class="tab-content mt-7">
                             <div class="tab-pane fade active show d-flex" id="paypal-tab" role="tabpanel">
                                 <div style="margin-right: 20px;" class="">
-                                    <input type="radio" name="paymethod" id="vnpay" value="0"> Thanh toán khi nhận hàng
+                                    <input type="radio" name="paymethod" id="cash" value="0"> Thanh toán khi nhận hàng
                                 </div>
                                 <div style="margin-right: 20px;" class="">
                                     <input type="radio" name="paymethod" id="vnpay" value="1"> Thanh toán VN PAY
                                 </div>
                                 <div class="">
-                                    <input type="radio" name="paymethod" id="vnpay" value="2"> Thanh toán MOMO
+                                    <input type="radio" name="paymethod" id="momo" value="2"> Thanh toán MOMO
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button name="payUrl" type="submit" class="btn btn-dark btn-hover-bg-primary btn-hover-border-primary px-11 mt-md-7 mt-4">Place
+                    <button name="payUrl" type="submit"
+                        class="btn btn-dark btn-hover-bg-primary btn-hover-border-primary px-11 mt-md-7 mt-4">Place
                         Order</button>
                 </div>
             </div>

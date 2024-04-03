@@ -34,6 +34,8 @@ function orderCheckOut()
 
 
             $_SESSION['dataOrder'] = $data;
+
+            // TRUY VẤN VNPAY SANBOX
             $vnp_TmnCode = "SH7S871O"; //Mã định danh merchant kết nối (Terminal Id)
             $vnp_HashSecret = "FZSLXCHBHGZGLCGSBNNJFWPSYMGEZHJY"; //Secret key
             $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
@@ -195,7 +197,6 @@ function orderSuccess()
                 'vnp_SecureHash' => $_GET['vnp_SecureHash']
             ];
 
-
             insert('payment', $dataPayment);
 
             deleteCartItemByCartID($_SESSION['cartID']);
@@ -236,6 +237,7 @@ function orderSuccess()
     }
 
     $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
+
 
     require_once PATH_VIEW . 'layout/master.php';
 }
