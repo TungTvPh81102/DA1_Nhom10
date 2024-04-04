@@ -70,7 +70,6 @@ function bannerDetail()
 {
     $id = $_GET['id'];
     $banner = showOne('banners', $id);
-
     if (empty($banner)) {
         e404();
     }

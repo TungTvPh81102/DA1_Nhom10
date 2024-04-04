@@ -20,8 +20,8 @@
                 <div class="card-body">
                     <!-- Hiển thị thông báo thành công -->
                     <?php if (isset($_SESSION['success'])) : ?>
-                        <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
-                        <?php unset($_SESSION['success']); ?>
+                    <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
+                    <?php unset($_SESSION['success']); ?>
                     <?php endif; ?>
                     <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                         <thead>
@@ -39,30 +39,34 @@
 
                         <tbody>
                             <?php foreach ($banners as $banner) : ?>
-                                <tr>
-                                    <td><?= $banner['id'] ?></td>
-                                    <td><?= $banner['heading'] ?></td>
-                                    <td><?= $banner['description'] ?></td>
-                                    <td>
-                                        <img style="width: 100px;" src="<?= BASE_URL . $banner['image'] ?>" alt="">
-                                    </td>
-                                    <td><?= $banner['status'] ? ' <span class="btn btn-success btn-sm waves-effect waves-light">Hoạt động</span>' : ' <span class="btn btn-warning btn-sm waves-effect waves-light">Không hoạt động</span>' ?>
-                                    </td>
-                                    <td><?= $banner['created_at'] ? $banner['created_at'] : 'Chưa có dữ liệu' ?></td>
-                                    <td><?= $banner['updated_at'] ? $banner['updated_at'] : 'Chưa có dữ liệu' ?>
-                                    </td>
-                                    <td>
-                                        <a href="<?= BASE_URL_ADMIN ?>?action=brand-detail&id=<?= $banner['id'] ?>" class="btn btn-info">
-                                            Chi tiết
-                                        </a>
-                                        <a href="<?= BASE_URL_ADMIN ?>?action=brand-update&id=<?= $banner['id'] ?>" class="btn btn-warning">
-                                            Sửa
-                                        </a>
-                                        <a onclick="return confirm('Bạn có chắc muốn xóa thương hiệu: <?= $banner['heading'] ?> không?')" href="<?= BASE_URL_ADMIN ?>?action=brand-delete&id=<?= $banner['id'] ?>" class="btn btn-danger">
-                                            Xóa
-                                        </a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td><?= $banner['id'] ?></td>
+                                <td><?= $banner['heading'] ?></td>
+                                <td><?= $banner['description'] ?></td>
+                                <td>
+                                    <img style="width: 100px;" src="<?= BASE_URL . $banner['image'] ?>" alt="">
+                                </td>
+                                <td><?= $banner['status'] ? ' <span class="btn btn-success btn-sm waves-effect waves-light">Hoạt động</span>' : ' <span class="btn btn-warning btn-sm waves-effect waves-light">Không hoạt động</span>' ?>
+                                </td>
+                                <td><?= $banner['created_at'] ? $banner['created_at'] : 'Chưa có dữ liệu' ?></td>
+                                <td><?= $banner['updated_at'] ? $banner['updated_at'] : 'Chưa có dữ liệu' ?>
+                                </td>
+                                <td>
+                                    <a href="<?= BASE_URL_ADMIN ?>?action=banner-detail&id=<?= $banner['id'] ?>"
+                                        class="btn btn-info">
+                                        Chi tiết
+                                    </a>
+                                    <a href="<?= BASE_URL_ADMIN ?>?action=banner-update&id=<?= $banner['id'] ?>"
+                                        class="btn btn-warning">
+                                        Sửa
+                                    </a>
+                                    <a onclick="return confirm('Bạn có chắc muốn xóa thương hiệu: <?= $banner['heading'] ?> không?')"
+                                        href="<?= BASE_URL_ADMIN ?>?action=banner-delete&id=<?= $banner['id'] ?>"
+                                        class="btn btn-danger">
+                                        Xóa
+                                    </a>
+                                </td>
+                            </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>

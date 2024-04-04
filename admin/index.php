@@ -41,6 +41,9 @@ match ($action) {
     // CRUD BANNERS
     'banners-list' => bannersList(),
     'banner-create' => bannerCreate(),
+    'banner-update' => bannerUpdate(),
+    'banner-detail' => bannerDetail(),
+    'banner-delete' => bannerDelete(),
 
     // CRUD CATEGORIES
     'categories-list' => categoriesList(),
