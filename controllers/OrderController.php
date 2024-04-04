@@ -36,6 +36,7 @@ function orderCheckOut()
                 'order_date' => date('Y-m-d H:i:s')
             ];
 
+            validateOrder($data);
 
             $_SESSION['dataOrder'] = $data;
 
@@ -43,7 +44,7 @@ function orderCheckOut()
             $vnp_TmnCode = "SH7S871O"; //Mã định danh merchant kết nối (Terminal Id)
             $vnp_HashSecret = "FZSLXCHBHGZGLCGSBNNJFWPSYMGEZHJY"; //Secret key
             $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-            $vnp_Returnurl = "http://localhost/project/?action=order-success";
+            $vnp_Returnurl = "http://localhost/DA1/?action=order-success";
 
             $vnp_TxnRef = $data['order_code']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
             $vnp_OrderInfo = 'Thanh toán hóa đơn';
@@ -123,6 +124,9 @@ function orderCheckOut()
                 'status_delivery' => 1,
                 'order_date' => date('Y-m-d H:i:s')
             ];
+
+            validateOrder($data);
+
             try {
                 $GLOBALS['conn']->beginTransaction();
 
@@ -298,4 +302,52 @@ function showOrder()
     $title = 'Order Details';
 
     require_once PATH_VIEW . 'layout/master.php';
+}
+
+function validateOrder($data)
+{
+    $errors = [];
+
+    if (empty(trim($data['full_name']))) {
+        $errors['full_name']['required'] = 'Vui lòng nhập đầy đủ họ tên';
+    }
+
+    if (empty(trim($data['email']))) {
+        $errors['email']['required'] = 'Vui lòng nhập địa chỉ email';
+    } else {
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['email']['check'] = 'Email không đúng định dạng';
+        }
+    }
+
+    if (empty(trim($data['phone']))) {
+        $errors['phone']['required'] = 'Vui lòng nhập số điện thoại';
+    } else {
+        if (strlen(trim($data['phone'])) > 11) {
+            $errors['phone']['length'] = 'Số điện thoại chỉ tối đa 11 ký tự';
+        }
+    }
+
+    if (empty(trim($data['province']))) {
+        $errors['province']['required'] = 'Vui lòng nhập tỉnh thành phố';
+    }
+
+    if (empty(trim($data['district']))) {
+        $errors['district']['required'] = 'Vui lòng nhập quận huyện';
+    }
+
+    if (empty(trim($data['ward']))) {
+        $errors['ward']['required'] = 'Vui lòng nhập xã';
+    }
+
+    if (empty(trim($data['zipcode']))) {
+        $errors['zipcode']['required'] = 'Vui lòng nhập mã bưu điện';
+    }
+
+    if (!empty($errors)) {
+        $_SESSION['errors'] = $errors;
+        $_SESSION['data'] = $data;
+        redirect(BASE_URL . '?action=order-check-out');
+        exit();
+    }
 }
