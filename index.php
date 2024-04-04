@@ -73,6 +73,9 @@ match ($action) {
     // ORDER
     'order-check-out' => orderCheckOut(),
     'order-success' => orderSuccess(),
+
+    // CONTACT 
+    'contact' => contact(),
 };
 
 
