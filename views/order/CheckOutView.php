@@ -84,6 +84,18 @@
                         </div>
                     </div>
                     <div class="card-footer bg-transparent py-5 px-0 mx-10">
+                        <?php if (isset($_SESSION['coupon'])) { ?>
+                        <div class="d-flex align-items-center fw-bold mb-6">
+                            <span class="text-body-emphasis p-0">Discount:</span>
+                            <?php if (isset($_SESSION['coupon']['maximum_percent'])) {                           ?>
+                            <span
+                                class="d-block ms-auto text-body-emphasis fs-4 fw-bold">-<?= number_format($_SESSION['coupon']['maximum_percent']) . ' đ' ?></span>
+                            <?php } else { ?>
+                            <span
+                                class="d-block ms-auto text-body-emphasis fs-4 fw-bold">-<?= number_format($_SESSION['coupon']['number']) . ' đ' ?></span>
+                            <?php } ?>
+                        </div>
+                        <?php } ?>
                         <div class="d-flex align-items-center fw-bold mb-6">
                             <span class="text-body-emphasis p-0">Total pricre:</span>
                             <?php if (isset($_SESSION['coupon']) && is_array($_SESSION['coupon'])) { ?>
@@ -184,13 +196,10 @@
                                 <div style="margin-right: 20px;" class="">
                                     <input type="radio" name="paymethod" id="vnpay" value="1"> Thanh toán VN PAY
                                 </div>
-                                <div class="">
-                                    <input type="radio" name="paymethod" id="momo" value="2"> Thanh toán MOMO
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <button name="payUrl" type="submit"
+                    <button onclick="return confirm('Xác nhận đặt hàng ?')" type="submit"
                         class="btn btn-dark btn-hover-bg-primary btn-hover-border-primary px-11 mt-md-7 mt-4">Place
                         Order</button>
                 </div>

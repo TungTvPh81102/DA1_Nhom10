@@ -19,5 +19,5 @@ define('PATH_VIEW_ADMIN', __DIR__ . '/../admin/views/');
 define('BASE_URL', 'http://localhost/project/');
 define('BASE_URL_ADMIN', 'http://localhost/project/admin/');
 
-define('PAYMENT_VNPAY',      'vnpay');
+define('PAYMENT_VNPAY', 'vnpay');
 define('PAYMENT_CASH',  'cash');

@@ -39,7 +39,7 @@ function orderCheckOut()
             $vnp_TmnCode = "SH7S871O"; //Mã định danh merchant kết nối (Terminal Id)
             $vnp_HashSecret = "FZSLXCHBHGZGLCGSBNNJFWPSYMGEZHJY"; //Secret key
             $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-            $vnp_Returnurl = "http://localhost/DA1/?action=order-success";
+            $vnp_Returnurl = "http://localhost/project/?action=order-success";
 
             $vnp_TxnRef = $data['order_code']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
             $vnp_OrderInfo = 'Thanh toán hóa đơn';
@@ -117,12 +117,14 @@ function orderCheckOut()
                 $GLOBALS['conn']->beginTransaction();
                 $orderID = insert_get_last_id('orders', $data);
                 foreach ($_SESSION['cart'] as $item) {
+                    $reduced = $_SESSION['coupon']['maximum_percent'] ? $_SESSION['coupon']['maximum_percent'] : $_SESSION['coupon']['number'];
                     $orderDetail = [
                         'order_id' => $orderID,
                         'product_id' => $item['id'],
                         'quantity' => $item['quantity'],
                         'price' => $item['discount'] ?: $item['price_regular'],
                         'coupon' => $_SESSION['coupon']['code'] ?? null,
+                        'reduced' => $reduced ?? null,
                         'created_at' => date('Y-m-d H:i:s')
                     ];
                     insert('order_detail', $orderDetail);
@@ -156,10 +158,6 @@ function orderSuccess()
     $title = 'Đặt hàng';
     $view = 'order/OrderSuccess';
     $vnp_HashSecret = "FZSLXCHBHGZGLCGSBNNJFWPSYMGEZHJY"; //Secret key
-
-    $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    $vnp_Returnurl = "http://localhost/DA1/?action=order-success";
-    $vnp_SecureHash = $_GET['vnp_SecureHash'];
     $vnp_SecureHash = $_GET['vnp_SecureHash'] ?? null;
 
     if (isset($_GET['vnp_SecureHash']) && isset($_GET['vnp_TxnRef']) && $_GET['vnp_ResponseCode'] == 0 && (!empty($_GET['vnp_TransactionNo']))) {
@@ -168,6 +166,7 @@ function orderSuccess()
             $GLOBALS['conn']->beginTransaction();
 
             $orderID = insert_get_last_id('orders', $_SESSION['dataOrder']);
+            $reduced = $_SESSION['coupon']['condition'] ? $_SESSION['coupon']['maximum_percent'] : $_SESSION['coupon']['number'];
             foreach ($_SESSION['cart'] as $item) {
                 $orderDetail = [
                     'order_id' => $orderID,
@@ -175,6 +174,7 @@ function orderSuccess()
                     'quantity' => $item['quantity'],
                     'price' => $item['discount'] ?: $item['price_regular'],
                     'coupon' => $_SESSION['coupon']['code'] ?? null,
+                    'reduced' => $reduced ?? null,
                     'created_at' => date('Y-m-d H:i:s')
                 ];
                 insert('order_detail', $orderDetail);
@@ -211,7 +211,6 @@ function orderSuccess()
             unset($_SESSION['cartID']);
             unset($_SESSION['dataOrder']);
             unset($_SESSION['coupon']);
-
             $GLOBALS['conn']->commit();
             redirect(BASE_URL . '?action=order-success&status=complete');
         } catch (Exception $e) {
