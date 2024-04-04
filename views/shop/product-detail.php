@@ -186,7 +186,7 @@
                         </h2>
                     </div>
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                        data-bs-parent="#accordionFlushExample" style="">
+                        data-bs-parent="#accordionFlushExample">
                         <div class="pt-8 pb-3">
                             <p class="mb-2 pb-4">
                                 <?= $product['p_description'] ?>

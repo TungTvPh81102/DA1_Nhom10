@@ -27,13 +27,16 @@
                         </thead>
 
                         <tbody>
-                            <?php foreach ($gallerys as $gallery) : ?>
+                            <?php
+                            foreach ($productImg as $item) :
+                            ?>
                             <tr>
-
-                                <td><?= $gallery['product_id'] ?></td>
-                                <td></td>
+                                <td><?= $item['id'] ?></td>
                                 <td>
-                                    <img style="width: 70px;" src="<?= BASE_URL . $gallery['thumbnail'] ?>" alt="">
+                                    <img style="width: 70px;" src="<?= BASE_URL . $item['img_thumbnail'] ?>" alt="">
+                                </td>
+                                <td>
+                                    <img style="width: 70px;" src="<?= BASE_URL . $item['thumbnail'] ?>" alt="">
                                 </td>
                             </tr>
                             <?php endforeach; ?>
