@@ -8,11 +8,14 @@ function orderCheckOut()
         // THANH TOÁN VNPAY
         if ($_POST['paymethod'] == 1) {
 
+            // KIỂM TRA XEM NGƯỜI DÙNG CÓ THÊM MÃ GIẢM GIÁ HAY KHÔNG
             if (isset($_SESSION['coupon'])) {
                 $totalMoney = calculator_total_coupon(false);
             } else {
                 $totalMoney = caculator_total_order(false);
             }
+
+            // SỐ TIỀN ĐƯỢC GIẢM
             $reduced = $_SESSION['coupon']['maximum_percent'] ? $_SESSION['coupon']['maximum_percent'] : $_SESSION['coupon']['number'];
             $data = [
                 'order_code' => 'TH' . rand(1, 1000),
@@ -92,12 +95,16 @@ function orderCheckOut()
 
             redirect($vnp_Url);
         } else {
+            // KIỂM TRA XEM NGƯỜI DÙNG CÓ THÊM MÃ GIẢM GIÁ HAY KHÔNG
             if (isset($_SESSION['coupon'])) {
                 $totalMoney = calculator_total_coupon(false);
             } else {
                 $totalMoney = caculator_total_order(false);
             }
+            // SỐ TIỀN ĐƯỢC GIẢM
             $reduced = $_SESSION['coupon']['maximum_percent'] ? $_SESSION['coupon']['maximum_percent'] : $_SESSION['coupon']['number'];
+
+            // DỮ LIỆU LẤY TỪ FORM
             $data = [
                 'order_code' => 'TH' . rand(1, 1000),
                 'user_id' => $_SESSION['user']['id'],
@@ -118,6 +125,8 @@ function orderCheckOut()
             ];
             try {
                 $GLOBALS['conn']->beginTransaction();
+
+                // TRUY VẤN THÊM VÀO BẢNG ORDERS
                 $orderID = insert_get_last_id('orders', $data);
                 foreach ($_SESSION['cart'] as $item) {
                     $orderDetail = [
@@ -128,9 +137,13 @@ function orderCheckOut()
                         'coupon' => $_SESSION['coupon']['code'] ?? null,
                         'created_at' => date('Y-m-d H:i:s')
                     ];
+                    // TRUY VẤN THÊM DỮ LIỆU VÀO BẢNG ORDER_DETAILS, GIẢM SỐ LƯỢNG SẢN PHẨM SAU KHI ĐẶT HÀNG THÀNH CÔNG
+                    // CẬP NHẬT LẠI SỐ MÃ GIẢM GIÁ NẾU ĐƯỢC SỬ DỤNG
                     insert('order_detail', $orderDetail);
                     downProductQuantity($item['id'], $item['size'], $item['color'], $item['quantity']);
-                    updateQuantityCoupon($_SESSION['coupon']['id'], $item['quantity']);
+                    if (isset($_SESSION['coupon'])) {
+                        updateQuantityCoupon($_SESSION['coupon']['id'], $item['quantity']);
+                    }
                 }
                 deleteCartItemByCartID($_SESSION['cartID']);
                 deleteRow('carts', $_SESSION['cartID']);
@@ -165,7 +178,7 @@ function orderSuccess()
 
         try {
             $GLOBALS['conn']->beginTransaction();
-
+            // TRUY VẤN THÊM VÀO BẢNG ORDERS
             $orderID = insert_get_last_id('orders', $_SESSION['dataOrder']);
             foreach ($_SESSION['cart'] as $item) {
                 $orderDetail = [
@@ -176,6 +189,8 @@ function orderSuccess()
                     'coupon' => $_SESSION['coupon']['code'] ?? null,
                     'created_at' => date('Y-m-d H:i:s')
                 ];
+                // TRUY VẤN THÊM DỮ LIỆU VÀO BẢNG ORDER_DETAILS, GIẢM SỐ LƯỢNG SẢN PHẨM SAU KHI ĐẶT HÀNG THÀNH CÔNG
+                // CẬP NHẬT LẠI SỐ MÃ GIẢM GIÁ NẾU ĐƯỢC SỬ DỤNG
                 insert('order_detail', $orderDetail);
                 downProductQuantity($item['id'], $item['size'], $item['color'], $item['quantity']);
                 if (isset($_SESSION['coupon'])) {
@@ -210,6 +225,7 @@ function orderSuccess()
             unset($_SESSION['cartID']);
             unset($_SESSION['dataOrder']);
             unset($_SESSION['coupon']);
+
             $GLOBALS['conn']->commit();
             redirect(BASE_URL . '?action=order-success&status=complete');
         } catch (Exception $e) {
@@ -239,7 +255,6 @@ function orderSuccess()
     }
 
     $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
-
 
     require_once PATH_VIEW . 'layout/master.php';
 }

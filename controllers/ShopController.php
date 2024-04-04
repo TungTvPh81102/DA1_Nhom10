@@ -35,6 +35,8 @@ function shopProductDetail()
 
     $title = 'Chi tiết sản phẩm';
     $view = 'shop/product-detail';
+    $script = '../scripts/comments';
+
     $productAttributes = getProductAttributeForProduct($id);
 
     $sizeID = array_column($productAttributes, 'ps_id');
@@ -52,6 +54,8 @@ function shopProductDetail()
     // SẢN PHẨM CÙNG LOẠI
     $similarProducts =  similarProducts($product['c_id'], $id);
 
+    // SỐ LƯỢT MUA
+    $purchases = purchasesProduct($product['p_id']);
 
     require_once PATH_VIEW . 'layout/master.php';
 }
