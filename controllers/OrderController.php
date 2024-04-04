@@ -340,6 +340,10 @@ function validateOrder($data)
         $errors['ward']['required'] = 'Vui lòng nhập xã';
     }
 
+    if (empty(trim($data['zipcode']))) {
+        $errors['zipcode']['required'] = 'Vui lòng nhập mã bưu điện';
+    }
+
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
         $_SESSION['data'] = $data;
