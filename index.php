@@ -74,8 +74,8 @@ match ($action) {
     'order-check-out' => orderCheckOut(),
     'order-success' => orderSuccess(),
 
-    // SEARCH
-    // 'search-key' => searchKeywords(),
+    // CONTACT 
+    'contact' => contact(),
 };
 
 

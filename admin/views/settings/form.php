@@ -39,6 +39,12 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>Favi Icon</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="favi-icon" value="<?= $settings['favi-icon'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>Top Bar Title</td>
                                     <td>
                                         <input type="text" class="form-control" name="topbar-title" value="<?= $settings['topbar-title'] ?? null ?>">
@@ -54,6 +60,48 @@
                                     <td>Good Email</td>
                                     <td>
                                         <input type="text" class="form-control" name="good-email" value="<?= $settings['good-email'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Thanks</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="thanks" value="<?= $settings['thanks'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fail</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="fail" value="<?= $settings['fail'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="address" value="<?= $settings['address'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Contacs</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="contact" value="<?= $settings['contact'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mobile</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="mobile" value="<?= $settings['mobile'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Hotline</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="hotline" value="<?= $settings['hotline'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="email" value="<?= $settings['email'] ?? null ?>">
                                     </td>
                                 </tr>
                             </tbody>

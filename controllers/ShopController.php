@@ -29,8 +29,14 @@ function shopProductDetail()
 {
     $id = $_GET['id'];
     $product = showOneProduct($id);
+    if (empty($product)) {
+        e404();
+    }
+
     $title = 'Chi tiết sản phẩm';
     $view = 'shop/product-detail';
+    $script = '../scripts/comments';
+
     $productAttributes = getProductAttributeForProduct($id);
 
     $sizeID = array_column($productAttributes, 'ps_id');
@@ -44,7 +50,13 @@ function shopProductDetail()
     $quantity = array_column($productAttributes, 'pa_quantity');
     $quantity = implode(',', $quantity);
     $thumbnails = explode(",", $product['ga_thumbnail']);
+
+    // SẢN PHẨM CÙNG LOẠI
     $similarProducts =  similarProducts($product['c_id'], $id);
+
+    // SỐ LƯỢT MUA
+    $purchases = purchasesProduct($product['p_id']);
+
     require_once PATH_VIEW . 'layout/master.php';
 }
 

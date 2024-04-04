@@ -43,17 +43,17 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Country</label>
-                                    <input name="country" class="form-control" type="text" value="<?= $orderByCustomer['country'] ?>">
+                                    <input name="province" class="form-control" type="text" value="<?= $orderByCustomer['province'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Address</label>
-                                    <input name="address" class="form-control" type="text" value="<?= $orderByCustomer['address'] ?>">
+                                    <input name="district" class="form-control" type="text" value="<?= $orderByCustomer['district'] ?>">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="">City</label>
-                                    <input name="city" class="form-control" type="text" value="<?= $orderByCustomer['city'] ?>">
+                                    <input name="ward" class="form-control" type="text" value="<?= $orderByCustomer['ward'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Email</label>
@@ -114,7 +114,6 @@
                                 $total = 0;
                                 foreach ($orderDetail as $order) :
                                     $subTotal = $order['od_price'] * $order['ods_quantity'];
-                                    $total += $subTotal;
                                 ?>
                                     <tr>
                                         <td><?= $count ?></td>
@@ -131,11 +130,15 @@
                                     </tr>
                                 <?php $count++;
                                 endforeach; ?>
-                                <td colspan="5" class="fw-bold">Tổng tiền</td>
-                                <td class="text-center" colspan="3">
-                                    <?= number_format($total, 0) . " VNĐ" ?>
+                                <td colspan="5" class="fw-bold">Giảm giá</td>
+                                <td colspan="3" class="text-center">
+                                    -<?= number_format($orderByCustomer['reduced'], 0) . ' đ' ?>
                                 </td>
                             </tbody>
+                            <td colspan="5" class="fw-bold">Tổng thanh toán</td>
+                            <td class="text-center" colspan="3">
+                                <?= number_format($orderByCustomer['total_money'], 0) . " VNĐ" ?>
+                            </td>
                         </table>
                         <a class="btn btn-info" href="<?= BASE_URL_ADMIN . "?action=orders-list" ?>">Quay lại trang danh
                             sách</a>

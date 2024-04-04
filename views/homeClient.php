@@ -13,9 +13,7 @@
         <div class="row">
             <div class="col-lg-5 mb-10 mb-lg-0 animate__fadeInUp animate__animated" data-animate="fadeInUp">
                 <div class="card border-0 rounded-0 hover-zoom-in hover-shine">
-                    <img style="height: 1200px; object-fit: cover;"
-                        class="lazy-image w-100 img-fluid card-img object-fit-cover banner-02" src="#"
-                        data-src="<?= BASE_URL ?>uploads/banners/1711433016-img_cover1.jpg" alt="Pamper Your Skin" />
+                    <img style="height: 1200px; object-fit: cover;" class="lazy-image w-100 img-fluid card-img object-fit-cover banner-02" src="#" data-src="<?= BASE_URL ?>uploads/banners/1711433016-img_cover1.jpg" alt="Pamper Your Skin" />
                     <div class="card-img-overlay p-12 m-2 d-inline-flex flex-column justify-content-end">
                         <h5 class="card-subtitle fw-normal font-primary text-white fs-1 mb-5">
                             Get the Glow
@@ -35,133 +33,51 @@
                         $percent = floor((($product['price_regular'] - $product['discount']) / $product['price_regular']) * 100);
 
                     ?>
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="card card-product grid-2 bg-transparent border-0 animate__fadeInUp animate__animated"
-                            data-animate="fadeInUp">
-                            <figure class="card-img-top position-relative mb-7 overflow-hidden">
-                                <a href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['id'] ?>"
-                                    class="hover-zoom-in d-block" title="Enriched Duo" previewlistener="true">
-                                    <img style="height: 345px; object-fit: cover;"
-                                        src="<?= BASE_URL . $product['img_thumbnail'] ?>"
-                                        data-src="<?= BASE_URL . $product['img_thumbnail'] ?>"
-                                        class="img-fluid w-100 loaded" alt="Enriched Duo" width="330" height="440"
-                                        loading="lazy" data-ll-status="loaded">
-                                </a>
-                                <?php if ($product['discount'] > 0) : ?>
-                                <div class="position-absolute product-flash z-index-2">
+                        <div class="col-md-4 col-sm-6 col-12">
+                            <div class="card card-product grid-2 bg-transparent border-0 animate__fadeInUp animate__animated" data-animate="fadeInUp">
+                                <figure class="card-img-top position-relative mb-7 overflow-hidden">
+                                    <a href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['id'] ?>" class="hover-zoom-in d-block" title="Enriched Duo" previewlistener="true">
+                                        <img style="height: 345px; object-fit: cover;" src="<?= BASE_URL . $product['img_thumbnail'] ?>" data-src="<?= BASE_URL . $product['img_thumbnail'] ?>" class="img-fluid w-100 loaded" alt="Enriched Duo" width="330" height="440" loading="lazy" data-ll-status="loaded">
+                                    </a>
+                                    <?php if ($product['discount'] > 0) : ?>
+                                        <div class="position-absolute product-flash z-index-2">
 
-                                    <span
-                                        class="badge badge-product-flash on-sale bg-primary"><?= '-' . $percent . '%' ?></span>
-                                </div>
-                                <?php endif; ?>
-                                <div class="position-absolute d-flex z-index-2 product-actions  vertical"><a
-                                        class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view sm"
-                                        href="#" data-bs-toggle="tooltip" data-bs-placement="left"
-                                        data-bs-title="Quick View">
-                                        <span data-bs-toggle="modal" data-bs-target="#quickViewModal"
-                                            class="d-flex align-items-center justify-content-center">
-                                            <svg class="icon icon-eye-light">
-                                                <use xlink:href="#icon-eye-light"></use>
+                                            <span class="badge badge-product-flash on-sale bg-primary"><?= '-' . $percent . '%' ?></span>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="position-absolute d-flex z-index-2 product-actions  vertical"><a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Quick View">
+                                            <span data-bs-toggle="modal" data-bs-target="#quickViewModal" class="d-flex align-items-center justify-content-center">
+                                                <svg class="icon icon-eye-light">
+                                                    <use xlink:href="#icon-eye-light"></use>
+                                                </svg>
+                                            </span>
+                                        </a>
+                                        <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Add To Wishlist">
+                                            <svg class="icon icon-star-light">
+                                                <use xlink:href="#icon-star-light"></use>
                                             </svg>
-                                        </span>
-                                    </a>
-                                    <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm"
-                                        href="#" data-bs-toggle="tooltip" data-bs-placement="left"
-                                        data-bs-title="Add To Wishlist">
-                                        <svg class="icon icon-star-light">
-                                            <use xlink:href="#icon-star-light"></use>
-                                        </svg>
-                                    </a>
-                                    <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm compare sm"
-                                        href="./shop/compare.html" data-bs-toggle="tooltip" data-bs-placement="left"
-                                        data-bs-title="Compare" previewlistener="true">
-                                        <svg class="icon icon-arrows-left-right-light">
-                                            <use xlink:href="#icon-arrows-left-right-light"></use>
-                                        </svg>
-                                    </a>
-                                </div><a href="#"
-                                    class="btn btn-add-to-cart btn-dark btn-hover-bg-primary btn-hover-border-primary position-absolute z-index-2 text-nowrap btn-sm px-6 py-3 lh-2">Add
-                                    To Cart</a>
-                            </figure>
-                            <div class="card-body text-center p-0">
-                                <span
-                                    class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
-                                    <?php if ($product['discount'] > 0) { ?>
-                                    <del
-                                        class="text-body fw-500 me-4 fs-13px"><?= number_format($product['price_regular'], 0) . ' đ' ?></del>
-                                    <ins
-                                        class="text-decoration-none"><?= number_format($product['discount'], 0) . ' đ' ?></ins></span>
+                                        </a>
+                                        <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm compare sm" href="./shop/compare.html" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Compare" previewlistener="true">
+                                            <svg class="icon icon-arrows-left-right-light">
+                                                <use xlink:href="#icon-arrows-left-right-light"></use>
+                                            </svg>
+                                        </a>
+
+                                </figure>
+                                <div class="card-body text-center p-0">
+                                    <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+                                        <?php if ($product['discount'] > 0) { ?>
+                                            <del class="text-body fw-500 me-4 fs-13px"><?= number_format($product['price_regular'], 0) . ' đ' ?></del>
+                                            <ins class="text-decoration-none"><?= number_format($product['discount'], 0) . ' đ' ?></ins></span>
                                 <?php } else { ?>
-                                <ins
-                                    class="text-decoration-none"><?= number_format($product['price_regular'], 0) . ' đ' ?></ins></span>
+                                    <ins class="text-decoration-none"><?= number_format($product['price_regular'], 0) . ' đ' ?></ins></span>
                                 <?php } ?>
-                                <h4
-                                    class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
-                                    <a class="text-decoration-none text-reset"
-                                        href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['id'] ?>"
-                                        previewlistener="true"><?= $product['name'] ?></a>
+                                <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
+                                    <a class="text-decoration-none text-reset" href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['id'] ?>" previewlistener="true"><?= $product['name'] ?></a>
                                 </h4>
-                                <div class="d-flex align-items-center fs-12px justify-content-center">
-                                    <div class="rating">
-                                        <div class="empty-stars">
-                                            <span class="star">
-                                                <svg class="icon star-o">
-                                                    <use xlink:href="#star-o"></use>
-                                                </svg>
-                                            </span>
-                                            <span class="star">
-                                                <svg class="icon star-o">
-                                                    <use xlink:href="#star-o"></use>
-                                                </svg>
-                                            </span>
-                                            <span class="star">
-                                                <svg class="icon star-o">
-                                                    <use xlink:href="#star-o"></use>
-                                                </svg>
-                                            </span>
-                                            <span class="star">
-                                                <svg class="icon star-o">
-                                                    <use xlink:href="#star-o"></use>
-                                                </svg>
-                                            </span>
-                                            <span class="star">
-                                                <svg class="icon star-o">
-                                                    <use xlink:href="#star-o"></use>
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <div class="filled-stars" style="width: 100%">
-                                            <span class="star">
-                                                <svg class="icon star text-primary">
-                                                    <use xlink:href="#star"></use>
-                                                </svg>
-                                            </span>
-                                            <span class="star">
-                                                <svg class="icon star text-primary">
-                                                    <use xlink:href="#star"></use>
-                                                </svg>
-                                            </span>
-                                            <span class="star">
-                                                <svg class="icon star text-primary">
-                                                    <use xlink:href="#star"></use>
-                                                </svg>
-                                            </span>
-                                            <span class="star">
-                                                <svg class="icon star text-primary">
-                                                    <use xlink:href="#star"></use>
-                                                </svg>
-                                            </span>
-                                            <span class="star">
-                                                <svg class="icon star text-primary">
-                                                    <use xlink:href="#star"></use>
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div><span class="reviews ms-4 pt-3 fs-14px">2947 reviews</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -183,9 +99,7 @@
     <div class="row">
         <div class="col-lg-5 mb-12 mb-xl-0 order-lg-1" data-animate="fadeInUp">
             <div class="card border-0 rounded-0 hover-zoom-in hover-shine">
-                <img style="height: 1200px; object-fit: cover;"
-                    class="lazy-image w-100 img-fluid card-img object-fit-cover banner-02" src="#"
-                    data-src="<?= BASE_URL ?>uploads/banners/1711433222-30.jpg" alt="Pamper Your Skin" />
+                <img style="height: 1200px; object-fit: cover;" class="lazy-image w-100 img-fluid card-img object-fit-cover banner-02" src="#" data-src="<?= BASE_URL ?>uploads/banners/1711433222-30.jpg" alt="Pamper Your Skin" />
                 <div class="card-img-overlay p-12 m-2 d-inline-flex flex-column justify-content-end">
                     <h5 class="card-subtitle fw-normal font-primary text-white fs-1 mb-5">
                         Get the Glow
@@ -204,130 +118,52 @@
                 <?php foreach ($productNewArrival as $product) :
                     $percent = floor((($product['price_regular'] - $product['discount']) / $product['price_regular']) * 100);
                 ?>
-                <div class="col-md-4 col-sm-6 col-12">
-                    <div class="card card-product grid-1 bg-transparent border-0" data-animate="fadeInUp">
-                        <figure class="card-img-top position-relative mb-7 overflow-hidden">
-                            <a href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['id'] ?>"
-                                class="hover-zoom-in d-block" title="Vital Eye Cream">
-                                <img style="height: 345px; object-fit: cover;" src="#"
-                                    data-src="<?= BASE_URL . $product['img_thumbnail'] ?>"
-                                    class="img-fluid lazy-image w-100" alt="Vital Eye Cream" width="330" height="440" />
-                            </a>
-                            <?php if ($product['discount'] > 0) : ?>
-                            <div class="position-absolute product-flash z-index-2">
+                    <div class="col-md-4 col-sm-6 col-12">
+                        <div class="card card-product grid-1 bg-transparent border-0" data-animate="fadeInUp">
+                            <figure class="card-img-top position-relative mb-7 overflow-hidden">
+                                <a href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['id'] ?>" class="hover-zoom-in d-block" title="Vital Eye Cream">
+                                    <img style="height: 345px; object-fit: cover;" src="#" data-src="<?= BASE_URL . $product['img_thumbnail'] ?>" class="img-fluid lazy-image w-100" alt="Vital Eye Cream" width="330" height="440" />
+                                </a>
+                                <?php if ($product['discount'] > 0) : ?>
+                                    <div class="position-absolute product-flash z-index-2">
 
-                                <span
-                                    class="badge badge-product-flash on-sale bg-primary"><?= '-'. $percent . '%' ?></span>
-                            </div>
-                            <?php endif; ?>
-                            <div class="position-absolute d-flex z-index-2 product-actions  vertical"><a
-                                    class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view sm"
-                                    href="#" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    data-bs-title="Quick View">
-                                    <span data-bs-toggle="modal" data-bs-target="#quickViewModal"
-                                        class="d-flex align-items-center justify-content-center">
-                                        <svg class="icon icon-eye-light">
-                                            <use xlink:href="#icon-eye-light"></use>
+                                        <span class="badge badge-product-flash on-sale bg-primary"><?= '-' . $percent . '%' ?></span>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="position-absolute d-flex z-index-2 product-actions  vertical"><a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Quick View">
+                                        <span data-bs-toggle="modal" data-bs-target="#quickViewModal" class="d-flex align-items-center justify-content-center">
+                                            <svg class="icon icon-eye-light">
+                                                <use xlink:href="#icon-eye-light"></use>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                    <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Add To Wishlist">
+                                        <svg class="icon icon-star-light">
+                                            <use xlink:href="#icon-star-light"></use>
                                         </svg>
-                                    </span>
-                                </a>
-                                <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm"
-                                    href="#" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    data-bs-title="Add To Wishlist">
-                                    <svg class="icon icon-star-light">
-                                        <use xlink:href="#icon-star-light"></use>
-                                    </svg>
-                                </a>
-                                <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm compare sm"
-                                    href="./shop/compare.html" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    data-bs-title="Compare" previewlistener="true">
-                                    <svg class="icon icon-arrows-left-right-light">
-                                        <use xlink:href="#icon-arrows-left-right-light"></use>
-                                    </svg>
-                                </a>
-                            </div><a href="#"
-                                class="btn btn-add-to-cart btn-dark btn-hover-bg-primary btn-hover-border-primary position-absolute z-index-2 text-nowrap btn-sm px-6 py-3 lh-2">Add
-                                To Cart</a>
-                        </figure>
-                        <div class="card-body text-center p-0">
-                            <span
-                                class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
-                                <?php if ($product['discount'] > 0) { ?>
-                                <del
-                                    class="text-body fw-500 me-4 fs-13px"><?= number_format($product['price_regular'], 0) . ' đ' ?></del>
-                                <ins
-                                    class="text-decoration-none"><?= number_format($product['discount'], 0) . ' đ' ?></ins></span>
-                            <?php } else { ?>
-                            <ins
-                                class="text-decoration-none"><?= number_format($product['price_regular'], 0) . ' đ' ?></ins></span>
-                            <?php } ?>
-                            <h4
-                                class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
-                                <a class="text-decoration-none text-reset"
-                                    href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['id'] ?>"><?= $product['name'] ?></a>
-                            </h4>
-                            <div class="d-flex align-items-center fs-12px justify-content-center">
-                                <div class="rating">
-                                    <div class="empty-stars">
-                                        <span class="star">
-                                            <svg class="icon star-o">
-                                                <use xlink:href="#star-o"></use>
-                                            </svg>
-                                        </span>
-                                        <span class="star">
-                                            <svg class="icon star-o">
-                                                <use xlink:href="#star-o"></use>
-                                            </svg>
-                                        </span>
-                                        <span class="star">
-                                            <svg class="icon star-o">
-                                                <use xlink:href="#star-o"></use>
-                                            </svg>
-                                        </span>
-                                        <span class="star">
-                                            <svg class="icon star-o">
-                                                <use xlink:href="#star-o"></use>
-                                            </svg>
-                                        </span>
-                                        <span class="star">
-                                            <svg class="icon star-o">
-                                                <use xlink:href="#star-o"></use>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                    <div class="filled-stars" style="width: 80%">
-                                        <span class="star">
-                                            <svg class="icon star text-primary">
-                                                <use xlink:href="#star"></use>
-                                            </svg>
-                                        </span>
-                                        <span class="star">
-                                            <svg class="icon star text-primary">
-                                                <use xlink:href="#star"></use>
-                                            </svg>
-                                        </span>
-                                        <span class="star">
-                                            <svg class="icon star text-primary">
-                                                <use xlink:href="#star"></use>
-                                            </svg>
-                                        </span>
-                                        <span class="star">
-                                            <svg class="icon star text-primary">
-                                                <use xlink:href="#star"></use>
-                                            </svg>
-                                        </span>
-                                        <span class="star">
-                                            <svg class="icon star text-primary">
-                                                <use xlink:href="#star"></use>
-                                            </svg>
-                                        </span>
-                                    </div>
+                                    </a>
+                                    <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm compare sm" href="./shop/compare.html" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Compare" previewlistener="true">
+                                        <svg class="icon icon-arrows-left-right-light">
+                                            <use xlink:href="#icon-arrows-left-right-light"></use>
+                                        </svg>
+                                    </a>
                                 </div>
-                                <span class="reviews ms-4 pt-3 fs-14px">2947 reviews</span>
+                            </figure>
+                            <div class="card-body text-center p-0">
+                                <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+                                    <?php if ($product['discount'] > 0) { ?>
+                                        <del class="text-body fw-500 me-4 fs-13px"><?= number_format($product['price_regular'], 0) . ' đ' ?></del>
+                                        <ins class="text-decoration-none"><?= number_format($product['discount'], 0) . ' đ' ?></ins></span>
+                            <?php } else { ?>
+                                <ins class="text-decoration-none"><?= number_format($product['price_regular'], 0) . ' đ' ?></ins></span>
+                            <?php } ?>
+                            <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
+                                <a class="text-decoration-none text-reset" href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['id'] ?>"><?= $product['name'] ?></a>
+                            </h4>
+
                             </div>
                         </div>
                     </div>
-                </div>
                 <?php endforeach; ?>
 
             </div>
@@ -342,8 +178,7 @@
             <div class="col-lg-4" data-animate="fadeInUp">
                 <div class="d-flex">
                     <div class="me-9">
-                        <img data-src="<?= BASE_URL ?>assets/client/image-box-18.png" alt="Guaranteed PURE" width="90"
-                            height="90" class="lazy-image" src="#" />
+                        <img data-src="<?= BASE_URL ?>assets/client/image-box-18.png" alt="Guaranteed PURE" width="90" height="90" class="lazy-image" src="#" />
                     </div>
                     <div>
                         <h3 class="fs-4 mb-6">Guaranteed PURE</h3>
@@ -357,8 +192,7 @@
             <div class="col-lg-4" data-animate="fadeInUp">
                 <div class="d-flex">
                     <div class="me-9">
-                        <img data-src="<?= BASE_URL ?>assets/client/image-box-19.png" alt="Completely Cruelty-Free"
-                            width="90" height="90" class="lazy-image" src="#" />
+                        <img data-src="<?= BASE_URL ?>assets/client/image-box-19.png" alt="Completely Cruelty-Free" width="90" height="90" class="lazy-image" src="#" />
                     </div>
                     <div>
                         <h3 class="fs-4 mb-6">Completely Cruelty-Free</h3>
@@ -372,8 +206,7 @@
             <div class="col-lg-4" data-animate="fadeInUp">
                 <div class="d-flex">
                     <div class="me-9">
-                        <img data-src="<?= BASE_URL ?>assets/client/image-box-20.png" alt="Ingredient Sourcing"
-                            width="90" height="90" class="lazy-image" src="#" />
+                        <img data-src="<?= BASE_URL ?>assets/client/image-box-20.png" alt="Ingredient Sourcing" width="90" height="90" class="lazy-image" src="#" />
                     </div>
                     <div>
                         <h3 class="fs-4 mb-6">Ingredient Sourcing</h3>

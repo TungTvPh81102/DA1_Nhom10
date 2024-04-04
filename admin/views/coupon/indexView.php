@@ -47,7 +47,8 @@
                                     <td><?= $coupon['id'] ?></td>
                                     <td><?= $coupon['name'] ?></td>
                                     <td><?= $coupon['code'] ?> </td>
-                                    <td><?= $coupon['quantity'] ?></td>
+                                    <td><?= $coupon['quantity'] > 0 ? $coupon['quantity'] : '<span class="text-danger">Hết mã</span>' ?>
+                                    </td>
                                     <td><?= $coupon['condition'] == 1 ? 'Giảm theo %' : 'Giảm theo số tiền' ?></td>
                                     <td><?= $coupon['condition'] == 1 ? 'Giảm ' . $coupon['number'] . ' %' : 'Giảm ' . number_format($coupon['number'], 0) . ' đ' ?>
                                     </td>

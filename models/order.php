@@ -75,3 +75,33 @@ if (!function_exists('updateStatusOrder')) {
         }
     }
 }
+
+if (!function_exists('getDistrictByProvince')) {
+    function getDistrictByProvince($provinceID)
+    {
+        try {
+            $sql = "SELECT * FROM district WHERE province_id = :province_id";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(':province_id', $provinceID);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+if (!function_exists('getWardByDistrict')) {
+    function getWardByDistrict($districtID)
+    {
+        try {
+            $sql = "SELECT * FROM wards WHERE district_id = :district_id";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(':district_id', $districtID);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            debug($e);
+        }
+    }
+}

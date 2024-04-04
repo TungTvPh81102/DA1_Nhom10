@@ -155,3 +155,39 @@ if (!function_exists('downProductQuantity')) {
         }
     }
 }
+
+if (!function_exists('updateViewProduct')) {
+    function updateViewProduct($productID, $view)
+    {
+        try {
+            $newView = $view + 1;
+            $sql = "UPDATE products SET view = :newView WHERE id = :product_id";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(":product_id", $productID);
+            $stmt->bindParam(":newView", $newView);
+            $stmt->execute();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+if (!function_exists('purchasesProduct')) {
+    function purchasesProduct($productID)
+    {
+        try {
+            $sql = "
+            SELECT COUNT(o.product_id) AS purchases
+            FROM order_detail o
+            INNER JOIN products p ON p.id = o.product_id
+            WHERE p.id = :product_id
+            ";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(":product_id", $productID);
+            $stmt->execute();
+            return $stmt->fetch();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}

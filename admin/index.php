@@ -41,6 +41,9 @@ match ($action) {
     // CRUD BANNERS
     'banners-list' => bannersList(),
     'banner-create' => bannerCreate(),
+    'banner-update' => bannerUpdate(),
+    'banner-detail' => bannerDetail(),
+    'banner-delete' => bannerDelete(),
 
     // CRUD CATEGORIES
     'categories-list' => categoriesList(),
@@ -100,6 +103,10 @@ match ($action) {
     'add-cart' => addCart(),
     'cart-view' => cartView(),
     'check-out' => checkOutView(),
+
+    // QUẢN LÝ THỐNG KÊ
+    'statistical-management' => statisticalManagement(),
+    'ajax-statistical' => statisticalAjax()
 };
 
 
