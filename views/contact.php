@@ -16,10 +16,7 @@
                     of course – and we’ve got a bouquet of beauties for yourself or someone you love.</p>
             </div>
         </div>
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8049491840543!2d105.7361725756684!3d21.040489087374777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab6b960c64f3%3A0xe299d1031f8a0a95!2zQ2FvIMSR4bqzbmcgcG9seQ!5e0!3m2!1sen!2s!4v1712235398473!5m2!1sen!2s"
-            width="1170" height="535" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8049491840543!2d105.7361725756684!3d21.040489087374777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab6b960c64f3%3A0xe299d1031f8a0a95!2zQ2FvIMSR4bqzbmcgcG9seQ!5e0!3m2!1sen!2s!4v1712235398473!5m2!1sen!2s" width="1170" height="535" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </section>
 
@@ -44,8 +41,7 @@
                             Save my name, email in this browse for the next time I comment
                         </label>
                     </div>
-                    <button type="submit"
-                        class=" btn btn-dark btn-hover-bg-primary btn-hover-border-primary px-11">Submit</button>
+                    <button type="submit" class=" btn btn-dark btn-hover-bg-primary btn-hover-border-primary px-11">Submit</button>
                 </form>
             </div>
             <div class="col-lg-5 ps-lg-18 ps-xl-21 mt-13 mt-lg-0">
@@ -73,8 +69,7 @@
                     <div>
                         <h3 class="fs-5 mb-6">Contact</h3>
                         <div class="fs-6">
-                            <p class="mb-3 fs-6">Mobile:<span
-                                    class="text-body-emphasis"><?= $GLOBALS['settings']['mobile'] ?? null ?></span></p>
+                            <p class="mb-3 fs-6">Mobile:<span class="text-body-emphasis"><?= $GLOBALS['settings']['mobile'] ?? null ?></span></p>
                             <p class="mb-3 fs-6">Hotline:<span class="text-body-emphasis">
                                     <?= $GLOBALS['settings']['hotline'] ?? null ?></span></p>
                             <p class="mb-0 fs-6">E-mail: <?= $GLOBALS['settings']['email'] ?? null ?></p>

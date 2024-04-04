@@ -4,7 +4,7 @@ define('DB_HOST', 'localhost');
 define('DB_PORT', 3306);
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_NAME', 'da1_group10');
+define('DB_NAME', 'da1');
 
 // Khai báo biến môi trường
 define('PATH_CONTROLLER', __DIR__ . '/../controllers/');
@@ -17,5 +17,5 @@ define('PATH_AJAX_ADMIN', __DIR__ . '/../admin/ajax/');
 define('PATH_VIEW_ADMIN', __DIR__ . '/../admin/views/');
 
 // BASE URL
-define('BASE_URL', 'http://localhost/du1_group10/');
-define('BASE_URL_ADMIN', 'http://localhost/du1_group10/admin/');
+define('BASE_URL', 'http://localhost/da1/');
+define('BASE_URL_ADMIN', 'http://localhost/da1/admin/');
