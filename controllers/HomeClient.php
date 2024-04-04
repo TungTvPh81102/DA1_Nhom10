@@ -23,3 +23,17 @@ function contact()
     $title = 'Contact Us';
     require_once PATH_VIEW . 'layout/master.php';
 }
+
+function privacyPolicy()
+{
+    $view = 'privacyPolicy';
+    $title = 'Privacy Policy';
+    require_once PATH_VIEW . 'layout/master.php';
+}
+
+function termsOfUse()
+{
+    $view = 'termsOfUse';
+    $title = 'Terms Of Use';
+    require_once PATH_VIEW . 'layout/master.php';
+}

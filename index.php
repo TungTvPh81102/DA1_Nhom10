@@ -76,6 +76,10 @@ match ($action) {
 
     // CONTACT 
     'contact' => contact(),
+
+    // PRIVACY POLICY & TERMS OF USE
+    'privacy-policy' => privacyPolicy(),
+    'terms-of-use' => termsOfUse(),
 };
 
 
