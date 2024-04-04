@@ -34,12 +34,12 @@ function bannerCreate()
     }
     require_once PATH_VIEW_ADMIN . 'layout/master.php';
 }
-
-function bannerUpdate(){
+function bannerUpdate()
+{
     $id = $_GET['id'];
     $banner = showOne('banners', $id);
 
-    
+
     if (!empty($_POST)) {
         $data = [
             'heading' => $_POST['heading'] ?? $banner['heading'],
@@ -57,7 +57,7 @@ function bannerUpdate(){
 
         update('banners', $id, $data);
         $_SESSION['success'] = 'Thao tác thành công';
-        redirect(BASE_URL_ADMIN . '??action=banner-update&id=' .$id);
+        redirect(BASE_URL_ADMIN . '??action=banner-update&id=' . $id);
     }
 
     $title = "Cập nhật Bìa quảng cáo: ";
@@ -70,7 +70,6 @@ function bannerDetail()
 {
     $id = $_GET['id'];
     $banner = showOne('banners', $id);
-
     if (empty($banner)) {
         e404();
     }
@@ -115,39 +114,9 @@ function bannerDelete()
         // debug(file_exists(PATH_UPLOAD .  $value));
 
         unlink($value);
-    }   
+    }
 
     $_SESSION['success'] = 'Xóa bìa quảng cáo thành công';
     redirect(BASE_URL_ADMIN . "?action=banners-list");
     exit();
-}
-
-function validateBannerCreate($data)
-{
-    $errors = [];
-
-    if (empty(trim($data['heading']))) {
-        $errors['heading']['required'] = 'Vui lòng nhập tên bìa';
-    } else {
-        if (!preg_match('/^[a-zA-ZÀ-ỹ\s]+$/', $data['heading'])) {
-            $errors['heading']['text'] = 'Tên bìa phải là ký tự';
-        } else if (!checkUniqueheading('Banners', $data['heading'])) {
-            $errors['heading']['unquied'] = 'Tên bìa đã tồn tại';
-        }
-    }
-
-    if ($data['status'] === null) {
-        $errors['status']['required'] = 'Vui lòng chọn trạng thái';
-    } else {
-        if (!in_array($data['status'], [0, 1])) {
-            $errors['status']['status'] = 'Trạng thái phải là Active hoặc Inactive';
-        }
-    }
-
-    if (!empty($errors)) {
-        $_SESSION['errors'] = $errors;
-        $_SESSION['data'] = $data;
-        redirect(BASE_URL_ADMIN . "?action=Banner-create");
-        exit();
-    }
 }

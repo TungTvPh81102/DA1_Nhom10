@@ -9,6 +9,7 @@ function loginClient()
         ];
         $user = getUserClient($data);
         if (!empty($user)) {
+            // KIỂM TRA XEM MẬT KHẨU ĐƯỢC MÃ HÓA CÓ ĐÚNG VỚI DỮ LIỆU NGƯỜI DÙNG NHẬP VÀO HAY KHÔNG
             $passwordHash = password_verify($_POST['password'], $user['password']);
             if ($passwordHash) {
                 if ($user['status'] == 1) {
@@ -133,6 +134,7 @@ function resetPassword()
 
     $token = $_GET['token'];
     if (isset($token)) {
+        // LẤY MÃ TOKEN TỪ HỆ THỐNG ĐỂ TIẾN HÀNH QUÊN MẬT KHẨU
         $tokenQuery = getForgotToken($token);
         if (!empty($tokenQuery)) {
             $userID = $tokenQuery['id'];
@@ -187,6 +189,7 @@ function myAccount()
     $userID = $_SESSION['user']['id'];
 
     if (!empty($_POST)) {
+        // LẤY DỮ LIỆU TỪ FORM
         $data = [
             'first_name' => $_POST['first_name'] ?? $_SESSION['user']['first_name'],
             'last_name' => $_POST['last_name'] ?? $_SESSION['user']['last_name'],
@@ -201,6 +204,7 @@ function myAccount()
 
         $avatar = $data['avatar'];
 
+        // KIỂM TRA XEM NGƯỜI DÙNG CÓ TẢI HÌNH ẢNH LÊN HAY KHÔNG
         if (is_array($avatar) && $avatar['size'] > 0) {
             $data['avatar'] = upload_file($avatar, 'uploads/users/');
             if (
@@ -231,7 +235,6 @@ function changePassword()
     if (!empty($_POST)) {
         $passwordNew = $_POST['password_new'];
         $confirmPassword = $_POST['confirm_password'];
-
         if (!password_verify($_POST['password_old'], $user['password'])) {
             $_SESSION['errors'] = 'Mật khẩu cũ chưa chính xác';
         } else {
@@ -243,7 +246,7 @@ function changePassword()
         }
         if (empty($_SESSION['errors'])) {
             $data = [
-                'password' => $_POST['password'] ? password_hash($_POST['password_new'], PASSWORD_DEFAULT) : $user['password'],
+                'password' => $_POST['password_new'] ? password_hash($_POST['password_new'], PASSWORD_DEFAULT) : $user['password'],
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
             update('users',  $user['id'], $data);

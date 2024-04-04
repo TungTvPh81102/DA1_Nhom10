@@ -99,7 +99,7 @@ if (!function_exists('totalRevenue')) {
             SELECT SUM(ods.quantity) as total_quantity, SUM(o.total_money) as total, o.order_date
             FROM order_detail ods 
             INNER JOIN orders o ON o.id = ods.order_id WHERE o.status_delivery = 4
-            GROUP BY o.order_date;
+            GROUP BY o.order_date ORDER BY o.order_date;
             ";
             $stmt = $GLOBALS['conn']->prepare($sql);
             $stmt->execute();

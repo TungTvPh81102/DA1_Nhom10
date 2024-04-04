@@ -90,7 +90,16 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="border-0 text-end">
-                                        <strong>Total</strong>
+                                        <strong>Giảm giá</strong>
+                                    </td>
+                                    <td class="border-0 text-end">
+                                        <h4 class="m-0">
+                                            - <?= number_format($orderByCustomer['reduced'], 0) . " VNĐ" ?></h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="border-0 text-end">
+                                        <strong>Tổng thanh toán</strong>
                                     </td>
                                     <td class="border-0 text-end">
                                         <h4 class="m-0">
