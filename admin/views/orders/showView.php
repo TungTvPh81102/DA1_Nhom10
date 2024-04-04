@@ -43,17 +43,17 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Country</label>
-                                    <input name="country" class="form-control" type="text" value="<?= $orderByCustomer['country'] ?>">
+                                    <input name="province" class="form-control" type="text" value="<?= $orderByCustomer['province'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Address</label>
-                                    <input name="address" class="form-control" type="text" value="<?= $orderByCustomer['address'] ?>">
+                                    <input name="district" class="form-control" type="text" value="<?= $orderByCustomer['district'] ?>">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="">City</label>
-                                    <input name="city" class="form-control" type="text" value="<?= $orderByCustomer['city'] ?>">
+                                    <input name="ward" class="form-control" type="text" value="<?= $orderByCustomer['ward'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Email</label>

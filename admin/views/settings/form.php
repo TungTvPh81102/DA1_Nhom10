@@ -19,8 +19,8 @@
                 <div class="card-body">
                     <!-- Hiển thị thông báo thành công -->
                     <?php if (isset($_SESSION['success'])) : ?>
-                        <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
-                        <?php unset($_SESSION['success']); ?>
+                    <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
+                    <?php unset($_SESSION['success']); ?>
                     <?php endif; ?>
                     <form action="<?= BASE_URL_ADMIN . '?action=setting-save' ?>" method="post">
                         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
@@ -35,25 +35,50 @@
                                 <tr>
                                     <td>Logo</td>
                                     <td>
-                                        <input type="text" class="form-control" name="logo" value="<?= $settings['logo'] ?? null ?>">
+                                        <input type="text" class="form-control" name="logo"
+                                            value="<?= $settings['logo'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Favi Icon</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="favi-icon"
+                                            value="<?= $settings['favi-icon'] ?? null ?>">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Top Bar Title</td>
                                     <td>
-                                        <input type="text" class="form-control" name="topbar-title" value="<?= $settings['topbar-title'] ?? null ?>">
+                                        <input type="text" class="form-control" name="topbar-title"
+                                            value="<?= $settings['topbar-title'] ?? null ?>">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>URL Facebook</td>
                                     <td>
-                                        <input type="text" class="form-control" name="url-facebook" value="<?= $settings['url-facebook'] ?? null ?>">
+                                        <input type="text" class="form-control" name="url-facebook"
+                                            value="<?= $settings['url-facebook'] ?? null ?>">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Good Email</td>
                                     <td>
-                                        <input type="text" class="form-control" name="good-email" value="<?= $settings['good-email'] ?? null ?>">
+                                        <input type="text" class="form-control" name="good-email"
+                                            value="<?= $settings['good-email'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Thanks</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="thanks"
+                                            value="<?= $settings['thanks'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fail</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="fail"
+                                            value="<?= $settings['fail'] ?? null ?>">
                                     </td>
                                 </tr>
                             </tbody>

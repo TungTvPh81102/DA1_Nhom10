@@ -18,10 +18,10 @@
                     <div class="invoice-title">
                         <h4 class="float-end font-size-16">Order # <?= $orderByCustomer['order_code'] ?></h4>
                         <div class="auth-logo mb-4">
-                            <img src="<?= BASE_URL ?>assets/admin/images/logo-dark.png" alt="logo"
-                                class="auth-logo-dark" height="20">
-                            <img src="<?= BASE_URL ?>assets/admin/images/logo-light.png" alt="logo"
-                                class="auth-logo-light" height="20">
+                            <img src="<?= BASE_URL ?>assets/client/logo.png" alt="logo" class="auth-logo-dark"
+                                height="20">
+                            <img src="<?= BASE_URL ?>assets/client/logo.png" alt="logo" class="auth-logo-light"
+                                height="20">
                         </div>
                     </div>
                     <hr>
@@ -30,9 +30,9 @@
                             <address>
                                 <strong>Billed To:</strong><br>
                                 <?= $orderByCustomer['full_name'] ?><br>
-                                <?= $orderByCustomer['country'] ?>,<br>
-                                <?= $orderByCustomer['address'] ?>,<br>
-                                <?= $orderByCustomer['city'] ?>
+                                <?= $orderByCustomer['ward'] ?>,<br>
+                                <?= $orderByCustomer['district'] ?>,<br>
+                                <?= $orderByCustomer['province'] ?>
                             </address>
                         </div>
                         <div class="col-sm-6 text-sm-end">

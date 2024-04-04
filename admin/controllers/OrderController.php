@@ -29,7 +29,6 @@ function orderDetail()
 {
     $id = $_GET['order_id'];
     $orderDetail = showOrderDetail($id);
-    // debug($orderDetail);
     $orderByCustomer = orderByCustomer($id);
     if (empty($orderDetail)) {
         e404();
@@ -46,9 +45,9 @@ function orderDetail()
         $data = [
             'full_name' => $_POST['full_name'] ?? $orderDetail['full_name'],
             'phone' => $_POST['phone'] ?? $orderByCustomer['phone'],
-            'country' => $_POST['country'] ?? $orderByCustomer['country'],
-            'address' => $_POST['address'] ?? $orderByCustomer['address'],
-            'city' => $_POST['city'] ?? $orderByCustomer['city'],
+            'province' => $_POST['province'] ?? $orderByCustomer['province'],
+            'district' => $_POST['district'] ?? $orderByCustomer['district'],
+            'ward' => $_POST['ward'] ?? $orderByCustomer['ward'],
             'email' => $_POST['email'] ?? $orderByCustomer['email'],
             'note' => $_POST['note'] ?? $orderByCustomer['note'],
             'total_money' => $orderByCustomer['total_money'],
@@ -95,6 +94,14 @@ function orderDetail()
                         'updated_at' => date('Y-m-d H:i:s')
                     ];
                     update('orders', $id, $data);
+
+                    if ($_POST['status_delivery'] == 4) {
+                        $data = [
+                            'payment_status' => 1,
+                            'updated_at' => date('Y-m-d H:i:s')
+                        ];
+                        update('orders', $id, $data);
+                    }
                 }
 
                 $GLOBALS['conn']->commit();
@@ -219,9 +226,9 @@ function checkOutView()
             'full_name' => $_POST['full_name'] ?? null,
             'email' => $_POST['email'] ?? null,
             'phone' => $_POST['phone'] ?? null,
-            'country' => $_POST['country'] ?? null,
-            'address' => $_POST['address'] ?? null,
-            'city' => $_POST['city'] ?? null,
+            'province' => $_POST['province'] ?? null,
+            'district' => $_POST['district'] ?? null,
+            'ward' => $_POST['ward'] ?? null,
             'zipcode' => $_POST['zipcode'] ?? null,
             'note' => $_POST['note'] ?? null,
             'paymethod' => $_POST['paymethod'] ?? null,

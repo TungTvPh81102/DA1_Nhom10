@@ -83,7 +83,7 @@ function viewCart()
     if (!empty($_SESSION['cart'])) {
         if (!empty($_POST)) {
             $coupon = checkCoupon($_POST['code']);
-            if (is_array($coupon) && !empty($coupon)) {
+            if (is_array($coupon) && !empty($coupon) && ($coupon['quantity'] > 0)) {
                 $dataCoupon = [
                     'id' => $coupon['id'],
                     'code' => $coupon['code'],

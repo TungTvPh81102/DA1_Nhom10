@@ -29,6 +29,10 @@ function shopProductDetail()
 {
     $id = $_GET['id'];
     $product = showOneProduct($id);
+    if (empty($product)) {
+        e404();
+    }
+
     $title = 'Chi tiết sản phẩm';
     $view = 'shop/product-detail';
     $productAttributes = getProductAttributeForProduct($id);
@@ -44,7 +48,11 @@ function shopProductDetail()
     $quantity = array_column($productAttributes, 'pa_quantity');
     $quantity = implode(',', $quantity);
     $thumbnails = explode(",", $product['ga_thumbnail']);
+
+    // SẢN PHẨM CÙNG LOẠI
     $similarProducts =  similarProducts($product['c_id'], $id);
+
+
     require_once PATH_VIEW . 'layout/master.php';
 }
 

@@ -5,7 +5,7 @@ function orderCheckOut()
 
     if (!empty($_POST) && !empty($_SESSION['cart'])) {
 
-
+        // THANH TOÁN VNPAY
         if ($_POST['paymethod'] == 1) {
 
             if (isset($_SESSION['coupon'])) {
@@ -18,14 +18,15 @@ function orderCheckOut()
                 'order_code' => 'TH' . rand(1, 1000),
                 'user_id' => $_SESSION['user']['id'],
                 'full_name' => $_POST['full_name'] ?? null,
-                'country' => $_POST['country'] ?? null,
-                'address' => $_POST['address'] ?? null,
-                'city' => $_POST['city'] ?? null,
+                'province' => $_POST['province'] ?? null,
+                'district' => $_POST['district'] ?? null,
+                'ward' => $_POST['ward'] ?? null,
                 'zipcode' => $_POST['zipcode'] ?? null,
                 'email' => $_POST['email'] ?? null,
                 'phone' => $_POST['phone'] ?? null,
                 'note' => $_POST['note'] ?? null,
-                'paymethod' => $_POST['paymethod'] ?? null,
+                'paymethod' => PAYMENT_VNPAY,
+                'payment_status' => $_POST['paymethod'] ?? null,
                 'total_money' =>  $totalMoney,
                 'status_delivery' => 1,
                 'order_date' => date('Y-m-d H:i:s')
@@ -33,6 +34,8 @@ function orderCheckOut()
 
 
             $_SESSION['dataOrder'] = $data;
+
+            // TRUY VẤN VNPAY SANBOX
             $vnp_TmnCode = "SH7S871O"; //Mã định danh merchant kết nối (Terminal Id)
             $vnp_HashSecret = "FZSLXCHBHGZGLCGSBNNJFWPSYMGEZHJY"; //Secret key
             $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
@@ -87,27 +90,82 @@ function orderCheckOut()
             }
 
             redirect($vnp_Url);
+        } else {
+            if (isset($_SESSION['coupon'])) {
+                $totalMoney = calculator_total_coupon(false);
+            } else {
+                $totalMoney = caculator_total_order(false);
+            }
+            $data = [
+                'order_code' => 'TH' . rand(1, 1000),
+                'user_id' => $_SESSION['user']['id'],
+                'full_name' => $_POST['full_name'] ?? null,
+                'province' => $_POST['province'] ?? null,
+                'district' => $_POST['district'] ?? null,
+                'ward' => $_POST['ward'] ?? null,
+                'zipcode' => $_POST['zipcode'] ?? null,
+                'email' => $_POST['email'] ?? null,
+                'phone' => $_POST['phone'] ?? null,
+                'note' => $_POST['note'] ?? null,
+                'paymethod' => PAYMENT_CASH,
+                'payment_status' => $_POST['paymethod'] ?? null,
+                'total_money' =>  $totalMoney,
+                'status_delivery' => 1,
+                'order_date' => date('Y-m-d H:i:s')
+            ];
+            try {
+                $GLOBALS['conn']->beginTransaction();
+                $orderID = insert_get_last_id('orders', $data);
+                foreach ($_SESSION['cart'] as $item) {
+                    $orderDetail = [
+                        'order_id' => $orderID,
+                        'product_id' => $item['id'],
+                        'quantity' => $item['quantity'],
+                        'price' => $item['discount'] ?: $item['price_regular'],
+                        'coupon' => $_SESSION['coupon']['code'] ?? null,
+                        'created_at' => date('Y-m-d H:i:s')
+                    ];
+                    insert('order_detail', $orderDetail);
+                    downProductQuantity($item['id'], $item['size'], $item['color'], $item['quantity']);
+                    updateQuantityCoupon($_SESSION['coupon']['id'], $item['quantity']);
+                }
+                deleteCartItemByCartID($_SESSION['cartID']);
+                deleteRow('carts', $_SESSION['cartID']);
+
+                // Xóa sesion liên quan đến giỏ hàng và dữ liệu đơn hàng
+                unset($_SESSION['cart']);
+                unset($_SESSION['cartID']);
+                unset($_SESSION['coupon']);
+
+                $GLOBALS['conn']->commit();
+
+                redirect(BASE_URL . '?action=order-success&status=complete');
+            } catch (Exception $e) {
+                $GLOBALS['conn']->rollBack();
+                debug($e);
+            }
         }
     }
-    // $resultProvince = listAll('province');
-    // $script = '../scripts/app';
     require_once PATH_VIEW . 'layout/master.php';
 }
 
 function orderSuccess()
 {
+
+
+    $title = 'Đặt hàng';
     $view = 'order/OrderSuccess';
-    $vnp_TmnCode = "SH7S871O"; //Mã định danh merchant kết nối (Terminal Id)
     $vnp_HashSecret = "FZSLXCHBHGZGLCGSBNNJFWPSYMGEZHJY"; //Secret key
+
     $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     $vnp_Returnurl = "http://localhost/DA1/?action=order-success";
     $vnp_SecureHash = $_GET['vnp_SecureHash'];
+    $vnp_SecureHash = $_GET['vnp_SecureHash'] ?? null;
 
     if (isset($_GET['vnp_SecureHash']) && isset($_GET['vnp_TxnRef']) && $_GET['vnp_ResponseCode'] == 0 && (!empty($_GET['vnp_TransactionNo']))) {
 
         try {
             $GLOBALS['conn']->beginTransaction();
-
 
             $orderID = insert_get_last_id('orders', $_SESSION['dataOrder']);
             foreach ($_SESSION['cart'] as $item) {
@@ -121,6 +179,9 @@ function orderSuccess()
                 ];
                 insert('order_detail', $orderDetail);
                 downProductQuantity($item['id'], $item['size'], $item['color'], $item['quantity']);
+                if (isset($_SESSION['coupon'])) {
+                    updateQuantityCoupon($_SESSION['coupon']['id'], $item['quantity']);
+                }
             }
 
             // Tạo truy vấn thêm thông tin thanh toán vào bảng Payment
@@ -152,6 +213,7 @@ function orderSuccess()
             unset($_SESSION['coupon']);
 
             $GLOBALS['conn']->commit();
+            redirect(BASE_URL . '?action=order-success&status=complete');
         } catch (Exception $e) {
             $GLOBALS['conn']->rollBack();
             debug($e);
@@ -179,6 +241,8 @@ function orderSuccess()
     }
 
     $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
+
+
     require_once PATH_VIEW . 'layout/master.php';
 }
 

@@ -33,6 +33,7 @@
                                     <th>Số ĐT</th>
                                     <th>Tổng TT</th>
                                     <th>Phương thức TT</th>
+                                    <th>Trạng thái TT</th>
                                     <th>Trạng thái</th>
                                     <th>Ngày đặt hàng</th>
                                     <th>Ngày cập nhật</th>
@@ -54,9 +55,12 @@
                                         <td><?= number_format($order['total_money'], 0) . ' VNĐ' ?></td>
 
                                         <td>
-                                            <?= $order['paymethod'] ?
-                                                '<span class="btn btn-success btn-sm waves-effect waves-light">Thanh toán Online</span>' :
-                                                '<span class="btn btn-info btn-sm waves-effect waves-light">Thanh toán khi nhận hàng</span>' ?>
+                                            <?= $order['paymethod'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $order['payment_status'] ?
+                                                '<span class="btn btn-success btn-sm waves-effect waves-light">Đã thanh toán</span>' :
+                                                '<span class="btn btn-info btn-sm waves-effect waves-light">Chưa thanh toán</span>' ?>
                                         </td>
                                         <td>
                                             <?php

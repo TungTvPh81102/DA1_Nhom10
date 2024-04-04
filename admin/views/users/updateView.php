@@ -69,7 +69,7 @@
                             <label for="address">Address</label>
                             <input id="address" name="address" type="text" class="form-control mb-3"
                                 placeholder="Address" value="<?= $user['address'] ?>">
-                            <span class="text-danger">
+                            <span class="text-danger"><i class="fas fa-zhihu    "></i>
                                 <?= formErrors('address', $errorsMess) ?>
                             </span>
                         </div>
