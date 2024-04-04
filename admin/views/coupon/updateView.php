@@ -33,17 +33,20 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="name">Tên mã giảm giá:</label>
-                                    <input name="name" id="name" type="text" class="form-control mb-3" placeholder="Nhập tên mã giảm giá" value="<?= $coupon['name'] ?? null  ?>">
+                                    <input name="name" id="name" type="text" class="form-control mb-3"
+                                        placeholder="Nhập tên mã giảm giá" value="<?= $coupon['name'] ?? null  ?>">
                                     <span class="text-danger"><?= formErrors('name', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="code">Mã giảm giá:</label>
-                                    <input name="code" id="code" type="text" class="form-control mb-3" placeholder="Nhập mã giảm giá" value="<?= $coupon['code'] ?? null  ?>">
+                                    <input name="code" id="code" type="text" class="form-control mb-3"
+                                        placeholder="Nhập mã giảm giá" value="<?= $coupon['code'] ?? null  ?>">
                                     <span class="text-danger"><?= formErrors('code', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="quantity">Số lượng mã:</label>
-                                    <input name="quantity" id="quantity" type="text" class="form-control mb-3" placeholder="Nhập số lượng mã" value="<?= $coupon['quantity'] ?? null  ?>">
+                                    <input name="quantity" id="quantity" type="text" class="form-control mb-3"
+                                        placeholder="Nhập số lượng mã" value="<?= $coupon['quantity'] ?? null  ?>">
                                     <span class="text-danger"><?= formErrors('quantity', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
@@ -59,26 +62,33 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="number">Nhập số % hoặc tiền giảm:</label>
-                                    <input name="number" id="number" type="text" class="form-control mb-3" placeholder="Nhập số % hoặc tiền giảm" value="<?= $coupon['number'] ?? null  ?>">
+                                    <input name="number" id="number" type="text" class="form-control mb-3"
+                                        placeholder="Nhập số % hoặc tiền giảm"
+                                        value="<?= $coupon['number'] ?? null  ?>">
                                     <span class="text-danger"><?= formErrors('number', $errorsMess) ?></span>
                                 </div>
                                 <div class="row">
                                     <div class="mb-3" id="maximum_percent_div">
                                         <label for="maximum_percent">Số tiền giảm tối đa theo %: (Nếu tính năng mã giảm
                                             theo %)</label>
-                                        <input name="maximum_percent" id="maximum_percent_input" type="text" class="form-control" placeholder="Nhập số tiền giảm tối đa" value="<?= $coupon['maximum_percent'] ?? null  ?>">
-                                        <span class="text-danger"><?= formErrors('maximum_percent', $errorsMess) ?></span>
+                                        <input name="maximum_percent" id="maximum_percent_input" type="text"
+                                            class="form-control" placeholder="Nhập số tiền giảm tối đa"
+                                            value="<?= $coupon['maximum_percent'] ?? null  ?>">
+                                        <span
+                                            class="text-danger"><?= formErrors('maximum_percent', $errorsMess) ?></span>
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="created_at">Ngày bắt đầu:</label>
-                                    <input name="created_at" id="created_at" type="date" class="form-control mb-3" value="<?= $coupon['created_at'] ?? null  ?>">
+                                    <input name="created_at" id="created_at" type="date" class="form-control mb-3"
+                                        value="<?= $coupon['created_at'] ?? null  ?>">
                                     <span class="text-danger"><?= formErrors('created_at', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="expires_at">Ngày kết thúc:</label>
-                                    <input name="expires_at" id="expires_at" type="date" class="form-control mb-3" value="<?= $coupon['expires_at'] ?? null  ?>">
+                                    <input name="expires_at" id="expires_at" type="date" class="form-control mb-3"
+                                        value="<?= $coupon['expires_at'] ?? null  ?>">
                                     <span class="text-danger"><?= formErrors('expires_at', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
@@ -96,7 +106,7 @@
 
                         <div class="d-flex flex-wrap gap-2">
                             <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                Tạo mới
+                                Cập nhật
                             </button>
                             <button type="reset" class="btn btn-secondary waves-effect waves-light">Nhập lại</button>
                             <a class="btn btn-info" href="?action=coupons-list">Quay lại trang danh sách</a>
