@@ -312,63 +312,16 @@
                                 <img class="dark-mode-img" src="<?= BASE_URL ?>assets/client/images/others/logo-white.png" width="179" height="26" alt="Glowing - Bootstrap 5 HTML Templates"></a>
                         </div>
                         <div class="w-auto w-xl-50 d-flex align-items-center">
-                            <ul class="navbar-nav w-100 w-xl-auto">
-                                <li class="nav-item transition-all-xl-1 py-xl-11 py-0 px-xxl-8 px-xl-6 dropdown dropdown-hover dropdown-fullwidth">
-                                    <a class="nav-link d-flex justify-content-between position-relative py-xl-0 px-xl-0 text-uppercase fw-semibold ls-1 fs-15px fs-xl-14px dropdown-toggle" href="#" data-bs-toggle="dropdown" id="menu-item-docs" aria-haspopup="true" aria-expanded="false">Docs</a>
-                                    <div class="dropdown-menu mega-menu start-0 py-6" aria-labelledby="menu-item-docs">
-                                        <div class="menumega-docs px-8" style="min-width: 250px">
-                                            <a href="docs/usage/getting-started.html" class="d-flex text-decoration-none mb-4 mb-lg-0" title="Documentation" previewlistener="true">
-                                                <div class="flex-shrink-0 fs-5 lh-1 text-muted pt-2">
-                                                    <svg class="icon">
-                                                        <use xlink:href="#book"></use>
-                                                    </svg>
-                                                </div>
-                                                <div class="flex-grow-1 ps-6">
-                                                    <h6 class="mb-2">Documentation</h6>
-                                                    <small>Kick-start customization</small>
-                                                </div>
-                                            </a>
-                                            <hr class="dropdown-divider mx-n8">
-                                            <a href="docs/components/accordion.html" class="d-flex text-decoration-none mb-4 mb-lg-0" title="UI Kit" previewlistener="true">
-                                                <div class="flex-shrink-0 fs-5 lh-1 text-muted pt-2">
-                                                    <svg class="icon">
-                                                        <use xlink:href="#layer-group"></use>
-                                                    </svg>
-                                                </div>
-                                                <div class="flex-grow-1 ps-6">
-                                                    <h6 class="mb-2">UI Kit</h6>
-                                                    <small>Flexible components</small>
-                                                </div>
-                                            </a>
-                                            <hr class="dropdown-divider mx-n8">
-                                            <a href="docs/usage/changelog.html" class="d-flex text-decoration-none mb-4 mb-lg-0" title="Changelog" previewlistener="true">
-                                                <div class="flex-shrink-0 fs-5 lh-1 text-muted pt-2">
-                                                    <svg class="icon">
-                                                        <use xlink:href="#pen-to-square"></use>
-                                                    </svg>
-                                                </div>
-                                                <div class="flex-grow-1 ps-6">
-                                                    <h6 class="mb-2">Changelog</h6>
-                                                    <small>Regular updates</small>
-                                                </div>
-                                            </a>
-                                            <hr class="dropdown-divider mx-n8">
-                                            <a href="https://sp.g5plus.net/" class="d-flex text-decoration-none mb-4 mb-lg-0" title="Support" target="_blank" previewlistener="true">
-                                                <div class="flex-shrink-0 fs-5 lh-1 text-muted pt-2">
-                                                    <svg class="icon">
-                                                        <use xlink:href="#headset"></use>
-                                                    </svg>
-                                                </div>
-                                                <div class="flex-grow-1 ps-6">
-                                                    <h6 class="mb-2">Support</h6>
-                                                    <small>https://sp.g5plus.net/</small>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                            <div class="w-auto w-xl-50 d-flex align-items-center">
+
+                                <ul class="navbar-nav w-100 w-xl-auto">
+                                    <li class="nav-item transition-all-xl-1 py-xl-11 py-0 px-xxl-8 px-xl-6 dropdown dropdown-hover dropdown-fullwidth">
+                                        <a class="nav-link d-flex justify-content-between position-relative py-xl-0 px-xl-0 text-uppercase fw-semibold ls-1 fs-15px fs-xl-14px" href="<?= BASE_URL ?>?action=contact">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
                             <div class="icons-actions d-none d-xl-flex justify-content-end ms-auto fs-28px text-body-emphasis">
+
                                 <div class="px-5 d-none d-xl-inline-block">
                                     <a class="position-relative lh-1 color-inherit text-decoration-none" href="shop/wishlist.html" previewlistener="true">
                                         <svg class="icon icon-star-light">

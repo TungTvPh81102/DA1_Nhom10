@@ -16,3 +16,10 @@ function homeClient()
     }
     require_once PATH_VIEW . 'layout/master.php';
 }
+
+function contact()
+{
+    $view = 'contact';
+    $title = 'Contact Us';
+    require_once PATH_VIEW . 'layout/master.php';
+}
