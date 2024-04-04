@@ -5,7 +5,8 @@
                 <ol class="breadcrumb justify-content-center py-1 mb-0">
                     <li class="breadcrumb-item"><a title="Home" href="<?= BASE_URL ?>" previewlistener="true">Home</a>
                     </li>
-                    <li class="breadcrumb-item"><a title="Shop" href="<?= BASE_URL ?>?action=products" previewlistener="true">Shop</a></li>
+                    <li class="breadcrumb-item"><a title="Shop" href="<?= BASE_URL ?>?action=products"
+                            previewlistener="true">Shop</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><?= $product['p_name'] ?></li>
                 </ol>
             </nav>
@@ -18,25 +19,39 @@
             <div class="position-sticky top-0">
                 <div class="row">
                     <div class="col-xl-2 pe-xl-0 order-1 order-xl-0 mt-5 mt-xl-0">
-                        <div id="slide-thumb-5" class="slick-slider-thumb ps-1 ms-n3 me-n4 mx-xl-0 slick-initialized slick-slider slick-vertical" data-slick-options="{&quot;arrows&quot;:false,&quot;asNavFor&quot;:&quot;#slide-5&quot;,&quot;dots&quot;:false,&quot;focusOnSelect&quot;:true,&quot;responsive&quot;:[{&quot;breakpoint&quot;:1260,&quot;settings&quot;:{&quot;vertical&quot;:false}}],&quot;slidesToShow&quot;:4,&quot;vertical&quot;:true}">
+                        <div id="slide-thumb-5"
+                            class="slick-slider-thumb ps-1 ms-n3 me-n4 mx-xl-0 slick-initialized slick-slider slick-vertical"
+                            data-slick-options="{&quot;arrows&quot;:false,&quot;asNavFor&quot;:&quot;#slide-5&quot;,&quot;dots&quot;:false,&quot;focusOnSelect&quot;:true,&quot;responsive&quot;:[{&quot;breakpoint&quot;:1260,&quot;settings&quot;:{&quot;vertical&quot;:false}}],&quot;slidesToShow&quot;:4,&quot;vertical&quot;:true}">
 
                             <div class="slick-list draggable" style="height: 514.5px;">
-                                <div class="slick-track" style="opacity: 1; height: 515px; transform: translate3d(0px, 0px, 0px);">
+                                <div class="slick-track"
+                                    style="opacity: 1; height: 515px; transform: translate3d(0px, 0px, 0px);">
                                     <?php foreach ($thumbnails as $key => $item) : ?>
-                                        <img src="<?= BASE_URL . $item ?>" data-src="<?= BASE_URL . $item ?>" class="cursor-pointer h-auto mx-3 mx-xl-0 px-0 mb-xl-7 loaded slick-slide slick-current slick-active" width="540" height="720" alt="" loading="lazy" data-ll-status="loaded" style="width: 83px;" tabindex="<?= $key ?>" data-slick-index="<?= $key ?>" aria-hidden="false">
+                                    <img src="<?= BASE_URL . $item ?>" data-src="<?= BASE_URL . $item ?>"
+                                        class="cursor-pointer h-auto mx-3 mx-xl-0 px-0 mb-xl-7 loaded slick-slide slick-current slick-active"
+                                        width="540" height="720" alt="" loading="lazy" data-ll-status="loaded"
+                                        style="width: 83px;" tabindex="<?= $key ?>" data-slick-index="<?= $key ?>"
+                                        aria-hidden="false">
                                     <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-10 ps-xl-8 pe-xl-0 order-0 order-xl-1">
-                        <div id="slide-5" class="slick-slider slick-slider-arrow-inside slick-slider-dots-inside slick-slider-dots-light g-0 slick-initialized slick-vertical" data-slick-options="{&quot;arrows&quot;:false,&quot;asNavFor&quot;:&quot;#slide-thumb-5&quot;,&quot;dots&quot;:false,&quot;slidesToShow&quot;:1,&quot;vertical&quot;:true}">
+                        <div id="slide-5"
+                            class="slick-slider slick-slider-arrow-inside slick-slider-dots-inside slick-slider-dots-light g-0 slick-initialized slick-vertical"
+                            data-slick-options="{&quot;arrows&quot;:false,&quot;asNavFor&quot;:&quot;#slide-thumb-5&quot;,&quot;dots&quot;:false,&quot;slidesToShow&quot;:1,&quot;vertical&quot;:true}">
                             <div class="slick-list draggable" style="height: 619.463px;">
-                                <div class="slick-track" style="opacity: 1; height: 2478px; transform: translate3d(0px, 0px, 0px);">
+                                <div class="slick-track"
+                                    style="opacity: 1; height: 2478px; transform: translate3d(0px, 0px, 0px);">
                                     <?php foreach ($thumbnails as $key => $item) : ?>
-                                        <a href="<?= BASE_URL . $item ?>" data-gallery="gallery5" class="slick-slide slick-current slick-active" data-slick-index="<?= $key ?>" aria-hidden="false" tabindex="<?= $key ?>" previewlistener="true">
-                                            <img src="<?= BASE_URL . $item ?>" data-src="<?= BASE_URL . $item ?>" class="h-auto loaded" width="540" height="720" alt="" loading="lazy" data-ll-status="loaded">
-                                        </a>
+                                    <a href="<?= BASE_URL . $item ?>" data-gallery="gallery5"
+                                        class="slick-slide slick-current slick-active" data-slick-index="<?= $key ?>"
+                                        aria-hidden="false" tabindex="<?= $key ?>" previewlistener="true">
+                                        <img src="<?= BASE_URL . $item ?>" data-src="<?= BASE_URL . $item ?>"
+                                            class="h-auto loaded" width="540" height="720" alt="" loading="lazy"
+                                            data-ll-status="loaded">
+                                    </a>
                                     <?php endforeach; ?>
 
                                 </div>
@@ -52,18 +67,21 @@
                 <?php if ($product['p_discount'] > 0) {
                     $percent = floor((($product['p_price_regular'] - $product['p_discount']) / $product['p_price_regular']) * 100);
                 ?>
-                    <span class="text-decoration-line-through"><?= number_format($product['p_price_regular'], 0) . ' đ' ?></span>
-                    <span class="fs-18px text-body-emphasis ps-6 fw-bold"><?= number_format($product['p_discount'], 0) . ' đ' ?></span>
-                    <span class="badge text-bg-primary fs-6 fw-semibold ms-7 px-6 py-3"><?= '-' . $percent . '%' ?></span>
+                <span
+                    class="text-decoration-line-through"><?= number_format($product['p_price_regular'], 0) . ' đ' ?></span>
+                <span
+                    class="fs-18px text-body-emphasis ps-6 fw-bold"><?= number_format($product['p_discount'], 0) . ' đ' ?></span>
+                <span class="badge text-bg-primary fs-6 fw-semibold ms-7 px-6 py-3"><?= '-' . $percent . '%' ?></span>
                 <?php } else { ?>
-                    <span class="fs-18px text-body-emphasis fw-bold"><?= number_format($product['p_price_regular'], 0) . ' đ' ?>
-                    </span>
+                <span
+                    class="fs-18px text-body-emphasis fw-bold"><?= number_format($product['p_price_regular'], 0) . ' đ' ?>
+                </span>
                 <?php } ?>
             </p>
             <h1 class="mb-4 pb-2 fs-4"><?= $product['p_name'] ?></h1>
             <div class="d-flex align-items-center fs-15px mb-6">
                 <?php if ($purchases['purchases'] > 0) : ?>
-                    <a href="#" class="text-body">Lượt mua: <?= $purchases['purchases'] ?></a>
+                <a href="#" class="text-body">Lượt mua: <?= $purchases['purchases'] ?></a>
                 <?php endif; ?>
             </div>
             <p class="fs-15px">
@@ -77,10 +95,12 @@
                     <ul class="list-inline d-flex justify-content-start mb-0">
                         <?php foreach ($sizes as $key => $value) :
                         ?>
-                            <li class="list-inline-item me-4 fw-semibold">
-                                <input value="<?= $value ?>" type="radio" id=<?= $value ?> name="size_id" class="product-info-size d-none" checked="">
-                                <label for="<?= $value ?>" class="fs-14px p-4 d-block rounded text-decoration-none border" data-var="<?= $value ?>"><?= $key ?></label>
-                            </li>
+                        <li class="list-inline-item me-4 fw-semibold">
+                            <input value="<?= $value ?>" type="radio" id=<?= $value ?> name="size_id"
+                                class="product-info-size d-none" checked="">
+                            <label for="<?= $value ?>" class="fs-14px p-4 d-block rounded text-decoration-none border"
+                                data-var="<?= $value ?>"><?= $key ?></label>
+                        </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -90,10 +110,12 @@
                             <?php foreach ($colors as $key => $value) :
 
                             ?>
-                                <li class="list-inline-item list-color-product selected p-3">
-                                    <input value="<?= $value ?>" type="radio" id="<?= $value ?>" name="color_id" class="product-info-size d-none" checked="">
-                                    <label style="background-color: <?= $key ?>" for="<?= $value ?>" class="d-block color-item border" data-var="<?= $key ?>"></label>
-                                </li>
+                            <li class="list-inline-item list-color-product selected p-3">
+                                <input value="<?= $value ?>" type="radio" id="<?= $value ?>" name="color_id"
+                                    class="product-info-size d-none" checked="">
+                                <label style="background-color: <?= $key ?>" for="<?= $value ?>"
+                                    class="d-block color-item border" data-var="<?= $key ?>"></label>
+                            </li>
                             <?php endforeach; ?>
                         </ul>
                 </div>
@@ -101,20 +123,29 @@
                     <div class="form-group col-sm-4">
                         <label class=" text-body-emphasis fw-semibold fs-15px pb-6" for="number">Quantity: </label>
                         <div class="input-group position-relative w-100 input-group-lg">
-                            <a href="#" class="shop-down position-absolute translate-middle-y top-50 start-0 ps-7 product-info-2-minus"><i class="far fa-minus"></i></a>
-                            <input name="quantity" type="number" id="number" class="product-info-2-quantity form-control w-100 px-6 text-center" value="1" required="">
-                            <a href="#" class="shop-up position-absolute translate-middle-y top-50 end-0 pe-7 product-info-2-plus"><i class="far fa-plus"></i>
+                            <a href="#"
+                                class="shop-down position-absolute translate-middle-y top-50 start-0 ps-7 product-info-2-minus"><i
+                                    class="far fa-minus"></i></a>
+                            <input name="quantity" type="number" id="number"
+                                class="product-info-2-quantity form-control w-100 px-6 text-center" value="1"
+                                required="">
+                            <a href="#"
+                                class="shop-up position-absolute translate-middle-y top-50 end-0 pe-7 product-info-2-plus"><i
+                                    class="far fa-plus"></i>
                             </a>
                         </div>
                     </div>
                     <div class="col-sm-8 pt-9 mt-2 mt-sm-0 pt-sm-0">
-                        <button type="submit" class="btn-hover-bg-primary btn-hover-border-primary btn btn-lg btn-dark w-100">Add To Bag
+                        <button type="submit"
+                            class="btn-hover-bg-primary btn-hover-border-primary btn btn-lg btn-dark w-100">Add To Bag
                         </button>
                     </div>
                 </div>
             </form>
             <div class="d-flex align-items-center flex-wrap">
-                <a href="../shop/compare.html" class="text-decoration-none fw-semibold fs-6 me-9 pe-2 d-flex align-items-center" previewlistener="true">
+                <a href="../shop/compare.html"
+                    class="text-decoration-none fw-semibold fs-6 me-9 pe-2 d-flex align-items-center"
+                    previewlistener="true">
                     <svg class="icon fs-5">
                         <use xlink:href="#icon-arrows-left-right-light"></use>
                     </svg>
@@ -147,12 +178,15 @@
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item pb-4">
                         <h2 class="accordion-header" id="flush-headingOne">
-                            <a class="product-info-accordion text-decoration-none collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            <a class="product-info-accordion text-decoration-none collapsed" href="#"
+                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
                                 <span class="fs-4">Product Detail</span>
                             </a>
                         </h2>
                     </div>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                        data-bs-parent="#accordionFlushExample" style="">
                         <div class="pt-8 pb-3">
                             <p class="mb-2 pb-4">
                                 <?= $product['p_description'] ?>
@@ -168,62 +202,79 @@
 
 <?php if (!empty($similarProducts)) { ?>
 
-    <section class="container pt-15 pb-15 pt-lg-17 pb-lg-20" data-animated-id="4">
-        <div class="text-center">
-            <h2 class="mb-12">You may also like</h2>
-        </div>
-        <div class="row gy-11">
-            <?php foreach ($similarProducts as $product) :
+<section class="container pt-15 pb-15 pt-lg-17 pb-lg-20" data-animated-id="4">
+    <div class="text-center">
+        <h2 class="mb-12">You may also like</h2>
+    </div>
+    <div class="row gy-11">
+        <?php foreach ($similarProducts as $product) :
                 $percent = floor((($product['p_price_regular'] - $product['p_discount']) / $product['p_price_regular']) * 100);
 
             ?>
-                <div class="col-md-3 col-sm-6 col-12">
-                    <div class="card card-product grid-2 bg-transparent border-0 animate__fadeInUp animate__animated" data-animate="fadeInUp">
-                        <figure class="card-img-top position-relative mb-7 overflow-hidden">
-                            <a href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['p_id'] ?>" class="hover-zoom-in d-block" title="Enriched Duo" previewlistener="true">
-                                <img style="height: 345px; object-fit: cover;" src="<?= BASE_URL . $product['p_img_thumbnail'] ?>" data-src="<?= BASE_URL . $product['p_img_thumbnail'] ?>" class="img-fluid w-100 loaded" alt="Enriched Duo" width="330" height="440" loading="lazy" data-ll-status="loaded">
-                            </a>
-                            <?php if ($product['p_discount'] > 0) : ?>
-                                <div class="position-absolute product-flash z-index-2">
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="card card-product grid-2 bg-transparent border-0 animate__fadeInUp animate__animated"
+                data-animate="fadeInUp">
+                <figure class="card-img-top position-relative mb-7 overflow-hidden">
+                    <a href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['p_id'] ?>"
+                        class="hover-zoom-in d-block" title="Enriched Duo" previewlistener="true">
+                        <img style="height: 345px; object-fit: cover;"
+                            src="<?= BASE_URL . $product['p_img_thumbnail'] ?>"
+                            data-src="<?= BASE_URL . $product['p_img_thumbnail'] ?>" class="img-fluid w-100 loaded"
+                            alt="Enriched Duo" width="330" height="440" loading="lazy" data-ll-status="loaded">
+                    </a>
+                    <?php if ($product['p_discount'] > 0) : ?>
+                    <div class="position-absolute product-flash z-index-2">
 
-                                    <span class="badge badge-product-flash on-sale bg-primary"><?= '-' . $percent . '%' ?></span>
-                                </div>
-                            <?php endif; ?>
-                            <div class="position-absolute d-flex z-index-2 product-actions  vertical"><a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Quick View">
-                                    <span data-bs-toggle="modal" data-bs-target="#quickViewModal" class="d-flex align-items-center justify-content-center">
-                                        <svg class="icon icon-eye-light">
-                                            <use xlink:href="#icon-eye-light"></use>
-                                        </svg>
-                                    </span>
-                                </a>
-                                <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Add To Wishlist">
-                                    <svg class="icon icon-star-light">
-                                        <use xlink:href="#icon-star-light"></use>
-                                    </svg>
-                                </a>
-                                <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm compare sm" href="./shop/compare.html" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Compare" previewlistener="true">
-                                    <svg class="icon icon-arrows-left-right-light">
-                                        <use xlink:href="#icon-arrows-left-right-light"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                        </figure>
-                        <div class="card-body text-center p-0">
-                            <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
-                                <?php if ($product['p_discount'] > 0) { ?>
-                                    <del class="text-body fw-500 me-4 fs-13px"><?= number_format($product['p_price_regular'], 0) . ' đ' ?></del>
-                                    <ins class="text-decoration-none"><?= number_format($product['p_discount'], 0) . ' đ' ?></ins></span>
-                        <?php } else { ?>
-                            <ins class="text-decoration-none"><?= number_format($product['p_price_regular'], 0) . ' đ' ?></ins></span>
-                        <?php } ?>
-                        <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
-                            <a class="text-decoration-none text-reset" href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['p_id'] ?>" previewlistener="true"><?= $product['p_name'] ?></a>
-                        </h4>
-
-                        </div>
+                        <span class="badge badge-product-flash on-sale bg-primary"><?= '-' . $percent . '%' ?></span>
                     </div>
+                    <?php endif; ?>
+                    <div class="position-absolute d-flex z-index-2 product-actions  vertical"><a
+                            class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view sm"
+                            href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Quick View">
+                            <span data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                class="d-flex align-items-center justify-content-center">
+                                <svg class="icon icon-eye-light">
+                                    <use xlink:href="#icon-eye-light"></use>
+                                </svg>
+                            </span>
+                        </a>
+                        <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm"
+                            href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Add To Wishlist">
+                            <svg class="icon icon-star-light">
+                                <use xlink:href="#icon-star-light"></use>
+                            </svg>
+                        </a>
+                        <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm compare sm"
+                            href="./shop/compare.html" data-bs-toggle="tooltip" data-bs-placement="left"
+                            data-bs-title="Compare" previewlistener="true">
+                            <svg class="icon icon-arrows-left-right-light">
+                                <use xlink:href="#icon-arrows-left-right-light"></use>
+                            </svg>
+                        </a>
+                    </div>
+                </figure>
+                <div class="card-body text-center p-0">
+                    <span
+                        class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+                        <?php if ($product['p_discount'] > 0) { ?>
+                        <del
+                            class="text-body fw-500 me-4 fs-13px"><?= number_format($product['p_price_regular'], 0) . ' đ' ?></del>
+                        <ins
+                            class="text-decoration-none"><?= number_format($product['p_discount'], 0) . ' đ' ?></ins></span>
+                    <?php } else { ?>
+                    <ins
+                        class="text-decoration-none"><?= number_format($product['p_price_regular'], 0) . ' đ' ?></ins></span>
+                    <?php } ?>
+                    <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3">
+                        <a class="text-decoration-none text-reset"
+                            href="<?= BASE_URL ?>?action=product-detail&id=<?= $product['p_id'] ?>"
+                            previewlistener="true"><?= $product['p_name'] ?></a>
+                    </h4>
+
                 </div>
-            <?php endforeach; ?>
+            </div>
         </div>
-    </section>
+        <?php endforeach; ?>
+    </div>
+</section>
 <?php } ?>
