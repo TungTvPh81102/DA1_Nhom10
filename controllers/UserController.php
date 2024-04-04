@@ -156,7 +156,7 @@ function resetPassword()
                         'updated_at' => date('Y-m-d H:i:s'),
                     ];
                     update('users', $userID, $data);
-                    echo '<script>alert("Thay đổi mật khẩu thành công")</script>';
+                    echo '<script>alert("Thay đổi mật khẩu thành công");</script>';
                     redirect(BASE_URL . '?action=login-client');
                 } else {
                     $_SESSION['errors'] = $errors;
