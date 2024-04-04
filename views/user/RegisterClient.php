@@ -33,23 +33,23 @@
                 ?>
                 <div class="mb-6">
                     <label for="first_name" class="visually-hidden">First name</label>
-                    <input name="first_name" id="first_name" type="text" class="form-control mb-3" placeholder="First name" value="<?= isset($_SESSION['data']) ? $_SESSION['data']['first_name'] : null ?>" required="">
+                    <input name="first_name" id="first_name" type="text" class="form-control mb-3" placeholder="First name" value="<?= isset($_SESSION['data']) ? $_SESSION['data']['first_name'] : null ?>">
                     <span class="text-danger"><?= formErrors('first_name', $errorsMess) ?></span>
                 </div>
                 <div class="mb-6">
                     <label for="last_name" class="visually-hidden">Last name</label>
-                    <input name="last_name" id="last_name" type="text" class="form-control mb-3" placeholder="Last name" value="<?= isset($_SESSION['data']) ? $_SESSION['data']['last_name'] : null ?>" required="">
+                    <input name="last_name" id="last_name" type="text" class="form-control mb-3" placeholder="Last name" value="<?= isset($_SESSION['data']) ? $_SESSION['data']['last_name'] : null ?>">
                     <span class="text-danger"><?= formErrors('last_name', $errorsMess) ?></span>
                 </div>
                 <div class="mb-6">
                     <label for="email" class="visually-hidden">Email address</label>
-                    <input name="email" id="email" type="email" class="form-control mb-3" placeholder="Your email" value="<?= isset($_SESSION['data']) ? $_SESSION['data']['email'] : null ?>" required="">
+                    <input name="email" id="email" type="email" class="form-control mb-3" placeholder="Your email" value="<?= isset($_SESSION['data']) ? $_SESSION['data']['email'] : null ?>">
                     <span class="text-danger"><?= formErrors('email', $errorsMess) ?></span>
 
                 </div>
                 <div class="mb-7">
                     <label for="password" class="visually-hidden">Password</label>
-                    <input name="password" id="password" type="password" class="form-control mb-3" placeholder="Password" required="">
+                    <input name="password" id="password" type="password" class="form-control mb-3" placeholder="Password">
                     <span class="text-danger"><?= formErrors('password', $errorsMess) ?></span>
 
                 </div>
@@ -60,7 +60,7 @@
 
                 </div>
                 <div class="form-check mb-7">
-                    <input name="agree" type="checkbox" class="form-check-input rounded-0" id="agree_terms" required>
+                    <input name="agree" type="checkbox" class="form-check-input rounded-0" id="agree_terms">
                     <label class="form-check-label text-secondary" for="agree_terms">
                         Yes, I agree with Grace <a href="#" class="text-decoration-underline">Privacy Policy</a> and <a href="#" class="text-decoration-underline">Terms of Use</a>
                     </label>
