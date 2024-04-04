@@ -24,6 +24,7 @@ function productsCreate()
     $sizes = listAll('product_size');
 
     if (!empty($_POST)) {
+        // DỮ LIỆU LẤY TỪ FORM
         $data = [
             'code' => $_POST['code'] ?? null,
             'name' => $_POST['name'] ?? null,
@@ -40,6 +41,7 @@ function productsCreate()
 
         validateProductCreate($data);
 
+        // KIỂM TRA XEM HÌNH ẢNH CÓ ĐƯỢC TẢI LÊN HAY KHÔNG
         $imgThumbnail = $data['img_thumbnail'];
         if (is_array($imgThumbnail)) {
             $data['img_thumbnail'] = upload_file($imgThumbnail, "uploads/products/");
@@ -129,11 +131,11 @@ function productDetail()
     $title = "Chi tiết sản phẩm: " . $product['p_name'];
     $view = "products/showView";
 
+    // LẤY DỮ LIỆU SIZE, COLOR VÀ SỐ LƯỢNG TỪ BẢNG PRODUCT ATTRIBUTE
     $productAttributes = getProductAttributeForProduct($id);
     $sizeID = array_column($productAttributes, 'ps_id');
     $sizeName = array_column($productAttributes, 'ps_name');
     $sizes = array_combine($sizeID, $sizeName);
-
 
     $colorID = array_column($productAttributes, 'pc_id');
     $colorName = array_column($productAttributes, 'pc_name');
@@ -173,7 +175,7 @@ function productUpdate()
     $thumbnails = explode(",", $product['ga_thumbnail']);
 
     if (!empty($_POST)) {
-
+        // LẤY DỮ LIỆU TỪ FORM
         $data = [
             'code' => $_POST['code'] ?? $product['p_id'],
             'name' => $_POST['name'] ?? $product['p_code'],
@@ -193,6 +195,7 @@ function productUpdate()
 
         validateProductUpdate($id, $data);
 
+        // KIỂM TRA XEM HÌNH ẢNH CÓ ĐƯỢC TẢI LÊN HAY KHÔNG
         $imgThumbnail = $data['img_thumbnail'];
         if (is_array($imgThumbnail)) {
             $data['img_thumbnail'] = upload_file($imgThumbnail, "uploads/products/");
@@ -267,6 +270,7 @@ function productUpdate()
         } catch (Exception $e) {
             $GLOBALS['conn']->rollBack();
 
+            // XÓA HÌNH ẢNH CŨ NẾU QUẢN TRỊ VIÊN MUỐN THAY ĐỔI HÌNH ẢNH MỚI CỦA SẢN PHẨM
             if (is_array($imgThumbnail) && !empty($data['img_thumbnail']) && file_exists(PATH_UPLOAD . $data['img_thumbnail'])) {
                 unlink(PATH_UPLOAD . $data['img_thumbnail']);
             }
@@ -321,9 +325,8 @@ function productDelete()
 
     $arrayThumbnails = explode(',', $product['ga_thumbnail']);
 
+    // XÓA HÌNH ẢNH CỦA SẢN PHẨM TRÊN HỆ THỐNG
     foreach ($arrayThumbnails as $thumbnail => $value) {
-        // debug(file_exists(PATH_UPLOAD .  $value));
-
         unlink($value);
     }
 

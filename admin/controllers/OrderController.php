@@ -30,6 +30,7 @@ function orderDetail()
     $id = $_GET['order_id'];
     $orderDetail = showOrderDetail($id);
     $orderByCustomer = orderByCustomer($id);
+
     if (empty($orderDetail)) {
         e404();
     }
@@ -42,6 +43,8 @@ function orderDetail()
 
 
     if (!empty($_POST)) {
+
+        // Lấy dữ liệu từ form 
         $data = [
             'full_name' => $_POST['full_name'] ?? $orderDetail['full_name'],
             'phone' => $_POST['phone'] ?? $orderByCustomer['phone'],
@@ -55,6 +58,7 @@ function orderDetail()
             'updated_at' => date('Y-m-d H:i:s')
         ];
 
+        // Trạng thái của đơn hàng hiện tại trên hệ thống
         $checkStatus =  $orderByCustomer['status_delivery'];
 
         $arrStatus = [
@@ -69,6 +73,7 @@ function orderDetail()
             try {
                 $GLOBALS['conn']->beginTransaction();
 
+                // Nếu trạng thái là 1 và 2 thì cho phép cập nhật toàn bộ thông tin đơn hàng
                 if ($checkStatus == 1 || $checkStatus == 2) {
                     update('orders', $id, $data);
                     $newTotal = 0;
@@ -88,7 +93,7 @@ function orderDetail()
                         $data['total_money'] = $newTotal;
                         update('orders', $id, $data);
                     }
-                } elseif ($checkStatus == 3 || $checkStatus == 4) {
+                } elseif ($checkStatus == 3 || $checkStatus == 4) { // Nếu là 3 hoặc 4 thì chỉ cho phép cập nhật trạng thái
                     $data = [
                         'status_delivery' => $_POST['status_delivery'] ?? $orderByCustomer['status_delivery'],
                         'updated_at' => date('Y-m-d H:i:s')
@@ -122,11 +127,11 @@ function orderDetail()
     require_once PATH_VIEW_ADMIN  . "layout/master.php";
 }
 
+// XEM HÓA ĐƠN
 function completePayment()
 {
     $id = $_GET['order_id'];
     $orderDetail = showOrderDetail($id);
-    // debug($orderDetail);
     $orderByCustomer = orderByCustomer($id);
     if (empty($orderDetail)) {
         e404();
@@ -139,6 +144,7 @@ function completePayment()
     require_once PATH_VIEW_ADMIN  . "layout/master.php";
 }
 
+// THÊM SẢN PHẨM VÀO GIỎ HÀNG ADMIN
 function addCart()
 {
 
