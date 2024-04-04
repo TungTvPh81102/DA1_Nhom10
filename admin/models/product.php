@@ -130,17 +130,15 @@ if (!function_exists('updateQuantityBuy')) {
 }
 
 if (!function_exists('listAllGallerys')) {
-    function listAllGallerys($productID)
+    function listAllGallerys()
     {
         try {
             $sql = "
-                SELECT ga.thumbnail, p.img_thumbnail
+                SELECT ga.thumbnail, p.img_thumbnail, p.id
                 FROM gallerys ga 
                 INNER JOIN products p ON p.id = ga.product_id
-                WHERE ga.product_id = :id
             ";
             $stmt = $GLOBALS['conn']->prepare($sql);
-            $stmt->bindParam(":id", $productID);
             $stmt->execute();
             return $stmt->fetchAll();
         } catch (Exception $e) {
