@@ -84,6 +84,7 @@ function viewCart()
         if (!empty($_POST)) {
             $coupon = checkCoupon($_POST['code']);
             if (is_array($coupon) && !empty($coupon) && ($coupon['quantity'] > 0)) {
+                // TẠO MẢNG MÃ GIẢM GIÁ NẾU CÓ 
                 $dataCoupon = [
                     'id' => $coupon['id'],
                     'code' => $coupon['code'],
@@ -94,6 +95,7 @@ function viewCart()
                     'expires_at' => $coupon['expires_at'],
                     'maximum_percent' => $coupon['maximum_percent']
                 ];
+                // KIỂM TRA XEM MÃ GIẢM GIÁ CÒN HẠN SỬ DỤNG HAY KHÔNG
                 if ($today >= $dataCoupon['created_at'] && $today <= $dataCoupon['expires_at'] && !empty($dataCoupon['number'])) {
                     $_SESSION['coupon'] = $dataCoupon;
                     $_SESSION['success'] = 'Thêm mã giảm giá thành công';

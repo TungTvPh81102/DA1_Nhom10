@@ -171,3 +171,23 @@ if (!function_exists('updateViewProduct')) {
         }
     }
 }
+
+if (!function_exists('purchasesProduct')) {
+    function purchasesProduct($productID)
+    {
+        try {
+            $sql = "
+            SELECT COUNT(o.product_id) AS purchases
+            FROM order_detail o
+            INNER JOIN products p ON p.id = o.product_id
+            WHERE p.id = :product_id
+            ";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(":product_id", $productID);
+            $stmt->execute();
+            return $stmt->fetch();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}

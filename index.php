@@ -73,9 +73,6 @@ match ($action) {
     // ORDER
     'order-check-out' => orderCheckOut(),
     'order-success' => orderSuccess(),
-
-    // SEARCH
-    // 'search-key' => searchKeywords(),
 };
 
 
