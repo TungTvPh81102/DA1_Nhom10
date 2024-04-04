@@ -13,7 +13,7 @@ function orderCheckOut()
             } else {
                 $totalMoney = caculator_total_order(false);
             }
-
+            $reduced = $_SESSION['coupon']['maximum_percent'] ? $_SESSION['coupon']['maximum_percent'] : $_SESSION['coupon']['number'];
             $data = [
                 'order_code' => 'TH' . rand(1, 1000),
                 'user_id' => $_SESSION['user']['id'],
@@ -27,6 +27,7 @@ function orderCheckOut()
                 'note' => $_POST['note'] ?? null,
                 'paymethod' => PAYMENT_VNPAY,
                 'payment_status' => $_POST['paymethod'] ?? null,
+                'reduced' => $reduced ?? null,
                 'total_money' =>  $totalMoney,
                 'status_delivery' => 1,
                 'order_date' => date('Y-m-d H:i:s')
@@ -96,6 +97,7 @@ function orderCheckOut()
             } else {
                 $totalMoney = caculator_total_order(false);
             }
+            $reduced = $_SESSION['coupon']['maximum_percent'] ? $_SESSION['coupon']['maximum_percent'] : $_SESSION['coupon']['number'];
             $data = [
                 'order_code' => 'TH' . rand(1, 1000),
                 'user_id' => $_SESSION['user']['id'],
@@ -109,6 +111,7 @@ function orderCheckOut()
                 'note' => $_POST['note'] ?? null,
                 'paymethod' => PAYMENT_CASH,
                 'payment_status' => $_POST['paymethod'] ?? null,
+                'reduced' => $reduced ?? null,
                 'total_money' =>  $totalMoney,
                 'status_delivery' => 1,
                 'order_date' => date('Y-m-d H:i:s')
@@ -117,14 +120,12 @@ function orderCheckOut()
                 $GLOBALS['conn']->beginTransaction();
                 $orderID = insert_get_last_id('orders', $data);
                 foreach ($_SESSION['cart'] as $item) {
-                    $reduced = $_SESSION['coupon']['maximum_percent'] ? $_SESSION['coupon']['maximum_percent'] : $_SESSION['coupon']['number'];
                     $orderDetail = [
                         'order_id' => $orderID,
                         'product_id' => $item['id'],
                         'quantity' => $item['quantity'],
                         'price' => $item['discount'] ?: $item['price_regular'],
                         'coupon' => $_SESSION['coupon']['code'] ?? null,
-                        'reduced' => $reduced ?? null,
                         'created_at' => date('Y-m-d H:i:s')
                     ];
                     insert('order_detail', $orderDetail);
@@ -166,7 +167,6 @@ function orderSuccess()
             $GLOBALS['conn']->beginTransaction();
 
             $orderID = insert_get_last_id('orders', $_SESSION['dataOrder']);
-            $reduced = $_SESSION['coupon']['condition'] ? $_SESSION['coupon']['maximum_percent'] : $_SESSION['coupon']['number'];
             foreach ($_SESSION['cart'] as $item) {
                 $orderDetail = [
                     'order_id' => $orderID,
@@ -174,7 +174,6 @@ function orderSuccess()
                     'quantity' => $item['quantity'],
                     'price' => $item['discount'] ?: $item['price_regular'],
                     'coupon' => $_SESSION['coupon']['code'] ?? null,
-                    'reduced' => $reduced ?? null,
                     'created_at' => date('Y-m-d H:i:s')
                 ];
                 insert('order_detail', $orderDetail);

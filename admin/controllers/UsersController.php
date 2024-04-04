@@ -13,6 +13,7 @@ function userCreate()
     $title = "Thêm mới người dùng";
     $view = "users/createView";
     if (!empty($_POST)) {
+        // TẠO MÃ TOKEN VÀ LẤY DỮ LIỆU TỪ FORM
         $activeToken = sha1(uniqid() . time());
         $data = [
             'first_name' => $_POST['first_name'] ?? null,
@@ -30,6 +31,7 @@ function userCreate()
 
         validateUserCreate($data);
 
+        // KIỂM TRA XEM HÌNH ẢNH CÓ ĐƯỢC TẢI LÊN HAY KHÔNG
         $avatar = $data['avatar'];
         if (is_array($avatar) && $avatar['size'] > 0) {
             $data['avatar'] = upload_file($avatar, 'uploads/users/');
@@ -37,6 +39,7 @@ function userCreate()
 
         $insert = insert('users', $data);
         if ($insert) {
+            // TẠO ĐƯỢC DẪN ĐỂ NGƯỜI DÙNG CÓ THỂ KÍCH HOẠT TÀI KHOẢN
             $linkActive = BASE_URL_ADMIN . "?action=active&token=" . $activeToken;
 
             // Tạo nội dung tiến hành gửi mã kích hoạt cho người dùng
@@ -85,6 +88,7 @@ function userUpdate()
     $title = "Cập nhật người dùng: " . $user['first_name'] . $user['last_name'];
     $view = "users/updateView";
     if (!empty($_POST)) {
+        // LẤY DỮ LIỆU TỪ FORM
         $data = [
             'first_name' => $_POST['first_name'] ?? $user['first_name'],
             'last_name' => $_POST['last_name'] ?? $user['last_name'],
@@ -98,6 +102,8 @@ function userUpdate()
             'updated_at' => date('Y-m-d H:i:s')
         ];
         validateUserUpdate($id, $data);
+
+        // KIỂM TRA XEM HÌNH ẢNH CÓ ĐƯỢC TẢI LÊN HAY KHÔNG
         $avatar = $data['avatar'];
         if (is_array($avatar)  && $avatar['size'] > 0) {
             $data['avatar'] = upload_file($avatar, "uploads/users/");

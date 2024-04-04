@@ -114,7 +114,6 @@
                                 $total = 0;
                                 foreach ($orderDetail as $order) :
                                     $subTotal = $order['od_price'] * $order['ods_quantity'];
-                                    $total += $subTotal;
                                 ?>
                                     <tr>
                                         <td><?= $count ?></td>
@@ -131,11 +130,15 @@
                                     </tr>
                                 <?php $count++;
                                 endforeach; ?>
-                                <td colspan="5" class="fw-bold">Tổng tiền</td>
-                                <td class="text-center" colspan="3">
-                                    <?= number_format($total, 0) . " VNĐ" ?>
+                                <td colspan="5" class="fw-bold">Giảm giá</td>
+                                <td colspan="3" class="text-center">
+                                    -<?= number_format($orderByCustomer['reduced'], 0) . ' đ' ?>
                                 </td>
                             </tbody>
+                            <td colspan="5" class="fw-bold">Tổng thanh toán</td>
+                            <td class="text-center" colspan="3">
+                                <?= number_format($orderByCustomer['total_money'], 0) . " VNĐ" ?>
+                            </td>
                         </table>
                         <a class="btn btn-info" href="<?= BASE_URL_ADMIN . "?action=orders-list" ?>">Quay lại trang danh
                             sách</a>

@@ -29,6 +29,7 @@
                             <thead>
                                 <tr>
                                     <th>STT</th>
+                                    <th>Đơn hàng</th>
                                     <th>Tên KH</th>
                                     <th>Số ĐT</th>
                                     <th>Tổng TT</th>
@@ -50,6 +51,7 @@
                                     <tr>
                                         <input type="hidden" name="id" value="<?= $order['id'] ?>">
                                         <td><?= $count ?></td>
+                                        <td><?= $order['order_code'] ?></td>
                                         <td><?= $order['full_name'] ?></td>
                                         <td><?= $order['phone'] ?></td>
                                         <td><?= number_format($order['total_money'], 0) . ' VNĐ' ?></td>
