@@ -60,7 +60,7 @@
 
                 </div>
                 <div class="form-check mb-7">
-                    <input name="agree" type="checkbox" class="form-check-input rounded-0" id="agree_terms">
+                    <input name="agree" type="checkbox" class="form-check-input rounded-0" id="agree_terms" required>
                     <label class="form-check-label text-secondary" for="agree_terms">
                         Yes, I agree with Grace <a href="#" class="text-decoration-underline">Privacy Policy</a> and <a href="#" class="text-decoration-underline">Terms of Use</a>
                     </label>
