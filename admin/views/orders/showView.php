@@ -35,33 +35,40 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="">Tên khách hàng</label>
-                                    <input name="full_name" class="form-control" type="text" value="<?= $orderByCustomer['full_name'] ?>">
+                                    <input name="full_name" class="form-control" type="text"
+                                        value="<?= $orderByCustomer['full_name'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Số điện thoại</label>
-                                    <input name="phone" class="form-control" type="text" value="<?= $orderByCustomer['phone'] ?>">
+                                    <input name="phone" class="form-control" type="text"
+                                        value="<?= $orderByCustomer['phone'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Country</label>
-                                    <input name="province" class="form-control" type="text" value="<?= $orderByCustomer['province'] ?>">
+                                    <input name="province" class="form-control" type="text"
+                                        value="<?= $orderByCustomer['province'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Address</label>
-                                    <input name="district" class="form-control" type="text" value="<?= $orderByCustomer['district'] ?>">
+                                    <input name="district" class="form-control" type="text"
+                                        value="<?= $orderByCustomer['district'] ?>">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="">City</label>
-                                    <input name="ward" class="form-control" type="text" value="<?= $orderByCustomer['ward'] ?>">
+                                    <input name="ward" class="form-control" type="text"
+                                        value="<?= $orderByCustomer['ward'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Email</label>
-                                    <input name="email" class="form-control" type="text" value="<?= $orderByCustomer['email'] ?>">
+                                    <input name="email" class="form-control" type="text"
+                                        value="<?= $orderByCustomer['email'] ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Note</label>
-                                    <textarea name="note" class="form-control" id="example-textarea" rows="1" placeholder="Write some note..">
+                                    <textarea name="note" class="form-control" id="example-textarea" rows="1"
+                                        placeholder="Write some note..">
                                     <?= $orderByCustomer['note'] ?>
                                     </textarea>
                                 </div>
@@ -69,19 +76,25 @@
                                     <label for="">Trạng thái</label>
                                     <select class="form-select" name="status_delivery" id="">
                                         <?php if ($orderByCustomer['status_delivery'] !== 0) { ?>
-                                            <option <?= $orderByCustomer['status_delivery'] == 1 ? 'selected' : null ?> value="1">
-                                                Chờ xác nhận</option>
-                                            <option <?= $orderByCustomer['status_delivery'] == 2 ? 'selected' : null ?> value="2">
-                                                Đang chuẩn bị hàng</option>
-                                            <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?> value="3">
-                                                Đang vận chuyển</option>
-                                            <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
-                                                giao thành công</option>
-                                            <option <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?> value="0">
-                                                Hủy đơn hàng</option>
+                                        <option <?= $orderByCustomer['status_delivery'] == 1 ? 'selected' : null ?>
+                                            value="1">
+                                            Chờ xác nhận</option>
+                                        <option <?= $orderByCustomer['status_delivery'] == 2 ? 'selected' : null ?>
+                                            value="2">
+                                            Đang chuẩn bị hàng</option>
+                                        <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?>
+                                            value="3">
+                                            Đang vận chuyển</option>
+                                        <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?>
+                                            value="4">Đã
+                                            giao thành công</option>
+                                        <option <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?>
+                                            value="0">
+                                            Hủy đơn hàng</option>
                                         <?php } else { ?>
-                                            <option <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?> value="0">
-                                                Hủy đơn hàng</option>
+                                        <option <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?>
+                                            value="0">
+                                            Hủy đơn hàng</option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -115,26 +128,35 @@
                                 foreach ($orderDetail as $order) :
                                     $subTotal = $order['od_price'] * $order['ods_quantity'];
                                 ?>
-                                    <tr>
-                                        <td><?= $count ?></td>
-                                        <td><?= $order['p_code'] ?></td>
-                                        <td><?= $order['p_name'] ?></td>
-                                        <td>
-                                            <img class="rounded" style="width: 70px; height: 100%;" src="<?= BASE_URL . $order['p_img_thumbnail'] ?>" alt="">
-                                        </td>
-                                        <td>
-                                            <input style="width: 100px;" class="form-control text-center" type="number" name="quantity[<?= $order['od_id'] ?>]" id="" value="<?= $order['ods_quantity'] ?>">
-                                        </td>
-                                        <td><?= number_format($order['od_price'], 0) . " VNĐ" ?></td>
-                                        <td><?= number_format($subTotal, 0) . " VNĐ" ?></td>
-                                    </tr>
+                                <tr>
+                                    <td><?= $count ?></td>
+                                    <td><?= $order['p_code'] ?></td>
+                                    <td><?= $order['p_name'] ?></td>
+                                    <td>
+                                        <img class="rounded" style="width: 70px; height: 100%;"
+                                            src="<?= BASE_URL . $order['p_img_thumbnail'] ?>" alt="">
+                                    </td>
+                                    <td>
+                                        <?php if ($order['ods_status_delivery'] == 4 || $order['ods_status_delivery'] == 3) { ?>
+                                        <input readonly style="width: 100px;" class="form-control text-center"
+                                            type="number" name="quantity[<?= $order['od_id'] ?>]" id=""
+                                            value="<?= $order['ods_quantity'] ?>">
+                                        <?php } else { ?>
+                                        <input style="width: 100px;" class="form-control text-center" type="number"
+                                            name="quantity[<?= $order['od_id'] ?>]" id=""
+                                            value="<?= $order['ods_quantity'] ?>">
+                                        <?php } ?>
+                                    </td>
+                                    <td><?= number_format($order['od_price'], 0) . " VNĐ" ?></td>
+                                    <td><?= number_format($subTotal, 0) . " VNĐ" ?></td>
+                                </tr>
                                 <?php $count++;
                                 endforeach; ?>
                                 <?php if ($orderByCustomer['reduced'] > 0) { ?>
-                                    <td colspan="5" class="fw-bold">Giảm giá</td>
-                                    <td colspan="3" class="text-center">
-                                        -<?= number_format($orderByCustomer['reduced'], 0) . ' đ' ?>
-                                    </td>
+                                <td colspan="5" class="fw-bold">Giảm giá</td>
+                                <td colspan="3" class="text-center">
+                                    -<?= number_format($orderByCustomer['reduced'], 0) . ' đ' ?>
+                                </td>
                                 <?php } ?>
                             </tbody>
                             <td colspan="5" class="fw-bold">Tổng thanh toán</td>

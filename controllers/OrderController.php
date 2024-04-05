@@ -44,7 +44,7 @@ function orderCheckOut()
             $vnp_TmnCode = "SH7S871O"; //Mã định danh merchant kết nối (Terminal Id)
             $vnp_HashSecret = "FZSLXCHBHGZGLCGSBNNJFWPSYMGEZHJY"; //Secret key
             $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-            $vnp_Returnurl = "http://localhost/DA1/?action=order-success";
+            $vnp_Returnurl = "http://localhost/project/?action=order-success";
 
             $vnp_TxnRef = $data['order_code']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
             $vnp_OrderInfo = 'Thanh toán hóa đơn';

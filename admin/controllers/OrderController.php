@@ -78,7 +78,8 @@ function orderDetail()
                     update('orders', $id, $data);
                     $newTotal = 0;
                     foreach ($orderDetail as $order) {
-                        $orderDetailID =  $order['od_id'];;
+                        $orderDetailID =  $order['od_id'];
+                        // LẤY GIÁ THEO ORDER ID CỦA SẢN PHẨM
                         $quantity = $_POST['quantity'][$orderDetailID] ?? $order['ods_quantity'];
                         $dataOrderDetail = [
                             'quantity' => $quantity,
@@ -99,14 +100,14 @@ function orderDetail()
                         'updated_at' => date('Y-m-d H:i:s')
                     ];
                     update('orders', $id, $data);
+                }
 
-                    if ($_POST['status_delivery'] == 4) {
-                        $data = [
-                            'payment_status' => 1,
-                            'updated_at' => date('Y-m-d H:i:s')
-                        ];
-                        update('orders', $id, $data);
-                    }
+                if ($_POST['status_delivery'] == 4) {
+                    $data = [
+                        'payment_status' => 1,
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ];
+                    update('orders', $id, $data);
                 }
 
                 $GLOBALS['conn']->commit();
