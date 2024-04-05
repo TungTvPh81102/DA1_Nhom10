@@ -27,16 +27,23 @@
                         </thead>
 
                         <tbody>
-                            <?php
-                            foreach ($productImg as $item) :
+                            <?php foreach ($productImg as $product) :
                             ?>
                             <tr>
-                                <td><?= $item['id'] ?></td>
+                                <td><?= $product[0]['id'] ?></td>
                                 <td>
-                                    <img style="width: 70px;" src="<?= BASE_URL . $item['img_thumbnail'] ?>" alt="">
+                                    <img style="width: 70px; object-fit: cover;"
+                                        src="<?= BASE_URL . $product[0]['img_thumbnail'] ?>" alt="">
                                 </td>
                                 <td>
-                                    <img style="width: 70px;" src="<?= BASE_URL . $item['thumbnail'] ?>" alt="">
+                                    <div class="row">
+                                        <?php foreach ($product as $item) : ?>
+                                        <div class="col-2 mb-2">
+                                            <img style="width: 70px; object-fit: cover;"
+                                                src="<?= BASE_URL . $item['thumbnail'] ?>" alt="">
+                                        </div>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
