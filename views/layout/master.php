@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Glowing <?= $title ?? '- Thế giới thời trang' ?></title>
-    <link rel="shortcut icon" href="<?= $GLOBALS['setting']['favi-icon'] ?? null ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= BASE_URL ?>assets/admin/images/favicon.ico">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/client/vendors/lightgallery/css/lightgallery-bundle.min.css" />
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/client/vendors/fontawesome/css/all.min.css" />
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/client/vendors/animate/animate.min.css" />
