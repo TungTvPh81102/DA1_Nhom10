@@ -29,21 +29,23 @@
                         <tbody>
                             <?php foreach ($productImg as $product) :
                             ?>
-                                <tr>
-                                    <td><?= $product[0]['id'] ?></td>
-                                    <td>
-                                        <img style="width: 70px; object-fit: cover;" src="<?= BASE_URL . $product[0]['img_thumbnail'] ?>" alt="">
-                                    </td>
-                                    <td>
-                                        <div class="row">
-                                            <?php foreach ($product as $item) : ?>
-                                                <div class="col-2 mb-2">
-                                                    <img style="width: 70px; object-fit: cover;" src="<?= BASE_URL . $item['thumbnail'] ?>" alt="">
-                                                </div>
-                                            <?php endforeach; ?>
+                            <tr>
+                                <td><?= $product[0]['id'] ?></td>
+                                <td>
+                                    <img style="width: 70px; object-fit: cover;"
+                                        src="<?= BASE_URL . $product[0]['img_thumbnail'] ?>" alt="">
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <?php foreach ($product as $item) : ?>
+                                        <div class="col-2 mb-2">
+                                            <img style="width: 70px; object-fit: cover;"
+                                                src="<?= BASE_URL . $item['thumbnail'] ?>" alt="">
                                         </div>
-                                    </td>
-                                </tr>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </td>
+                            </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
