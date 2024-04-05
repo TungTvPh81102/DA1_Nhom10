@@ -467,6 +467,18 @@ function gallerys()
     $view = "products/galleryView";
     $script = "../scripts/data-table";
     $style = "../styles/data-table";
-    $gallerys = listAll('gallerys');
+    $gallerys = listAllGallerys();
+
+    $productImg = [];
+
+    foreach ($gallerys as $gallery) {
+        $productID = $gallery['id'];
+        $productImg[$productID][] = [
+            'id' => $gallery['id'],
+            'thumbnail' => $gallery['thumbnail'],
+            'img_thumbnail' => $gallery['img_thumbnail']
+        ];
+    }
+
     require_once PATH_VIEW_ADMIN  . "layout/master.php";
 }
