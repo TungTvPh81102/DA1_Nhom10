@@ -29,14 +29,15 @@
                                     placeholder="Nhập đường dẫn" value="<?= $settings['value'] ?? null ?>">
                             </div>
                         </div>
-                        <div class="d-flex flex-wrap gap-2">
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                Tạo mới
-                            </button>
-                            <a class="btn btn-info" href="?action=setting-form">Quay lại trang danh sách</a>
-                        </div>
-                    </form>
                 </div>
+
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">
+                        Tạo mới
+                    </button>
+                    <a class="btn btn-info" href="?action=setting-form">Quay lại trang danh sách</a>
+                </div>
+                </form>
 
             </div>
         </div>

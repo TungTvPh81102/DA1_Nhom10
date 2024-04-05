@@ -35,6 +35,7 @@ match ($action) {
 
 
     // CRUD SETTINGS
+    'setting-create' => settingCreate(),
     'setting-form' => settingShowForm(),
     'setting-save' => settingSave(),
 
