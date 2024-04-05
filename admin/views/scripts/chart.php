@@ -42,7 +42,7 @@
         ((options = {
                 chart: {
                     height: 360,
-                    type: "bar",
+                    type: "area",
                     stacked: true,
                     toolbar: {
                         show: !1

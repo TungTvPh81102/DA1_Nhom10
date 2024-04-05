@@ -38,7 +38,7 @@
                     </div>
                     <div class="d-flex">
                         <a style="margin-right: 10px;" href="<?= BASE_URL ?>?action=login-client" value="Login" class="btn btn-light w-100">Cancel</a>
-                        <button type="submit" value="Login" class="btn btn-primary w-100">Save</button>
+                        <button onclick="return confirm('Thay đổi mật khẩu thành công. Chọn OK để quay trở về trang chủ')" type="submit" class="btn btn-dark btn-hover-bg-primary btn-hover-border-primary px-11 mt-md-7 mt-4">Save</button>
                     </div>
                 </form>
             </div>
