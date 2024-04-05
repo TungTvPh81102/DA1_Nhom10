@@ -94,6 +94,12 @@
                         <span key="t-ecommerce">Quản lý cài đặt</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?= BASE_URL  ?>">
+                        <i class="bx bx-left-arrow-alt"></i>
+                        <span key="t-ecommerce">Trở về trang chủ</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
