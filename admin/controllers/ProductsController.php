@@ -473,8 +473,7 @@ function gallerys()
 
     foreach ($gallerys as $gallery) {
         $productID = $gallery['id'];
-        $productImg = [];
-        $productImg[$productId][] = [
+        $productImg[$productID][] = [
             'id' => $gallery['id'],
             'thumbnail' => $gallery['thumbnail'],
             'img_thumbnail' => $gallery['img_thumbnail']
