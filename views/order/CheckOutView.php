@@ -155,8 +155,8 @@
                     </div>
                     <div class="mb-7">
                         <label class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Zipcode</label>
-                        <input class="form-control" type="text" name="zipcode" id="" placeholder="Nhập mã bưu điện" value="<?= isset($_SESSION['dataOrder']) ? $_SESSION['dataOrder']['province'] : null ?>">
-                        <span class="text-danger"><?= formErrors('phone', $errorsMess) ?></span>
+                        <input class="form-control" type="text" name="zipcode" id="" placeholder="Nhập mã bưu điện" value="<?= isset($_SESSION['dataOrder']) ? $_SESSION['dataOrder']['zipcode'] : null ?>">
+                        <span class="text-danger"><?= formErrors('zipcode', $errorsMess) ?></span>
                     </div>
                     <div class="mb-7">
                         <div class="form-group">
