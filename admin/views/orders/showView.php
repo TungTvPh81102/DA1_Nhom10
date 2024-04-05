@@ -130,10 +130,12 @@
                                     </tr>
                                 <?php $count++;
                                 endforeach; ?>
-                                <td colspan="5" class="fw-bold">Giảm giá</td>
-                                <td colspan="3" class="text-center">
-                                    -<?= number_format($orderByCustomer['reduced'], 0) . ' đ' ?>
-                                </td>
+                                <?php if ($orderByCustomer['reduced'] > 0) { ?>
+                                    <td colspan="5" class="fw-bold">Giảm giá</td>
+                                    <td colspan="3" class="text-center">
+                                        -<?= number_format($orderByCustomer['reduced'], 0) . ' đ' ?>
+                                    </td>
+                                <?php } ?>
                             </tbody>
                             <td colspan="5" class="fw-bold">Tổng thanh toán</td>
                             <td class="text-center" colspan="3">
