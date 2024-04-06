@@ -73,9 +73,9 @@
                                     </textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="">Trạng thái</label>
-                                    <select class="form-select" name="status_delivery" id="">
-                                        <?php if ($orderByCustomer['status_delivery'] !== 0) { ?>
+                                    <label class="fw-bold" for="">Trạng thái</label>
+                                    <select class="form-select border-success" name="status_delivery" id="">
+                                        <?php if ($orderByCustomer['status_delivery'] == 1) { ?>
                                         <option <?= $orderByCustomer['status_delivery'] == 1 ? 'selected' : null ?>
                                             value="1">
                                             Chờ xác nhận</option>
@@ -91,10 +91,33 @@
                                         <option <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?>
                                             value="0">
                                             Hủy đơn hàng</option>
+                                        <?php } elseif ($orderByCustomer['status_delivery'] == 2) { ?>
+                                        <option <?= $orderByCustomer['status_delivery'] == 2 ? 'selected' : null ?>
+                                            value="2">
+                                            Đang chuẩn bị hàng</option>
+                                        <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?>
+                                            value="3">
+                                            Đang vận chuyển</option>
+                                        <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?>
+                                            value="4">Đã
+                                            giao thành công</option>
+                                        <?php } else if ($orderByCustomer['status_delivery'] == 3) { ?>
+                                        <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?>
+                                            value="3">
+                                            Đang vận chuyển</option>
+                                        <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?>
+                                            value="4">Đã
+                                            giao thành công</option>
+                                        <?php } else if ($orderByCustomer['status_delivery'] == 4) { ?>
+                                        <option disabled
+                                            <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?>
+                                            value="4">Đã
+                                            giao thành công</option>
                                         <?php } else { ?>
-                                        <option <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?>
-                                            value="0">
-                                            Hủy đơn hàng</option>
+                                        <option disabled
+                                            <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?>
+                                            value="0">Đã
+                                            hủy đơn</option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -137,7 +160,7 @@
                                             src="<?= BASE_URL . $order['p_img_thumbnail'] ?>" alt="">
                                     </td>
                                     <td>
-                                        <?php if ($order['ods_status_delivery'] == 4 || $order['ods_status_delivery'] == 3) { ?>
+                                        <?php if ($order['ods_status_delivery'] == 4 || $order['ods_status_delivery'] == 3 ||  $order['ods_status_delivery'] == 0) { ?>
                                         <input readonly style="width: 100px;" class="form-control text-center"
                                             type="number" name="quantity[<?= $order['od_id'] ?>]" id=""
                                             value="<?= $order['ods_quantity'] ?>">

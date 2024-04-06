@@ -31,23 +31,45 @@
                                 $total = 0;
                                 foreach ($orderDetail as $item) :
                                     $subTotal = $item['od_price'] * $item['ods_quantity'];
-                                    $total += $subTotal;
+                                    $sizeID = $item['od_size_id'];
+                                    $colorID = $item['od_color_id'];
+                                    $sizeName = getSizeName([$sizeID]);
+                                    $colorName = getColorName([$colorID]);
                                 ?>
-                                <tr>
-                                    <td>#<?= $item['p_code'] ?></td>
-                                    <td><?= $item['p_name'] ?></td>
-                                    <td>
-                                        <img style="width: 70px; object-fit: cover;"
-                                            src="<?= BASE_URL . $item['p_img_thumbnail'] ?>" alt="">
-                                    </td>
-                                    <td><?= $item['ods_quantity'] ?> </td>
-                                    <td><?= number_format($item['od_price'], 0) . ' đ' ?> </td>
-                                    <td><?= number_format($subTotal, 0) . ' đ'  ?></td>
-                                </tr>
+                                    <tr>
+                                        <td>#<?= $item['p_code'] ?></td>
+                                        <td>
+                                            <?= $item['p_name'] ?>
+                                            <div class="d-flex">
+                                                <?php foreach ($sizeName as $size) : ?>
+                                                    <p style="margin-right: 20px;">Size: <?= $size ?></p>
+                                                <?php endforeach; ?>
+                                                <?php foreach ($colorName as $color) : ?>
+                                                    <p>Size: <?= $color ?></p>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <img style="width: 70px; object-fit: cover;" src="<?= BASE_URL . $item['p_img_thumbnail'] ?>" alt="">
+                                        </td>
+                                        <td><?= $item['ods_quantity'] ?> </td>
+                                        <td><?= number_format($item['od_price'], 0) . ' đ' ?> </td>
+                                        <td><?= number_format($subTotal, 0) . ' đ'  ?></td>
+                                    </tr>
                                 <?php endforeach ?>
+                                <?php if ($orderByCustomer['reduced'] > 0) { ?>
+                                    <tr>
+                                        <td colspan="4" class="fw-bold">Discount</td>
+                                        <td class="text-center" colspan="2">
+                                            -<?= number_format($orderByCustomer['reduced'], 0) . ' đ' ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                                 <tr>
                                     <td colspan="4" class="fw-bold">Total</td>
-                                    <td class="text-center" colspan="2"><?= number_format($total, 0) . ' đ' ?></td>
+                                    <td class="text-center" colspan="2">
+                                        <?= number_format($orderByCustomer['total_money'], 0) . ' đ' ?>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
