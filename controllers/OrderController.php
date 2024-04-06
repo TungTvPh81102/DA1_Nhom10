@@ -2,7 +2,6 @@
 function orderCheckOut()
 {
     $view = 'order/CheckOutView';
-
     if (!empty($_POST) && !empty($_SESSION['cart'])) {
 
         // THANH TOÁN VNPAY
@@ -138,6 +137,8 @@ function orderCheckOut()
                         'product_id' => $item['id'],
                         'quantity' => $item['quantity'],
                         'price' => $item['discount'] ?: $item['price_regular'],
+                        'size_id' => $item['size'],
+                        'color_id' => $item['color'],
                         'coupon' => $_SESSION['coupon']['code'] ?? null,
                         'created_at' => date('Y-m-d H:i:s')
                     ];
@@ -190,6 +191,8 @@ function orderSuccess()
                     'product_id' => $item['id'],
                     'quantity' => $item['quantity'],
                     'price' => $item['discount'] ?: $item['price_regular'],
+                    'size_id' => $item['size'],
+                    'color_id' => $item['color'],
                     'coupon' => $_SESSION['coupon']['code'] ?? null,
                     'created_at' => date('Y-m-d H:i:s')
                 ];
@@ -295,6 +298,8 @@ function showOrder()
 {
     $id = $_GET['id'];
     $orderDetail = orderDetail($id);
+    $orderByCustomer = orderCustomer($id);
+
     if (empty($orderDetail)) {
         e404();
     }

@@ -20,11 +20,14 @@ if (!function_exists('orderDetail')) {
         try {
             $sql = "
                 SELECT 
+                p.id as p_id, 
                 p.name as p_name,
                 p.code as p_code,
                 p.img_thumbnail as p_img_thumbnail,
                 od.price as od_price,
                 od.quantity as ods_quantity,
+                od.size_id as od_size_id,
+                od.color_id as od_color_id,
                 ods.status_delivery as ods_status_delivery,
                 ods.total_money as ods_total_money
                 FROM `order_detail` od

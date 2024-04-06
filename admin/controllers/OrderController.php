@@ -285,12 +285,12 @@ function checkOutView()
 
             $GLOBALS['conn']->commit();
             echo '<script>alert("Thanh toán đơn hàng thành công!!! ?>")</script>';
-            redirect(BASE_URL_ADMIN . "?action=orders-list");
-            exit();
-        } catch (Exception $e) {
-            $GLOBALS['conn']->rollBack();
-            debug($e);
-        }
-    }
-    require_once PATH_VIEW_ADMIN . "layout/master.php";
+redirect(BASE_URL_ADMIN . "?action=orders-list");
+exit();
+} catch (Exception $e) {
+$GLOBALS['conn']->rollBack();
+debug($e);
+}
+}
+require_once PATH_VIEW_ADMIN . "layout/master.php";
 }
