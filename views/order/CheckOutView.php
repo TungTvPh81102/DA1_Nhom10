@@ -65,7 +65,7 @@
                                                             <p class="fw-500 mb-1 text-body-emphasis"><?= $item['name'] ?></p>
                                                             <p class="card-text">
                                                                 <span class="fs-15px fw-bold text-body-emphasis">
-                                                                    <?= number_format($item['discount'], 0) . ' đ' ?: number_format($item['price_regular'], 0) . ' đ' ?>
+                                                                    <?= $item['discount'] ? number_format($item['discount'], 0) . ' đ' : number_format($item['price_regular'], 0) . ' đ' ?>
                                                                     x<?= $item['quantity'] ?>
                                                                 </span>
                                                             </p>
@@ -120,12 +120,7 @@
             </div>
             <div class="col-lg-7 order-lg-first pe-xl-20 pe-lg-6">
                 <div class="checkout">
-                    <p class="mb-5">Returning customer?
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#signInModal">Click here to login</a>
-                    </p>
-                    <p>Have a coupon?
-                        <a data-bs-toggle="collapse" href="#collapsecoupon" role="button" aria-expanded="false" aria-controls="collapsecoupon">Click here to enter your code</a>
-                    </p>
+
                     <div class="collapse" id="collapsecoupon">
                         <div class="card mw-60 border-0">
                             <div class="card-body py-10 px-8 my-10 border">

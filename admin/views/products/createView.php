@@ -111,14 +111,13 @@
                                     <input id="price_regular" name="price_regular" type="number"
                                         class="form-control mb-3" placeholder="Nhập giá gốc"
                                         value="<?= isset($_SESSION['data']) ? $_SESSION['data']['price_regular'] : null ?>">
-                                    <span class="text-danger"><?= formErrors('name', $errorsMess) ?></span>
+                                    <span class="text-danger"><?= formErrors('price_regular', $errorsMess) ?></span>
                                 </div>
                                 <div class="mb-3">
                                     <label for="discount">Giảm giá</label>
-                                    <input id="discount" name="discount" type="number" class="form-control mb-3"
+                                    <input min="0" id="discount" name="discount" type="number" class="form-control mb-3"
                                         placeholder="Nhập giảm giá"
-                                        value="<?= isset($_SESSION['data']) ? $_SESSION['data']['discount'] : null ?>">
-                                    <span class="text-danger"><?= formErrors('name', $errorsMess) ?></span>
+                                        value="<?= isset($_SESSION['data']) ? $_SESSION['data']['discount'] : 0 ?>">
                                 </div>
                             </div>
                         </div>

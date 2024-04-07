@@ -308,7 +308,6 @@ function productDelete()
 
         deleteRow('products', $id);
 
-        // die();
         $GLOBALS['conn']->commit();
     } catch (Exception $e) {
 
@@ -316,18 +315,17 @@ function productDelete()
 
         debug($e);
     }
-
+    // XÓA HÌNH ẢNH ĐẠI DIỆN
     if (!empty($product['p_img_thumbnail']) && file_exists(PATH_UPLOAD . $product['p_img_thumbnail'])) {
         unlink(PATH_UPLOAD . $product['p_img_thumbnail']);
     }
 
-
-
     $arrayThumbnails = explode(',', $product['ga_thumbnail']);
-
-    // XÓA HÌNH ẢNH CỦA SẢN PHẨM TRÊN HỆ THỐNG
-    foreach ($arrayThumbnails as $thumbnail => $value) {
-        unlink($value);
+    // XÓA HÌNH ẢNH SẢN PHẨM
+    foreach ($arrayThumbnails as $thumbnail) {
+        if (!empty($thumbnail) && file_exists(PATH_UPLOAD . $thumbnail)) {
+            unlink(PATH_UPLOAD . $thumbnail);
+        }
     }
 
     $_SESSION['success'] = 'Xóa sản phẩm thành công';

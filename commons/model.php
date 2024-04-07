@@ -148,6 +148,22 @@ if (!function_exists('delete')) {
     }
 }
 
+if (!function_exists('numberRow')) {
+    function numberRow($tableName)
+    {
+        try {
+            $sql = "SELECT id FROM $tableName ORDER BY id DESC";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->execute();
+            $rowCount = $stmt->rowCount();
+            return $rowCount;
+        } catch (\Exception $e) {
+            debug($e);
+            return 0;
+        }
+    }
+}
+
 // CHECK UNQIQUE NAME CREATE
 if (!function_exists('checkUniqueName')) {
     function checkUniqueName($tableName, $name)
