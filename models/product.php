@@ -1,6 +1,6 @@
 <?php
 if (!function_exists('listAllProductShop')) {
-    function listAllProductShop($categoryID, $brandID, $orderBy = 'DESC')
+    function listAllProductShop($categoryID, $brandID, $priceRange, $orderBy = 'DESC')
     {
         try {
             $sql = "SELECT p.*, ca.name as ca_name, b.name as b_name FROM products p
@@ -16,6 +16,14 @@ if (!function_exists('listAllProductShop')) {
                 if (!empty($brandID)) {
                     $sql .= " AND b.id = :brandID";
                 }
+            }
+
+            if (!empty($priceRange)) {
+                match ($priceRange) {
+                    '1'  => $sql .= " AND p.price_regular < 100000",
+                    '2'  => $sql .= " AND p.price_regular BETWEEN 100000 AND 300000",
+                    '3'  =>  $sql .= " AND p.price_regular > 300000",
+                };
             }
 
             $sql .= " ORDER BY p.price_regular $orderBy";
@@ -107,22 +115,19 @@ if (!function_exists('similarProducts')) {
 }
 
 if (!function_exists('getSeachProduct')) {
-    function getSeachProduct($keyword)
+    function getSeachProduct($keyword, $orderBy = 'DESC')
     {
         try {
 
             $sql = "SELECT * FROM products";
 
-            $query = [];
-
             if ($keyword) {
-                $query[] = "(name like '%$keyword%' OR over_view like '%$keyword%' OR description like '%$keyword%' )";
+                $sql .= " WHERE (name LIKE '%$keyword%' OR over_view LIKE '%$keyword%' OR description LIKE '%$keyword%')";
             }
 
-            $queryStr = implode(' AND ', $query);
-
-
-            $sql .= ' WHERE ' . $queryStr;
+            if ($orderBy) {
+                $sql .= " ORDER BY price_regular $orderBy";
+            }
 
             $stmt = $GLOBALS['conn']->prepare($sql);
 

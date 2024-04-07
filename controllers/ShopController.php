@@ -12,16 +12,24 @@ function shopProduct()
     } else {
         $categoryID = 0;
     }
+
     if (isset($_GET['brand-id']) && ($_GET['brand-id'] > 0)) {
         $brandID = $_GET['brand-id'];
     } else {
         $brandID = 0;
     }
+
+    if (isset($_GET['price-range']) && !empty($_GET['price-range'])) {
+        $priceRange = $_GET['price-range'];
+    } else {
+        $priceRange = '';
+    }
+
     $orderBy = 'DESC';
     if (isset($_GET['orderby']) && in_array($_GET['orderby'], ['price-asc', 'price-desc'])) {
         $orderBy = ($_GET['orderby'] == 'price-asc') ? 'ASC' : 'DESC';
     }
-    $listProductShop = listAllProductShop($categoryID, $brandID, $orderBy);
+    $listProductShop = listAllProductShop($categoryID, $brandID, $priceRange, $orderBy);
     require_once PATH_VIEW . 'layout/master.php';
 }
 
@@ -64,5 +72,17 @@ function searchProduct()
 {
     $title = 'Search Results';
     $view = 'shop/ResultSearch';
+    if (isset($_GET['keyword']) && $_GET['keyword'] !== '') {
+        $keyword = $_GET['keyword'];
+    } else {
+        $keyword = '';
+    }
+
+    $orderBy = 'DESC';
+    if (isset($_GET['orderby']) && in_array($_GET['orderby'], ['price-asc', 'price-desc'])) {
+        $orderBy = ($_GET['orderby'] == 'price-asc') ? 'ASC' : 'DESC';
+    }
+
+    $searchProduct = getSeachProduct($keyword, $orderBy);
     require_once PATH_VIEW . 'layout/master.php';
 }

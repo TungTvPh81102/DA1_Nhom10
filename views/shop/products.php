@@ -56,11 +56,11 @@
     <div class="row">
         <div class="col-lg-9 order-lg-1">
             <div class="row gy-11">
-                <?php if (!empty($listProductShop)) {                ?>
+                <?php if (!empty($listProductShop)) {  ?>
                 <?php foreach ($listProductShop as $product) :
                         $percent = floor((($product['price_regular'] - $product['discount']) / $product['price_regular']) * 100);
                     ?>
-                <div class="col-sm-6  col-lg-4 col-xl-3">
+                <div class="col-sm-6 col-lg-4 col-xl-3">
                     <div class="card card-product grid-2 bg-transparent border-0 animate__fadeInUp animate__animated"
                         data-animate="fadeInUp">
                         <figure class="card-img-top position-relative mb-7 overflow-hidden">
@@ -129,7 +129,15 @@
                 </div>
                 <?php endforeach; ?>
                 <?php } else { ?>
-                <div class="alert alert-danger">Không có sản phẩm cần tìm</div>
+                <div class="col-lg-12 order-lg-1 text-center mt-20">
+                    <div id="main-content" class="col d-flex justify-content-center">
+                        <div class="content-404-wrapper">
+                            <h4 class="fs-3 mb-5">There are no products in the store</h4>
+                            <p class="mb-11">Sorry, but the page you are looking for is not found. Please, make sure
+                                you have typed the current URL.</p>
+                        </div>
+                    </div>
+                </div>
                 <?php } ?>
             </div>
             <nav class="d-flex mt-13 pt-3 justify-content-center animate__fadeInUp animate__animated"
@@ -222,36 +230,41 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- <div id="lynessa_price_filter-2" class="widget lynessa widget_price_filter">
-                        <h2 class="widgettitle">Filter By Price<span class="arrow"></span></h2>
-                        <form method="get" action="#">
-                            <div class="price_slider_wrapper">
-                                <div data-label-reasult="Range:" data-min="0" data-max="1000" data-unit="$" class="price_slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="100" data-value-max="800">
-                                    <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 100%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 100%;"></span>
-                                </div>
-                                <div class="price_slider_amount"><button type="submit" class="button">Filter</button>
-                                    <div class="price_label">Price: <span class="from">$0 </span> — <span class="to">$1000</span></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div> -->
-                    <!-- <div class="widget widget-product-price">
+
+                    <div class="widget widget-product-category">
                         <h4 class="widget-title fs-5 mb-6">Price</h4>
                         <ul class="navbar-nav navbar-nav-cate" id="widget_product_price">
                             <li class="nav-item">
-                                <a href="#" title="All" class="text-reset position-relative d-block text-decoration-none text-body-emphasis-hover d-flex align-items-center"><span class="text-hover-underline">All</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" title="$10 - $50" class="text-reset position-relative d-block text-decoration-none text-body-emphasis-hover d-flex align-items-center"><span class="text-hover-underline">$10 - $50</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" title="$50 - $100" class="text-reset position-relative d-block text-decoration-none text-body-emphasis-hover d-flex align-items-center"><span class="text-hover-underline">$50 - $100</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" title="$100 - $200" class="text-reset position-relative d-block text-decoration-none text-body-emphasis-hover d-flex align-items-center"><span class="text-hover-underline">$100 - $200</span></a>
+                                <a href="#" title="Skin care"
+                                    class="text-reset position-relative d-block text-decoration-none text-body-emphasis-hover d-flex align-items-center text-uppercase fs-14px fw-semibold letter-spacing-5 active">
+                                    <span class="text-hover-underline me-2">List pRICE</span>
+                                    <span data-bs-toggle="collapse" data-bs-target="#cat_skin-price"
+                                        class="caret flex-grow-1 d-flex align-items-center justify-content-end collapsed"><svg
+                                            class="icon">
+                                            <use xlink:href="#icon-plus"></use>
+                                        </svg></span> </a>
+                                <div id="cat_skin-price" class="collapse show" data-bs-parent="#widget_product_brand">
+                                    <ul class="navbar-nav nav-submenu ps-8">
+                                        <li class="nav-item">
+                                            <a href="<?= BASE_URL ?>?action=products&price-range=1"
+                                                class="text-reset position-relative d-block text-decoration-none text-body-emphasis-hover d-flex align-items-center"><span
+                                                    class="text-hover-underline">Smaller 100.000đ</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="<?= BASE_URL ?>?action=products&price-range=2"
+                                                class="text-reset position-relative d-block text-decoration-none text-body-emphasis-hover d-flex align-items-center"><span
+                                                    class="text-hover-underline">From 100.000đ To 300.000đ</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="<?= BASE_URL ?>?action=products&price-range=3"
+                                                class="text-reset position-relative d-block text-decoration-none text-body-emphasis-hover d-flex align-items-center"><span
+                                                    class="text-hover-underline">Larger 300.000đ</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
-                    </div> -->
+                    </div>
                 </aside>
             </div>
         </div>

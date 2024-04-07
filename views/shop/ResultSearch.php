@@ -44,21 +44,17 @@
                         </svg> Filter</a>
                 </li>
             </ul>
-            <ul class="list-unstyled d-flex align-items-center list-inline mb-0">
-                <li class="list-inline-item me-0 w-100 w-lg-auto">
-                    <select class="form-select w-100 w-lg-auto" name="orderby">
-                        <option selected="selected">Default sorting</option>
-                        <option value="popularity">Sort by popularity</option>
-                        <option value="rating">Sort by average rating</option>
-                        <option value="date">Sort by latest</option>
-                        <option value="price">Sort by price: low to high</option>
-                        <option value="price-desc">Sort by price: high to low</option>
+            <ul class="list-unstyled d-flex align-items-center list-inline mb-0 ms-auto">
+                <li class="list-inline-item me-0">
+                    <select class="form-select" name="orderby" onchange="location = this.value;">
+                        <option value="">Filter</option>
+                        <option value="<?= BASE_URL ?>?action=search-product&orderby=price-desc">Sort by price: high to
+                            low
+                        </option>
+                        <option value="<?= BASE_URL ?>?action=search-product&orderby=price-asc">Sort by price: low to
+                            high
+                        </option>
                     </select>
-                </li>
-                <li class="list-inline-item d-none d-lg-block ms-7">
-                    <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" class="btn btn-hover-border-primary btn-hover-bg-primary btn-hover-text-light btn-dark"><svg class="icon icon-SlidersHorizontal fs-4 me-4">
-                            <use xlink:href="#icon-SlidersHorizontal"></use>
-                        </svg> Filter</a>
                 </li>
             </ul>
         </div>
@@ -66,141 +62,57 @@
 </section>
 <div class="container container-xxl pb-16 pb-lg-18 mb-lg-3" data-animated-id="4">
     <div class="row gy-50px">
-        <?php if (isset($_GET['keyword']) && $_GET['keyword'] !== '') {
-            $keyword = $_GET['keyword'];
-            $searchProduct = getSeachProduct($keyword);
-            foreach ($searchProduct as $item) :
-                $percent = floor((($item['price_regular'] - $item['discount']) / $item['price_regular']) * 100);
+        <?php
+        foreach ($searchProduct as $item) :
+            $percent = floor((($item['price_regular'] - $item['discount']) / $item['price_regular']) * 100);
         ?>
-                <div class="col-sm-6 col-lg-4 col-xl-3">
-                    <div class="card card-product grid-1 bg-transparent border-0 animate__fadeInUp animate__animated" data-animate="fadeInUp">
-                        <figure class="card-img-top position-relative mb-7 overflow-hidden ">
-                            <a href="<?= BASE_URL ?>?action=product-detail&id=<?= $item['id'] ?>" class="hover-zoom-in d-block" title="Shield Conditioner" previewlistener="true">
-                                <img style="height: 345px; object-fit: cover;" src="<?= BASE_URL . $item['img_thumbnail'] ?>" data-src="<?= BASE_URL . $item['img_thumbnail'] ?>" class="img-fluid w-100 loaded" alt="Shield Conditioner" width="450" height="600" loading="lazy" data-ll-status="loaded">
-                            </a>
-                            <?php if ($item['discount'] > 0) { ?>
-                                <div class="position-absolute product-flash z-index-2 ">
-                                    <span class="badge badge-product-flash on-sale bg-primary"><?= '-' . $percent . '%' ?></span>
-                                </div>
-                            <?php } ?>
-                            <div class="position-absolute d-flex z-index-2 product-actions  horizontal"><a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm add_to_cart" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart">
-                                    <svg class="icon icon-shopping-bag-open-light">
-                                        <use xlink:href="#icon-shopping-bag-open-light"></use>
-                                    </svg>
-                                </a><a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Quick View">
-                                    <span data-bs-toggle="modal" data-bs-target="#quickViewModal" class="d-flex align-items-center justify-content-center">
-                                        <svg class="icon icon-eye-light">
-                                            <use xlink:href="#icon-eye-light"></use>
-                                        </svg>
-                                    </span>
-                                </a>
-                                <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Wishlist">
-                                    <svg class="icon icon-star-light">
-                                        <use xlink:href="#icon-star-light"></use>
-                                    </svg>
-                                </a>
-                                <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm compare" href="../shop/compare.html" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Compare" previewlistener="true">
-                                    <svg class="icon icon-arrows-left-right-light">
-                                        <use xlink:href="#icon-arrows-left-right-light"></use>
-                                    </svg>
-                                </a>
+            <div class="col-sm-6 col-lg-4 col-xl-3">
+                <div class="card card-product grid-1 bg-transparent border-0 animate__fadeInUp animate__animated" data-animate="fadeInUp">
+                    <figure class="card-img-top position-relative mb-7 overflow-hidden ">
+                        <a href="<?= BASE_URL ?>?action=product-detail&id=<?= $item['id'] ?>" class="hover-zoom-in d-block" title="Shield Conditioner" previewlistener="true">
+                            <img style="height: 345px; object-fit: cover;" src="<?= BASE_URL . $item['img_thumbnail'] ?>" data-src="<?= BASE_URL . $item['img_thumbnail'] ?>" class="img-fluid w-100 loaded" alt="Shield Conditioner" width="450" height="600" loading="lazy" data-ll-status="loaded">
+                        </a>
+                        <?php if ($item['discount'] > 0) { ?>
+                            <div class="position-absolute product-flash z-index-2 ">
+                                <span class="badge badge-product-flash on-sale bg-primary"><?= '-' . $percent . '%' ?></span>
                             </div>
-                        </figure>
-                        <div class="card-body text-center p-0">
-
-                            <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
-                                <?php if ($item['discount'] > 0) { ?>
-                                    <del class="text-body fw-500 me-4 fs-13px"><?= number_format($item['price_regular'], 0) . ' đ' ?></del>
-                                    <ins class="text-decoration-none"><?= number_format($item['discount'], 0) . ' đ' ?></ins></span>
-                        <?php } else { ?>
-                            <ins class="text-decoration-none"><?= number_format($item['price_regular'], 0) . ' đ' ?></ins></span>
                         <?php } ?>
-                        <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3"><a class="text-decoration-none text-reset" href="<?= BASE_URL ?>?action=product-detail&id=<?= $item['id'] ?>" previewlistener="true"><?= $item['name'] ?></a></h4>
-                        <div class="d-flex align-items-center fs-12px justify-content-center">
-                            <div class="rating">
-                                <div class="empty-stars">
-                                    <span class="star">
-                                        <svg class="icon star-o">
-                                            <use xlink:href="#star-o"></use>
-                                        </svg>
-                                    </span>
-                                    <span class="star">
-                                        <svg class="icon star-o">
-                                            <use xlink:href="#star-o"></use>
-                                        </svg>
-                                    </span>
-                                    <span class="star">
-                                        <svg class="icon star-o">
-                                            <use xlink:href="#star-o"></use>
-                                        </svg>
-                                    </span>
-                                    <span class="star">
-                                        <svg class="icon star-o">
-                                            <use xlink:href="#star-o"></use>
-                                        </svg>
-                                    </span>
-                                    <span class="star">
-                                        <svg class="icon star-o">
-                                            <use xlink:href="#star-o"></use>
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div class="filled-stars" style="width: 80%">
-                                    <span class="star">
-                                        <svg class="icon star text-primary">
-                                            <use xlink:href="#star"></use>
-                                        </svg>
-                                    </span>
-                                    <span class="star">
-                                        <svg class="icon star text-primary">
-                                            <use xlink:href="#star"></use>
-                                        </svg>
-                                    </span>
-                                    <span class="star">
-                                        <svg class="icon star text-primary">
-                                            <use xlink:href="#star"></use>
-                                        </svg>
-                                    </span>
-                                    <span class="star">
-                                        <svg class="icon star text-primary">
-                                            <use xlink:href="#star"></use>
-                                        </svg>
-                                    </span>
-                                    <span class="star">
-                                        <svg class="icon star text-primary">
-                                            <use xlink:href="#star"></use>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div><span class="reviews ms-4 pt-3 fs-14px">2947 reviews</span>
+                        <div class="position-absolute d-flex z-index-2 product-actions  horizontal"><a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm add_to_cart" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart">
+                                <svg class="icon icon-shopping-bag-open-light">
+                                    <use xlink:href="#icon-shopping-bag-open-light"></use>
+                                </svg>
+                            </a><a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Quick View">
+                                <span data-bs-toggle="modal" data-bs-target="#quickViewModal" class="d-flex align-items-center justify-content-center">
+                                    <svg class="icon icon-eye-light">
+                                        <use xlink:href="#icon-eye-light"></use>
+                                    </svg>
+                                </span>
+                            </a>
+                            <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Wishlist">
+                                <svg class="icon icon-star-light">
+                                    <use xlink:href="#icon-star-light"></use>
+                                </svg>
+                            </a>
+                            <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm compare" href="../shop/compare.html" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Compare" previewlistener="true">
+                                <svg class="icon icon-arrows-left-right-light">
+                                    <use xlink:href="#icon-arrows-left-right-light"></use>
+                                </svg>
+                            </a>
                         </div>
-                        </div>
+                    </figure>
+                    <div class="card-body text-center p-0">
+
+                        <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
+                            <?php if ($item['discount'] > 0) { ?>
+                                <del class="text-body fw-500 me-4 fs-13px"><?= number_format($item['price_regular'], 0) . ' đ' ?></del>
+                                <ins class="text-decoration-none"><?= number_format($item['discount'], 0) . ' đ' ?></ins></span>
+                    <?php } else { ?>
+                        <ins class="text-decoration-none"><?= number_format($item['price_regular'], 0) . ' đ' ?></ins></span>
+                    <?php } ?>
+                    <h4 class="product-title card-title text-primary-hover text-body-emphasis fs-15px fw-500 mb-3"><a class="text-decoration-none text-reset" href="<?= BASE_URL ?>?action=product-detail&id=<?= $item['id'] ?>" previewlistener="true"><?= $item['name'] ?></a></h4>
                     </div>
                 </div>
-            <?php endforeach;
-        } else { ?>
-            <div class="alert alert-danger">No search results found.</div>
-        <?php } ?>
-    </div>
-</div>
-<div class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" data-animated-id="3" aria-modal="true" role="dialog">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title fs-3" id="offcanvasExampleLabel">Filter</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <aside class="primary-sidebar ">
-            <div id="lynessa_product_search-2" class="widget lynessa widget_product_search">
-                <h4 class="widget-title fs-5 mb-6">Search</h4>
-                <form class="lynessa-product-search" action="" method="get">
-                    <div class="mb-3">
-                        <input name="keyword" placeholder="Product Name" type="text" class="form-control mb-7">
-                        <input name="min_price" placeholder="Min Price" type="text" class="form-control mb-7">
-                        <input name="max_price" placeholder="Max Price" type="text" class="form-control mb-7">
-                    </div>
-                    <button name="filter" class="btn btn-sm btn-info" type="submit">Fillter</button>
-                </form>
             </div>
-        </aside>
+        <?php endforeach; ?>
     </div>
 </div>
