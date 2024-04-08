@@ -13,8 +13,11 @@
         <div class="container">
             <?php if (isset($_GET['keyword'])) {
                 $keyword = $_GET['keyword'];
-            } ?>
-            <h2 class="mb-0"><?= $title  ?>: <?= $keyword ?></h2>
+            ?>
+                <h2 class="mb-0"><?= $title  ?>: <?= $keyword ?></h2>
+            <?php } else { ?>
+                <h2 class="mb-0">Search Results</h2>
+            <?php } ?>
         </div>
     </div>
 </section>

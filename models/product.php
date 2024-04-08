@@ -74,6 +74,20 @@ if (!function_exists('newArrivalsProduct')) {
     }
 }
 
+if (!function_exists('productSales')) {
+    function productSales()
+    {
+        try {
+            $sql = "SELECT * FROM products WHERE status = 1  AND discount > 0 ORDER BY discount DESC LIMIT 6";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
 if (!function_exists('countProducts')) {
     function countProducts()
     {

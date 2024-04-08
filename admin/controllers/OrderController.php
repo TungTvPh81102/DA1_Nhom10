@@ -132,6 +132,7 @@ function completePayment()
     $id = $_GET['order_id'];
     $orderDetail = showOrderDetail($id);
     $orderByCustomer = orderByCustomer($id);
+
     if (empty($orderDetail)) {
         e404();
     }
@@ -156,9 +157,6 @@ function addCart()
             'color' => $_POST['color'] ?? null,
             'created_at' => date('Y-m-d H:i:s')
         ];
-
-        // debug($_POST);
-
 
         if (!empty($_SESSION['user'])) {
             try {

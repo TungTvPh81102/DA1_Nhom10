@@ -4,8 +4,14 @@ function homeClient()
     $view = 'homeClient';
     $productHot = productHot();
     $productNewArrival = newArrivalsProduct();
+    $productSales = productSales();
     $imgThumbnail = imgThumbnail();
     $imgCover = imgCover();
+
+    $keyImgCover = array_column($imgCover, 'id');
+    $valueImgCover = array_column($imgCover, 'image');
+    $dataImgCover = array_combine($keyImgCover, $valueImgCover);
+
     if (isset($_GET['search'])) {
         $keyword = $_GET['keyword'];
         $searchProduct =  getSeachProduct($keyword);

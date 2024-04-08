@@ -323,7 +323,7 @@
                             <div class="icons-actions d-none d-xl-flex justify-content-end ms-auto fs-28px text-body-emphasis">
 
                                 <div class="px-5 d-none d-xl-inline-block">
-                                    <a class="position-relative lh-1 color-inherit text-decoration-none" href="shop/wishlist.html" previewlistener="true">
+                                    <a class="position-relative lh-1 color-inherit text-decoration-none" href="#" previewlistener="true">
                                         <svg class="icon icon-star-light">
                                             <use xlink:href="#icon-star-light"></use>
                                         </svg>
