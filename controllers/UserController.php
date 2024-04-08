@@ -14,7 +14,8 @@ function loginClient()
             if ($passwordHash) {
                 if ($user['status'] == 1) {
                     $_SESSION['user'] = $user;
-                    redirect(BASE_URL);
+                    echo '<script>alert("Đăng nhập thành công")</script>';
+                    echo '<script>window.location.href="' . BASE_URL . '"</script>';
                 } else {
                     $_SESSION['errors'] = 'Tài khoản chưa được kích hoạt vui lòng thử lại sau';
                 }
