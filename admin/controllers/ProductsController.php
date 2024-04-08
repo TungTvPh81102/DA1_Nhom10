@@ -244,7 +244,6 @@ function productUpdate()
                 insert('gallerys', $dataGallerys);
             }
 
-
             // Xử lý size và kích thước 
             deleteProductAttribute($id);
             $sizeID = $_POST['size_id'] ??  null;
@@ -263,8 +262,6 @@ function productUpdate()
                     insert('product_attribute', $dataProductAttribute);
                 }
             }
-
-            // die;
 
             $GLOBALS['conn']->commit();
         } catch (Exception $e) {

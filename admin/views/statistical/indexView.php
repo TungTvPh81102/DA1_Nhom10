@@ -160,11 +160,10 @@ $(document).ready(function() {
         autoclose: true // Tự động đóng khi chọn ngày
     });
 
-
     let chart = Morris.Area({
         element: 'myfirstchart',
         xkey: 'order_date',
-        parseTime: false,
+        parseTime: true,
         lineColors: ['#819C79', '#FC8710', '#FF6531'],
         ykeys: ['total', 'total_quantity'],
         labels: ['Tổng doanh thu', 'Số lượng']
@@ -198,6 +197,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
 <script>
 const xValues = ["Sản phẩm", "Danh mục", "Thương hiệu", "Người dùng"];
 const yValues = [

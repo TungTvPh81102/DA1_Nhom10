@@ -47,7 +47,7 @@ function bannerUpdate()
             'image' => get_file_upload('image') ?? $banner['image'],
             'classify' => $_POST['classify'] ?? $banner['classify'],
             'status' => $_POST['status'] ?? $banner['status'],
-            'created_at' => date('Y-m-d H:i:s')
+            'updated_at' => date('Y-m-d H:i:s')
         ];
 
         $imgThumbnail = $data['image'];
@@ -57,7 +57,8 @@ function bannerUpdate()
 
         update('banners', $id, $data);
         $_SESSION['success'] = 'Thao tác thành công';
-        redirect(BASE_URL_ADMIN . '??action=banner-update&id=' . $id);
+
+        redirect(BASE_URL_ADMIN . '?action=banner-update&id=' . $id);
     }
 
     $title = "Cập nhật Bìa quảng cáo: ";
@@ -83,7 +84,6 @@ function bannerDelete()
 {
     $id = $_GET['id'];
     $banner = showOne('banners', $id);
-
     if (empty($banner)) {
         e404();
     }
@@ -93,7 +93,6 @@ function bannerDelete()
 
         deleteRow('banners', $id);
 
-        // die();
         $GLOBALS['conn']->commit();
     } catch (Exception $e) {
 
@@ -104,16 +103,6 @@ function bannerDelete()
 
     if (!empty($banner['image']) && file_exists(PATH_UPLOAD . $banner['image'])) {
         unlink(PATH_UPLOAD . $banner['image']);
-    }
-
-
-
-    $arrayThumbnails = explode(',', $banner['image']);
-
-    foreach ($arrayThumbnails as $image => $value) {
-        // debug(file_exists(PATH_UPLOAD .  $value));
-
-        unlink($value);
     }
 
     $_SESSION['success'] = 'Xóa bìa quảng cáo thành công';
