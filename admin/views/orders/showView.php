@@ -149,12 +149,24 @@
                                 $count = 1;
                                 $total = 0;
                                 foreach ($orderDetail as $order) :
-                                    $subTotal = $order['od_price'] * $order['ods_quantity'];
+                                    $subTotal = $order['od_price'] * $order['od_quantity'];
+                                    $sizeID = getSizeName([$order['od_size_id']]);
+                                    $colorID = getColorName([$order['od_color_id']]);
                                 ?>
                                 <tr>
                                     <td><?= $count ?></td>
                                     <td><?= $order['p_code'] ?></td>
-                                    <td><?= $order['p_name'] ?></td>
+                                    <td>
+                                        <?= $order['p_name'] ?>
+                                        <div class="d-flex mt-2">
+                                            <?php foreach ($sizeID as $size) : ?>
+                                            <p style="margin-right: 10px;">Size: <?= $size ?></p>
+                                            <?php endforeach; ?>
+                                            <?php foreach ($colorID as $color) : ?>
+                                            <p>Màu: <?= $color ?></p>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </td>
                                     <td>
                                         <img class="rounded" style="width: 70px; height: 100%;"
                                             src="<?= BASE_URL . $order['p_img_thumbnail'] ?>" alt="">
@@ -163,11 +175,11 @@
                                         <?php if ($order['ods_status_delivery'] == 4 || $order['ods_status_delivery'] == 3 ||  $order['ods_status_delivery'] == 0) { ?>
                                         <input readonly style="width: 100px;" class="form-control text-center"
                                             type="number" name="quantity[<?= $order['od_id'] ?>]" id=""
-                                            value="<?= $order['ods_quantity'] ?>">
+                                            value="<?= $order['od_quantity'] ?>">
                                         <?php } else { ?>
                                         <input style="width: 100px;" class="form-control text-center" type="number"
                                             name="quantity[<?= $order['od_id'] ?>]" id=""
-                                            value="<?= $order['ods_quantity'] ?>">
+                                            value="<?= $order['od_quantity'] ?>">
                                         <?php } ?>
                                     </td>
                                     <td><?= number_format($order['od_price'], 0) . " VNĐ" ?></td>

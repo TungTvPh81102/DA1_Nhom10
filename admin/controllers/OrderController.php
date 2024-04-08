@@ -35,12 +35,10 @@ function orderDetail()
         e404();
     }
 
-
     $title = "Chi tiết đơn hàng: #" .  $orderByCustomer['order_code'];
     $view = "orders/showView";
     $script = "../scripts/data-table";
     $style = "../styles/data-table";
-
 
     if (!empty($_POST)) {
 
@@ -91,7 +89,7 @@ function orderDetail()
                     }
 
                     if ($newTotal !== $orderByCustomer['total_money']) {
-                        $data['total_money'] = $newTotal;
+                        $data['total_money'] = $newTotal - $orderByCustomer['reduced'];
                         update('orders', $id, $data);
                     }
                 } elseif ($checkStatus == 3 || $checkStatus == 4) { // Nếu là 3 hoặc 4 thì chỉ cho phép cập nhật trạng thái
@@ -285,12 +283,12 @@ function checkOutView()
 
             $GLOBALS['conn']->commit();
             echo '<script>alert("Thanh toán đơn hàng thành công!!! ?>")</script>';
-redirect(BASE_URL_ADMIN . "?action=orders-list");
-exit();
-} catch (Exception $e) {
-$GLOBALS['conn']->rollBack();
-debug($e);
-}
-}
-require_once PATH_VIEW_ADMIN . "layout/master.php";
+            redirect(BASE_URL_ADMIN . "?action=orders-list");
+            exit();
+        } catch (Exception $e) {
+            $GLOBALS['conn']->rollBack();
+            debug($e);
+        }
+    }
+    require_once PATH_VIEW_ADMIN . "layout/master.php";
 }
