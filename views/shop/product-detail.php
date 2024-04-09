@@ -97,7 +97,8 @@
                         ?>
                         <li class="list-inline-item me-4 fw-semibold">
                             <input value="<?= $value ?>" type="radio" id=<?= $value ?> name="size_id"
-                                class="product-info-size d-none" checked="">
+                                class="product-info-size d-none"
+                                <?= ($key === array_key_first($sizes)) ? 'checked' : '' ?>>
                             <label for="<?= $value ?>" class="fs-14px p-4 d-block rounded text-decoration-none border"
                                 data-var="<?= $value ?>"><?= $key ?></label>
                         </li>
@@ -112,7 +113,8 @@
                             ?>
                             <li class="list-inline-item list-color-product selected p-3">
                                 <input value="<?= $value ?>" type="radio" id="<?= $value ?>" name="color_id"
-                                    class="product-info-size d-none" checked="">
+                                    class="product-info-size d-none"
+                                    <?= ($key === array_key_first($colors)) ? 'checked' : '' ?>>
                                 <label style="background-color: <?= $key ?>" for="<?= $value ?>"
                                     class="d-block color-item border" data-var="<?= $key ?>"></label>
                             </li>
