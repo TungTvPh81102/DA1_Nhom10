@@ -104,6 +104,48 @@
                                         <input type="text" class="form-control" name="email" value="<?= $settings['email'] ?? null ?>">
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>About Content</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="about-content" value="<?= $settings['about-content'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Image Contact</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="img-contact" value="<?= $settings['img-contact'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mon – Fri</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="early-in-the-week" value="<?= $settings['early-in-the-week'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sat & Sun</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="weekends" value="<?= $settings['weekends'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Member 1</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="member1" value="<?= $settings['member1'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Member 2</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="member2" value="<?= $settings['member2'] ?? null ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Member 3</td>
+                                    <td>
+                                        <input type="text" class="form-control" name="member3" value="<?= $settings['member3'] ?? null ?>">
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <button type="submit" class="btn btn-success">Save</button>

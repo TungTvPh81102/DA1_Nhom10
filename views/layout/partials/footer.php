@@ -8,16 +8,16 @@
                     <a class="text-body-emphasis" href="#"><u class="fw-medium">Our Stores</u></a>
                 </p>
                 <p class="mb-0 lh-2">
-                    <strong class="text-body-emphasis">+391 (0)35 2568 4593</strong>
+                    <strong class="text-body-emphasis"><?= $GLOBALS['settings']['mobile'] ?></strong>
                     <br />
-                    hello@domain.com
+                    <?= $GLOBALS['settings']['email'] ?>
                 </p>
             </div>
             <div class="col-lg col-md-4 col-12 mb-11 mb-lg-0">
                 <h3 class="fs-5 mb-6">Useful links</h3>
                 <ul class="list-unstyled mb-0 fw-medium">
                     <li class="pt-3 mb-4">
-                        <a href="#" title="New Products" class="text-body">New Products</a>
+                        <a href="#ad" title="New Products" class="text-body">New Products</a>
                     </li>
                     <li class="pt-3 mb-4">
                         <a href="#" title="Best Sellers" class="text-body">Best Sellers</a>

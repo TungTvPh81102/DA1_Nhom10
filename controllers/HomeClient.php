@@ -30,6 +30,13 @@ function contact()
     require_once PATH_VIEW . 'layout/master.php';
 }
 
+function about()
+{
+    $view = 'about';
+    $title = 'About Glowing';
+    require_once PATH_VIEW . 'layout/master.php';
+}
+
 function privacyPolicy()
 {
     $view = 'privacyPolicy';

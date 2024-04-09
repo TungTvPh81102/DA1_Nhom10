@@ -31,151 +31,78 @@
                         <h6 class="m-0 font-weight-bold">Thông tin khách hàng</h6>
                     </div>
                     <div class="card-body">
-                        <?php if ($orderByCustomer['status_delivery'] == 1 || $orderByCustomer['status_delivery'] == 2) { ?>
-                            <div class="row" id="edit-form">
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="">Tên khách hàng</label>
-                                        <input name="full_name" class="form-control" type="text" value="<?= $orderByCustomer['full_name'] ?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Số điện thoại</label>
-                                        <input name="phone" class="form-control" type="text" value="<?= $orderByCustomer['phone'] ?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Country</label>
-                                        <input name="province" class="form-control" type="text" value="<?= $orderByCustomer['province'] ?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Address</label>
-                                        <input name="district" class="form-control" type="text" value="<?= $orderByCustomer['district'] ?>">
-                                    </div>
+                        <div class="row" id="edit-form">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="">Tên khách hàng</label>
+                                    <input <?= ($orderByCustomer['status_delivery'] == 1 || $orderByCustomer['status_delivery'] == 2) ?: 'disabled' ?> name="full_name" class="form-control" type="text" value="<?= $orderByCustomer['full_name'] ?>">
                                 </div>
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="">City</label>
-                                        <input name="ward" class="form-control" type="text" value="<?= $orderByCustomer['ward'] ?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Email</label>
-                                        <input name="email" class="form-control" type="text" value="<?= $orderByCustomer['email'] ?>">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Note</label>
-                                        <textarea style="resize: none;" name="note" class="form-control" id="example-textarea" rows="1" placeholder="Write some note..">
-                                    <?= $orderByCustomer['note'] ?>
-                                    </textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="fw-bold" for="">Trạng thái</label>
-                                        <select class="form-select border-success" name="status_delivery" id="">
-                                            <?php if ($orderByCustomer['status_delivery'] == 1) { ?>
-                                                <option <?= $orderByCustomer['status_delivery'] == 1 ? 'selected' : null ?> value="1">
-                                                    Chờ xác nhận</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 2 ? 'selected' : null ?> value="2">
-                                                    Đang chuẩn bị hàng</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?> value="3">
-                                                    Đang vận chuyển</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
-                                                    giao thành công</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?> value="0">
-                                                    Hủy đơn hàng</option>
-                                            <?php } elseif ($orderByCustomer['status_delivery'] == 2) { ?>
-                                                <option <?= $orderByCustomer['status_delivery'] == 2 ? 'selected' : null ?> value="2">
-                                                    Đang chuẩn bị hàng</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?> value="3">
-                                                    Đang vận chuyển</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
-                                                    giao thành công</option>
-                                            <?php } else if ($orderByCustomer['status_delivery'] == 3) { ?>
-                                                <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?> value="3">
-                                                    Đang vận chuyển</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
-                                                    giao thành công</option>
-                                            <?php } else if ($orderByCustomer['status_delivery'] == 4) { ?>
-                                                <option disabled <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
-                                                    giao thành công</option>
-                                            <?php } else { ?>
-                                                <option disabled <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?> value="0">Đã
-                                                    hủy đơn</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
+                                <div class="mb-3">
+                                    <label for="">Số điện thoại</label>
+                                    <input <?= ($orderByCustomer['status_delivery'] == 1 || $orderByCustomer['status_delivery'] == 2) ?: 'disabled' ?> name="phone" class="form-control" type="text" value="<?= $orderByCustomer['phone'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Phường / Xã</label>
+                                    <input <?= ($orderByCustomer['status_delivery'] == 1 || $orderByCustomer['status_delivery'] == 2) ?: 'disabled' ?> name="ward" class="form-control" type="text" value="<?= $orderByCustomer['ward'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Quận / Huyện</label>
+                                    <input <?= ($orderByCustomer['status_delivery'] == 1 || $orderByCustomer['status_delivery'] == 2) ?: 'disabled' ?> name="district" class="form-control" type="text" value="<?= $orderByCustomer['district'] ?>">
                                 </div>
                             </div>
-                        <?php } else { ?>
-                            <div class="row" id="edit-form">
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="">Tên khách hàng</label>
-                                        <input name="full_name" class="form-control" type="text" value="<?= $orderByCustomer['full_name'] ?>" readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Số điện thoại</label>
-                                        <input name="phone" class="form-control" type="text" value="<?= $orderByCustomer['phone'] ?>" readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Country</label>
-                                        <input name="province" class="form-control" type="text" value="<?= $orderByCustomer['province'] ?>" readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Address</label>
-                                        <input name="district" class="form-control" type="text" value="<?= $orderByCustomer['district'] ?>" readonly>
-                                    </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="">Tỉnh / Thành phố </label>
+                                    <input <?= ($orderByCustomer['status_delivery'] == 1 || $orderByCustomer['status_delivery'] == 2) ?: 'disabled' ?> name="province" class="form-control" type="text" value="<?= $orderByCustomer['province'] ?>">
                                 </div>
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="">City</label>
-                                        <input name="ward" class="form-control" type="text" value="<?= $orderByCustomer['ward'] ?>" readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Email</label>
-                                        <input name="email" class="form-control" type="text" value="<?= $orderByCustomer['email'] ?>" readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Note</label>
-                                        <textarea style="resize: none;" name="note" class="form-control" id="example-textarea" rows="1" placeholder="Write some note.." disabled>
+                                <div class="mb-3">
+                                    <label for="">Email</label>
+                                    <input <?= ($orderByCustomer['status_delivery'] == 1 || $orderByCustomer['status_delivery'] == 2) ?: 'disabled' ?> name="email" class="form-control" type="text" value="<?= $orderByCustomer['email'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Ghi chú</label>
+                                    <textarea <?= ($orderByCustomer['status_delivery'] == 1 || $orderByCustomer['status_delivery'] == 2) ?: 'disabled' ?> style="resize: none;" name="note" class="form-control" id="example-textarea" rows="1" placeholder="Write some note..">
                                     <?= $orderByCustomer['note'] ?>
                                     </textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="fw-bold" for="">Trạng thái</label>
-                                        <select class="form-select border-success" name="status_delivery" id="" disabled>
-                                            <?php if ($orderByCustomer['status_delivery'] == 1) { ?>
-                                                <option <?= $orderByCustomer['status_delivery'] == 1 ? 'selected' : null ?> value="1">
-                                                    Chờ xác nhận</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 2 ? 'selected' : null ?> value="2">
-                                                    Đang chuẩn bị hàng</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?> value="3">
-                                                    Đang vận chuyển</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
-                                                    giao thành công</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?> value="0">
-                                                    Hủy đơn hàng</option>
-                                            <?php } elseif ($orderByCustomer['status_delivery'] == 2) { ?>
-                                                <option <?= $orderByCustomer['status_delivery'] == 2 ? 'selected' : null ?> value="2">
-                                                    Đang chuẩn bị hàng</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?> value="3">
-                                                    Đang vận chuyển</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
-                                                    giao thành công</option>
-                                            <?php } else if ($orderByCustomer['status_delivery'] == 3) { ?>
-                                                <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?> value="3">
-                                                    Đang vận chuyển</option>
-                                                <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
-                                                    giao thành công</option>
-                                            <?php } else if ($orderByCustomer['status_delivery'] == 4) { ?>
-                                                <option disabled <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
-                                                    giao thành công</option>
-                                            <?php } else { ?>
-                                                <option disabled <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?> value="0">Đã
-                                                    hủy đơn</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="fw-bold" for="">Trạng thái</label>
+                                    <select class="form-select border-success" name="status_delivery" id="">
+                                        <?php if ($orderByCustomer['status_delivery'] == 1) { ?>
+                                            <option <?= $orderByCustomer['status_delivery'] == 1 ? 'selected' : null ?> value="1">
+                                                Chờ xác nhận</option>
+                                            <option <?= $orderByCustomer['status_delivery'] == 2 ? 'selected' : null ?> value="2">
+                                                Đang chuẩn bị hàng</option>
+                                            <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?> value="3">
+                                                Đang vận chuyển</option>
+                                            <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
+                                                giao thành công</option>
+                                            <option <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?> value="0">
+                                                Hủy đơn hàng</option>
+                                        <?php } elseif ($orderByCustomer['status_delivery'] == 2) { ?>
+                                            <option <?= $orderByCustomer['status_delivery'] == 2 ? 'selected' : null ?> value="2">
+                                                Đang chuẩn bị hàng</option>
+                                            <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?> value="3">
+                                                Đang vận chuyển</option>
+                                            <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
+                                                giao thành công</option>
+                                        <?php } else if ($orderByCustomer['status_delivery'] == 3) { ?>
+                                            <option <?= $orderByCustomer['status_delivery'] == 3 ? 'selected' : null ?> value="3">
+                                                Đang vận chuyển</option>
+                                            <option <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
+                                                giao thành công</option>
+                                        <?php } else if ($orderByCustomer['status_delivery'] == 4) { ?>
+                                            <option disabled <?= $orderByCustomer['status_delivery'] == 4 ? 'selected' : null ?> value="4">Đã
+                                                giao thành công</option>
+                                        <?php } else { ?>
+                                            <option disabled <?= $orderByCustomer['status_delivery'] == 0 ? 'selected' : null ?> value="0">Đã
+                                                hủy đơn</option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
-                        <?php } ?>
+                        </div>
+
                     </div>
                 </div>
                 <div class="card">

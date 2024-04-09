@@ -2,7 +2,10 @@
 if (!function_exists('listAllProductShop')) {
     function listAllProductShop($categoryID, $brandID, $priceRange, $orderBy = 'DESC')
     {
+
         try {
+
+
             $sql = "SELECT p.*, ca.name as ca_name, b.name as b_name FROM products p
             INNER JOIN categories ca ON ca.id = p.category_id
             INNER JOIN brands b ON b.id = p.brand_id WHERE 1
@@ -23,6 +26,7 @@ if (!function_exists('listAllProductShop')) {
                     '1'  => $sql .= " AND p.price_regular < 100000",
                     '2'  => $sql .= " AND p.price_regular BETWEEN 100000 AND 300000",
                     '3'  =>  $sql .= " AND p.price_regular > 300000",
+                    default => e404()
                 };
             }
 
@@ -45,6 +49,7 @@ if (!function_exists('listAllProductShop')) {
         }
     }
 }
+
 
 if (!function_exists('productHot')) {
     function productHot()

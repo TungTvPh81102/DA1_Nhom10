@@ -3,7 +3,7 @@
 
 <!-- OUR Feature products -->
 
-<section data-animated-id="6">
+<section id="ad" data-animated-id="6">
     <div class="container container-xxl pt-lg-19 pt-14 mb-2">
         <div class="mb-11 mt-2 pt-1 pb-3 text-center animate__fadeInUp animate__animated" data-animate="fadeInUp">
             <h2 class="mb-5">Customer Favorite Beauty Essentials</h2>
@@ -31,7 +31,6 @@
                 <div class="row gy-11">
                     <?php foreach ($productHot as $product) :
                         $percent = floor((($product['price_regular'] - $product['discount']) / $product['price_regular']) * 100);
-
                     ?>
                         <div class="col-md-4 col-sm-6 col-12">
                             <div class="card card-product grid-2 bg-transparent border-0 animate__fadeInUp animate__animated" data-animate="fadeInUp">
