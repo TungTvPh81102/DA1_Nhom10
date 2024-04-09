@@ -18,10 +18,8 @@
                     <div class="invoice-title">
                         <h4 class="float-end font-size-16">Order # <?= $orderByCustomer['order_code'] ?></h4>
                         <div class="auth-logo mb-4">
-                            <img src="<?= BASE_URL ?>assets/client/logo.png" alt="logo" class="auth-logo-dark"
-                                height="20">
-                            <img src="<?= BASE_URL ?>assets/client/logo.png" alt="logo" class="auth-logo-light"
-                                height="20">
+                            <img src="<?= BASE_URL ?>assets/client/logo.png" alt="logo" class="auth-logo-dark" height="20">
+                            <img src="<?= BASE_URL ?>assets/client/logo.png" alt="logo" class="auth-logo-light" height="20">
                         </div>
                     </div>
                     <hr>
@@ -75,11 +73,11 @@
                             <tbody>
                                 <?php $count = 1;
                                 foreach ($orderDetail as $order) : ?>
-                                <tr>
-                                    <td><?= $count ?></td>
-                                    <td><?= $order['p_name'] ?></td>
-                                    <td class="text-end"><?= number_format($order['od_price'], 0) . " VNĐ" ?></td>
-                                </tr>
+                                    <tr>
+                                        <td><?= $count ?></td>
+                                        <td><?= $order['p_name'] ?></td>
+                                        <td class="text-end"><?= number_format($order['od_price'], 0) . " VNĐ" ?></td>
+                                    </tr>
                                 <?php $count++;
                                 endforeach; ?>
                                 <tr>
@@ -88,15 +86,17 @@
                                     </td>
                                     <td class="border-0 text-end text-info">FREE</td>
                                 </tr>
-                                <tr>
-                                    <td colspan="2" class="border-0 text-end">
-                                        <strong>Giảm giá</strong>
-                                    </td>
-                                    <td class="border-0 text-end">
-                                        <h4 class="m-0">
-                                            - <?= number_format($orderByCustomer['reduced'], 0) . " VNĐ" ?></h4>
-                                    </td>
-                                </tr>
+                                <?php if ($orderByCustomer['reduced'] > 0) { ?>
+                                    <tr>
+                                        <td colspan="2" class="border-0 text-end">
+                                            <strong>Giảm giá</strong>
+                                        </td>
+                                        <td class="border-0 text-end">
+                                            <h4 class="m-0">
+                                                - <?= number_format($orderByCustomer['reduced'], 0) . " VNĐ" ?></h4>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                                 <tr>
                                     <td colspan="2" class="border-0 text-end">
                                         <strong>Tổng thanh toán</strong>
@@ -111,10 +111,8 @@
                     </div>
                     <div class="d-print-none">
                         <div class="float-end">
-                            <a href="javascript:window.print()" class="btn btn-success waves-effect waves-light me-1"><i
-                                    class="fa fa-print"></i></a>
-                            <a href="javascript: void(0);"
-                                class="btn btn-primary w-md waves-effect waves-light">Send</a>
+                            <a href="javascript:window.print()" class="btn btn-success waves-effect waves-light me-1"><i class="fa fa-print"></i></a>
+                            <a href="javascript: void(0);" class="btn btn-primary w-md waves-effect waves-light">Send</a>
                         </div>
                     </div>
                 </div>

@@ -148,9 +148,10 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="fs-4 pt-4 mb-7">Shipping Information</h4>
+                    <h4 class="fs-4 pt-4 mb-7">Thông tin vận chuyển</h4>
                     <div class="mb-7">
-                        <label class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Full name</label>
+                        <label class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Họ tên người
+                            nhận</label>
                         <div class="">
                             <input type="text" class="form-control" id="full-name" name="full_name"
                                 placeholder="Full Name"
@@ -160,7 +161,7 @@
                         </div>
                     </div>
                     <div class="mb-7">
-                        <label class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">info</label>
+                        <label class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Thông tin</label>
                         <div class="row">
                             <div class="col-md-6 mb-md-0 mb-7">
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Email"
@@ -206,14 +207,15 @@
                         </div>
                     </div>
                     <div class="mb-7">
-                        <label for="note" class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Note</label>
-                        <textarea placeholder="Note" class="form-control" name="note" id="" cols="30"
+                        <label for="note" class="mb-5 fs-13px letter-spacing-01 fw-semibold text-uppercase">Ghi
+                            chú</label>
+                        <textarea placeholder="Nhập ghi chú" class="form-control" name="note" id="" cols="30"
                             rows="4"></textarea>
                     </div>
                 </div>
                 <div class="checkout mb-7">
                     <div class="mb-7">
-                        <h4 class="fs-4 mb-8 mt-12 pt-lg-1">Payment Infomation</h4>
+                        <h4 class="fs-4 mb-8 mt-12 pt-lg-1">Phương thức thanh toán</h4>
                         <div class="tab-content mt-7">
                             <div class="tab-pane fade active show d-flex" id="paypal-tab" role="tabpanel">
                                 <div style="margin-right: 20px;" class="">

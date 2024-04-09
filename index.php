@@ -77,9 +77,14 @@ match ($action) {
     // CONTACT 
     'contact' => contact(),
 
+    // ABOUT
+    'about' => about(),
+
     // PRIVACY POLICY & TERMS OF USE
     'privacy-policy' => privacyPolicy(),
     'terms-of-use' => termsOfUse(),
+
+    default => e404()
 };
 
 

@@ -36,11 +36,11 @@
 
                 <tbody>
                     <?php foreach ($totalRevenue as $item) : ?>
-                    <tr>
-                        <td><?= $item['order_date'] ?></td>
-                        <td><?= $item['total_quantity'] ?></td>
-                        <td><?= number_format($item['total'], 0) . ' VNĐ' ?></td>
-                    </tr>
+                        <tr>
+                            <td><?= $item['order_date'] ?></td>
+                            <td><?= $item['total_quantity'] ?></td>
+                            <td><?= number_format($item['total'], 0) . ' VNĐ' ?></td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -74,7 +74,7 @@
                             <td><?= $item['name'] ?></td>
                             <td><?= $item['view'] ?></td>
                         </tr>
-                        <?php
+                    <?php
                                 $count++;
                             endforeach; ?>
                     </table>
@@ -100,7 +100,7 @@
                             <td><?= $item['p_name'] ?></td>
                             <td><?= $item['o_quantity'] ?></td>
                         </tr>
-                        <?php
+                    <?php
                                 $count++;
                             endforeach; ?>
                     </table>
@@ -128,15 +128,15 @@
                     $count = 1;
                     foreach ($productByCategory as $item) :
                     ?>
-                    <tr>
-                        <td><?= $count ?></td>
-                        <td><?= $item['c_name'] ?></td>
-                        <td><?= $item['b_name'] ?></td>
-                        <td><?= $item['quantity'] ?></td>
-                        <td><?= number_format($item['p_max_price'], 0) . ' VNĐ' ?></td>
-                        <td><?= number_format($item['p_min_price'], 0) . ' VNĐ' ?></td>
-                        <td><?= number_format($item['p_avg_price'], 0) . ' VNĐ' ?></td>
-                    </tr>
+                        <tr>
+                            <td><?= $count ?></td>
+                            <td><?= $item['c_name'] ?></td>
+                            <td><?= $item['b_name'] ?></td>
+                            <td><?= $item['quantity'] ?></td>
+                            <td><?= number_format($item['p_max_price'], 0) . ' VNĐ' ?></td>
+                            <td><?= number_format($item['p_min_price'], 0) . ' VNĐ' ?></td>
+                            <td><?= number_format($item['p_avg_price'], 0) . ' VNĐ' ?></td>
+                        </tr>
                     <?php
                         $count++;
                     endforeach;
@@ -152,83 +152,83 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script>
-link = '<?= BASE_URL_ADMIN . '?action=ajax-statistical' ?>';
-$(document).ready(function() {
-    $('#fromDay, #toDay').datepicker({
-        format: 'yyyy-mm-dd', // Định dạng ngày
-        language: 'vi', // Ngôn ngữ
-        autoclose: true // Tự động đóng khi chọn ngày
-    });
+    link = '<?= BASE_URL_ADMIN . '?action=ajax-statistical' ?>';
+    $(document).ready(function() {
+        $('#fromDay, #toDay').datepicker({
+            format: 'yyyy-mm-dd', // Định dạng ngày
+            language: 'vi', // Ngôn ngữ
+            autoclose: true // Tự động đóng khi chọn ngày
+        });
 
-    let chart = Morris.Area({
-        element: 'myfirstchart',
-        xkey: 'order_date',
-        parseTime: true,
-        lineColors: ['#819C79', '#FC8710', '#FF6531'],
-        ykeys: ['total', 'total_quantity'],
-        labels: ['Tổng doanh thu', 'Số lượng']
-    });
+        let chart = Morris.Area({
+            element: 'myfirstchart',
+            xkey: 'order_date',
+            parseTime: true,
+            lineColors: ['#819C79', '#FC8710', '#FF6531'],
+            ykeys: ['total', 'total_quantity'],
+            labels: ['Tổng doanh thu', 'Số lượng']
+        });
 
-    $('#myfirstchart').hide(); // Ẩn biểu đồ ban đầu
+        $('#myfirstchart').hide(); // Ẩn biểu đồ ban đầu
 
-    $('#fillter').change(function() {
-        var fromDay = $('#fromDay').val();
-        var toDay = $('#toDay').val();
-        $.ajax({
-            url: link,
-            method: 'POST',
-            dataType: 'json',
-            data: {
-                fromDay: fromDay,
-                toDay: toDay
-            },
-            success: function(data) {
-                console.log(data);
-                chart.setData(data);
-                $('#text').text(': ' + fromDay + ' đến ' + toDay);
-                if (data.length > 0) {
-                    $('#myfirstchart').show();
+        $('#fillter').change(function() {
+            var fromDay = $('#fromDay').val();
+            var toDay = $('#toDay').val();
+            $.ajax({
+                url: link,
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    fromDay: fromDay,
+                    toDay: toDay
+                },
+                success: function(data) {
+                    console.table(data);
                     chart.setData(data);
-                } else {
-                    $('#myfirstchart').hide();
+                    $('#text').text(': ' + fromDay + ' đến ' + toDay);
+                    if (data.length > 0) {
+                        $('#myfirstchart').show();
+                        chart.setData(data);
+                    } else {
+                        $('#myfirstchart').hide();
+                    }
                 }
-            }
-        })
+            })
+        });
     });
-});
 </script>
 
 <script>
-const xValues = ["Sản phẩm", "Danh mục", "Thương hiệu", "Người dùng"];
-const yValues = [
-    <?= $totalProducts['count'] ?>,
-    <?= $totalCategories['count'] ?>,
-    <?= $totalBrands['count'] ?>,
-    <?= $totalUsers['count'] ?>,
-];
+    const xValues = ["Sản phẩm", "Danh mục", "Thương hiệu", "Người dùng"];
+    const yValues = [
+        <?= $totalProducts['count'] ?>,
+        <?= $totalCategories['count'] ?>,
+        <?= $totalBrands['count'] ?>,
+        <?= $totalUsers['count'] ?>,
+    ];
 
-const barColors = [
-    'rgba(255, 99, 132, 1)',
-    'rgba(54, 162, 235, 1)',
-    'rgba(255, 206, 86, 1)',
-    'rgba(153, 102, 255, 1)',
-    'rgba(255, 159, 64, 1)',
+    const barColors = [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
 
-];
+    ];
 
-new Chart("myChart", {
-    type: "pie",
-    data: {
-        labels: xValues,
-        datasets: [{
-            backgroundColor: barColors,
-            data: yValues
-        }]
-    },
-    options: {
-        title: {
-            display: true,
+    new Chart("myChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+            }
         }
-    }
-});
+    });
 </script>

@@ -28,7 +28,7 @@ if (!function_exists('debug')) {
 if (!function_exists('e404')) {
     function e404()
     {
-        require_once '../e404.php';
+        require_once 'e404.php';
         die;
     }
 }
@@ -163,7 +163,7 @@ function setUpStatus($status)
             $show = '<span class="btn btn-success btn-sm waves-effect waves-light">Đã giao hàng thành công</span>';
             break;
         default:
-            $show = '<span class="btn btn-danger btn-sm waves-effect waves-light">Đã hủy hàng</span>';
+            $show = '<span class="btn btn-danger btn-sm waves-effect waves-light">Đã hủy đơn</span>';
             break;
     }
     return $show;

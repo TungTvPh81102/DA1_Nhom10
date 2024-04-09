@@ -300,11 +300,26 @@ function showOrder()
     $orderDetail = orderDetail($id);
     $orderByCustomer = orderCustomer($id);
 
-    if (empty($orderDetail)) {
+    if (empty($orderDetail) || empty($orderByCustomer)) {
         e404();
     }
+
     $view = 'order/OrderDetail';
     $title = 'Order Details';
+
+    if (!empty($_POST)) {
+        $data = [
+            'full_name' => $_POST['full_name'] ?? $orderByCustomer['full_name'],
+            'province' => $_POST['province'] ?? $orderByCustomer['province'],
+            'district' => $_POST['district'] ?? $orderByCustomer['district'],
+            'ward' => $_POST['ward'] ?? $orderByCustomer['ward'],
+            'phone' => $_POST['phone'] ?? $orderByCustomer['phone'],
+            'note' => $_POST['note'] ?? $orderByCustomer['note'],
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+        update('orders', $id, $data);
+        redirect(BASE_URL . '?action=show-order&id=' . $id);
+    }
 
     require_once PATH_VIEW . 'layout/master.php';
 }

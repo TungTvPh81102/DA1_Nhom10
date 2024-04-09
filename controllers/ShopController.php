@@ -36,8 +36,10 @@ function shopProduct()
 function shopProductDetail()
 {
     $id = $_GET['id'];
+
     $product = showOneProduct($id);
-    if (empty($product)) {
+
+    if (empty($product['p_id'])) {
         e404();
     }
 
@@ -57,7 +59,7 @@ function shopProductDetail()
 
     $quantity = array_column($productAttributes, 'pa_quantity');
     $quantity = implode(',', $quantity);
-    $thumbnails = explode(",", $product['ga_thumbnail']);
+    $thumbnails = $product['ga_thumbnail'] ? explode(",", $product['ga_thumbnail']) : [];
 
     // SẢN PHẨM CÙNG LOẠI
     $similarProducts =  similarProducts($product['c_id'], $id);
@@ -67,6 +69,7 @@ function shopProductDetail()
 
     require_once PATH_VIEW . 'layout/master.php';
 }
+
 
 function searchProduct()
 {

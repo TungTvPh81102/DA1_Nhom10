@@ -15,11 +15,11 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     <!-- Bootstrap Css -->
-    <link href="assets/admin/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="<?= BASE_URL ?>assets/admin/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/admin/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= BASE_URL ?>assets/admin/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="assets/admin/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="<?= BASE_URL ?>assets/admin/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <!-- App js -->
     <script src="assets/admin/js/plugin.js"></script>
 
@@ -35,7 +35,8 @@
                         <h1 class="display-2 fw-medium">4<i class="bx bx-buoy bx-spin text-primary display-3"></i>4</h1>
                         <h4 class="text-uppercase">Sorry, page not found</h4>
                         <div class="mt-5 text-center">
-                            <a class="btn btn-primary waves-effect waves-light" href="<?= BASE_URL ?>">Back to Home</a>
+                            <a class="btn btn-primary waves-effect waves-light" href="<?= BASE_URL_ADMIN ?>">Back to
+                                Dashboard</a>
                         </div>
                     </div>
                 </div>
