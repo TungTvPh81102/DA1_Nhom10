@@ -44,24 +44,6 @@
                                             <span class="badge badge-product-flash on-sale bg-primary"><?= '-' . $percent . '%' ?></span>
                                         </div>
                                     <?php endif; ?>
-                                    <div class="position-absolute d-flex z-index-2 product-actions  vertical"><a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Quick View">
-                                            <span data-bs-toggle="modal" data-bs-target="#quickViewModal" class="d-flex align-items-center justify-content-center">
-                                                <svg class="icon icon-eye-light">
-                                                    <use xlink:href="#icon-eye-light"></use>
-                                                </svg>
-                                            </span>
-                                        </a>
-                                        <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Add To Wishlist">
-                                            <svg class="icon icon-star-light">
-                                                <use xlink:href="#icon-star-light"></use>
-                                            </svg>
-                                        </a>
-                                        <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm compare sm" href="./shop/compare.html" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Compare" previewlistener="true">
-                                            <svg class="icon icon-arrows-left-right-light">
-                                                <use xlink:href="#icon-arrows-left-right-light"></use>
-                                            </svg>
-                                        </a>
-
                                 </figure>
                                 <div class="card-body text-center p-0">
                                     <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
@@ -129,24 +111,6 @@
                                         <span class="badge badge-product-flash on-sale bg-primary"><?= '-' . $percent . '%' ?></span>
                                     </div>
                                 <?php endif; ?>
-                                <div class="position-absolute d-flex z-index-2 product-actions  vertical"><a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Quick View">
-                                        <span data-bs-toggle="modal" data-bs-target="#quickViewModal" class="d-flex align-items-center justify-content-center">
-                                            <svg class="icon icon-eye-light">
-                                                <use xlink:href="#icon-eye-light"></use>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                    <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Add To Wishlist">
-                                        <svg class="icon icon-star-light">
-                                            <use xlink:href="#icon-star-light"></use>
-                                        </svg>
-                                    </a>
-                                    <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm compare sm" href="./shop/compare.html" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Compare" previewlistener="true">
-                                        <svg class="icon icon-arrows-left-right-light">
-                                            <use xlink:href="#icon-arrows-left-right-light"></use>
-                                        </svg>
-                                    </a>
-                                </div>
                             </figure>
                             <div class="card-body text-center p-0">
                                 <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
@@ -213,24 +177,6 @@
                                             <span class="badge badge-product-flash on-sale bg-primary"><?= '-' . $percent . '%' ?></span>
                                         </div>
                                     <?php endif; ?>
-                                    <div class="position-absolute d-flex z-index-2 product-actions  vertical"><a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm quick-view sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Quick View">
-                                            <span data-bs-toggle="modal" data-bs-target="#quickViewModal" class="d-flex align-items-center justify-content-center">
-                                                <svg class="icon icon-eye-light">
-                                                    <use xlink:href="#icon-eye-light"></use>
-                                                </svg>
-                                            </span>
-                                        </a>
-                                        <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm wishlist sm" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Add To Wishlist">
-                                            <svg class="icon icon-star-light">
-                                                <use xlink:href="#icon-star-light"></use>
-                                            </svg>
-                                        </a>
-                                        <a class="text-body-emphasis bg-body bg-dark-hover text-light-hover rounded-circle square product-action shadow-sm compare sm" href="./shop/compare.html" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Compare" previewlistener="true">
-                                            <svg class="icon icon-arrows-left-right-light">
-                                                <use xlink:href="#icon-arrows-left-right-light"></use>
-                                            </svg>
-                                        </a>
-
                                 </figure>
                                 <div class="card-body text-center p-0">
                                     <span class="d-flex align-items-center price text-body-emphasis fw-bold justify-content-center mb-3 fs-6">
