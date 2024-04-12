@@ -45,7 +45,6 @@ function shopProductDetail()
 
     $title = 'Chi tiết sản phẩm';
     $view = 'shop/product-detail';
-    $script = '../scripts/comments';
 
     $productAttributes = getProductAttributeForProduct($id);
 
