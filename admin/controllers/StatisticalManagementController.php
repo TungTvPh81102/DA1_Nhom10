@@ -15,8 +15,7 @@ function statisticalManagement()
     $totalUsers = statisticalOrders('users');
     $productView = statisProducts();
     $productByCategory = statisProductsByCategoryAndBrand();
-    $productByOrder = statisProductByOrder();
-
+    $productByOrder = statisticalProductByOrder();
     require_once PATH_VIEW_ADMIN . 'layout/master.php';
 }
 

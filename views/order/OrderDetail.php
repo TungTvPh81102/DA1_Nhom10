@@ -118,7 +118,7 @@
                         <tr>
                             <td colspan="4" class="fw-bold">Payment</td>
                             <td class="text-center" colspan="2">
-                                <?= $orderByCustomer['paymethod'] == 1 ? 'Thanh toán Online' : 'Thanh toán tiền mặt' ?>
+                                <?= $orderByCustomer['paymethod'] == 'vnpay' ? 'Thanh toán Online' : 'Thanh toán bằng tiền mặt' ?>
                             </td>
                         </tr>
                     </table>

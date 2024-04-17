@@ -24,11 +24,11 @@ function ordersList()
     require_once PATH_VIEW_ADMIN  . "layout/master.php";
 }
 
-
 function orderDetail()
 {
     $id = $_GET['order_id'];
     $orderDetail = showOrderDetail($id);
+    // debug($orderDetail);
     $orderByCustomer = orderByCustomer($id);
 
     if (empty($orderDetail)) {
@@ -77,12 +77,19 @@ function orderDetail()
                     $newTotal = 0;
                     foreach ($orderDetail as $order) {
                         $orderDetailID =  $order['od_id'];
+                        $currentQuantity = getQuantityOrder($orderDetailID);
                         // LẤY GIÁ THEO ORDER ID CỦA SẢN PHẨM
-                        $quantity = $_POST['quantity'][$orderDetailID] ?? $order['ods_quantity'];
+                        $quantity = $_POST['quantity'][$orderDetailID] ?? $order['od_quantity'];
                         $dataOrderDetail = [
                             'quantity' => $quantity,
                             'updated_at' => date('Y-m-d H:i:s')
                         ];
+
+                        if ($quantity !== $currentQuantity) {
+                            $newQuantity = $quantity - $currentQuantity;
+                            downProductQuantity($order['p_id'], $order['od_size_id'], $order['od_color_id'], $newQuantity);
+                        }
+
                         update('order_detail', $orderDetailID, $dataOrderDetail);
                         $subTotal = $order['od_price'] * $quantity;
                         $newTotal += $subTotal;
@@ -123,6 +130,9 @@ function orderDetail()
             exit();
         }
     }
+    $products = listAll('products');
+    $sizes = listAll('product_size');
+    $colors = listAll('product_color');
     require_once PATH_VIEW_ADMIN  . "layout/master.php";
 }
 

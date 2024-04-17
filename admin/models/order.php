@@ -36,6 +36,7 @@ if (!function_exists('showOrderDetail')) {
         try {
             $sql = "
                 SELECT 
+                p.id as p_id,
                 p.name as p_name,
                 p.code as p_code,
                 p.img_thumbnail as p_img_thumbnail,
@@ -44,6 +45,7 @@ if (!function_exists('showOrderDetail')) {
                 od.size_id as od_size_id,
                 od.color_id as od_color_id,
                 od.quantity as od_quantity,
+                ods.id as ods_id,
                 ods.status_delivery as ods_status_delivery
                 FROM `order_detail` od
                 INNER JOIN orders ods ON ods.id = od.order_id

@@ -75,12 +75,12 @@ if (!function_exists('statisProductsByCategoryAndBrand')) {
     }
 }
 
-if (!function_exists('statisProductByOrder')) {
-    function statisProductByOrder()
+if (!function_exists('statisticalProductByOrder')) {
+    function statisticalProductByOrder()
     {
         try {
             $sql = " SELECT p.name as p_name, SUM(o.quantity) as o_quantity FROM order_detail o
-            INNER JOIN products p ON p.id = o.product_id GROUP BY p.id, o.quantity LIMIT 10
+            INNER JOIN products p ON p.id = o.product_id GROUP BY p.name ORDER BY SUM(o.quantity) DESC LIMIT 10
             ";
             $stmt = $GLOBALS['conn']->prepare($sql);
             $stmt->execute();

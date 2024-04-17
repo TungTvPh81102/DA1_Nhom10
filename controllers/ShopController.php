@@ -39,6 +39,8 @@ function shopProductDetail()
 
     $product = showOneProduct($id);
 
+    // debug($product);
+
     if (empty($product['p_id'])) {
         e404();
     }
@@ -57,7 +59,9 @@ function shopProductDetail()
     $colors = array_combine($color, $colorID);
 
     $quantity = array_column($productAttributes, 'pa_quantity');
-    $quantity = implode(',', $quantity);
+    $countQuantity = array_combine($sizeID, $quantity);
+    $countQuantityJson = json_encode($countQuantity);
+
     $thumbnails = $product['ga_thumbnail'] ? explode(",", $product['ga_thumbnail']) : [];
 
     // SẢN PHẨM CÙNG LOẠI

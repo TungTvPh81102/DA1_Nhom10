@@ -159,27 +159,6 @@ if (!function_exists('getSeachProduct')) {
     }
 }
 
-if (!function_exists('downProductQuantity')) {
-    function downProductQuantity($productID, $sizeID, $colorID, $quantity)
-    {
-        try {
-
-            $sql = "
-            UPDATE product_attribute SET quantity = quantity - :quantity 
-            WHERE product_id = :product_id AND size_id = :size_id AND color_id = :color_id
-            ";
-            $stmt = $GLOBALS['conn']->prepare($sql);
-            $stmt->bindParam(":quantity", $quantity);
-            $stmt->bindParam(":product_id", $productID);
-            $stmt->bindParam(":size_id", $sizeID);
-            $stmt->bindParam(":color_id", $colorID);
-            $stmt->execute();
-        } catch (\Exception $e) {
-            debug($e);
-        }
-    }
-}
-
 if (!function_exists('updateViewProduct')) {
     function updateViewProduct($productID, $view)
     {
