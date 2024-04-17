@@ -108,6 +108,60 @@
                 <div class="card">
                     <div class="card-body py-3 d-flex justify-content-between align-items-center border-bottom">
                         <h6 class="m-0 font-weight-bold">Danh sách đơn hàng</h6>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="bx bx-add-to-queue"></i>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Thêm sản phẩm vào đơn hàng
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" name="order_id" id="order_id" value="<?= $orderByCustomer['id'] ?>">
+                                            <div class="mb-3">
+                                                <label class="control-label">Chọn sản phẩm</label>
+                                                <select id="product_id" name="product_id" class="form-control select2 mb-3">
+                                                    <option value="">---Chọn sản phẩm---</option>
+                                                    <?php foreach ($products as $item) : ?>
+                                                        <option value="<?= $item['id'] ?>"><?= $item['name'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="control-label">Chọn kích cỡ</label>
+                                                <select id="size_id" name="size_id" class="form-control select2 mb-3">
+                                                    <option value="">---Chọn kích cỡ---</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="control-label">Chọn màu</label>
+                                                <select id="color_id" name="color_id" class="form-control select2 mb-3">
+                                                    <option value="">---Chọn màu---</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="control-label">Nhập số lượng</label>
+                                                <input class="form-control" type="number" name="quantity" id="quantity" value="1" min="1">
+                                            </div>
+                                            <div id="priceData" class="mb-3">
+                                                <label class="control-label">Giá</label>
+                                                <input class="form-control" type="text" name="price" id="price">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" id="submitForm" class="btn btn-primary">Thêm</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered dt-responsive nowrap w-100">
@@ -130,8 +184,18 @@
                                 $total = 0;
                                 foreach ($orderDetail as $order) :
                                     $subTotal = $order['od_price'] * $order['od_quantity'];
-                                    $sizeID = getSizeName([$order['od_size_id']]);
-                                    $colorID = getColorName([$order['od_color_id']]);
+                                    $sizeName = getSizeName([$order['od_size_id']]);
+                                    $colorName = getColorName([$order['od_color_id']]);
+
+                                    $productAttributes = getProductAttributeForProduct($order['p_id']);
+                                    $sizeID = array_column($productAttributes, 'ps_id');
+                                    $quantity = array_column($productAttributes, 'pa_quantity');
+                                    $countQuantity = array_combine($sizeID, $quantity);
+                                    if ($countQuantity[$order['od_size_id']] > 0) {
+                                        $readonlyQuantityInput = '';
+                                    } else {
+                                        $readonlyQuantityInput = 'readonly';
+                                    }
                                 ?>
                                     <tr>
                                         <td><?= $count ?></td>
@@ -139,10 +203,10 @@
                                         <td>
                                             <?= $order['p_name'] ?>
                                             <div class="d-flex mt-2">
-                                                <?php foreach ($sizeID as $size) : ?>
+                                                <?php foreach ($sizeName as $size) : ?>
                                                     <p style="margin-right: 10px;">Size: <?= $size ?></p>
                                                 <?php endforeach; ?>
-                                                <?php foreach ($colorID as $color) : ?>
+                                                <?php foreach ($colorName as $color) : ?>
                                                     <p>Màu: <?= $color ?></p>
                                                 <?php endforeach; ?>
                                             </div>
@@ -152,9 +216,9 @@
                                         </td>
                                         <td>
                                             <?php if ($order['ods_status_delivery'] == 4 || $order['ods_status_delivery'] == 3 ||  $order['ods_status_delivery'] == 0) { ?>
-                                                <input readonly style="width: 100px;" class="form-control text-center" type="number" name="quantity[<?= $order['od_id'] ?>]" id="" value="<?= $order['od_quantity'] ?>">
+                                                <input readonly min="1" style="width: 100px;" class="form-control text-center" type="number" name="quantity[<?= $order['od_id'] ?>]" id="" value="<?= $order['od_quantity'] ?>">
                                             <?php } else { ?>
-                                                <input style="width: 100px;" class="form-control text-center" type="number" name="quantity[<?= $order['od_id'] ?>]" id="" value="<?= $order['od_quantity'] ?>">
+                                                <input min="1" <?= $readonlyQuantityInput ?> style="width: 100px;" class="form-control text-center" type="number" name="quantity[<?= $order['od_id'] ?>]" id="" value="<?= $order['od_quantity'] ?>">
                                             <?php } ?>
                                         </td>
                                         <td><?= number_format($order['od_price'], 0) . " VNĐ" ?></td>
@@ -183,3 +247,79 @@
         </form>
     </div> <!-- end row -->
 </div>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script>
+    $(document).ready(function() {
+        link = '<?= BASE_URL_ADMIN . '?action=ajax-product' ?>';
+        console.log(link);
+        $('#priceData').hide();
+        $('#product_id').on('change', function() {
+            let productID = $(this).val();
+            if (productID) {
+                $.ajax({
+                    url: link,
+                    method: 'GET',
+                    dataType: 'json',
+                    data: {
+                        id: productID
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        $('#size_id').empty();
+                        $('#color_id').empty();
+                        $.each(data.sizes, function(index, size) {
+                            $('#size_id').append($('<option>', {
+                                value: size.id,
+                                text: size.name
+                            }));
+                        });
+                        $.each(data.colors, function(index, color) {
+                            $('#color_id').append($('<option>', {
+                                value: color.id,
+                                text: color.name
+                            }));
+                        });
+                        $('#priceData').show();
+                        $('#price').val(data.price);
+                    }
+                });
+            } else {
+                $('#size_id').empty();
+                $('#color_id').empty();
+            }
+        });
+        $('#submitForm').on('click', function() {
+            // event.preventDefault();
+
+            const orderID = $('#order_id').val();
+            const productID = $('#product_id').val();
+            const sizeID = $('#size_id').val();
+            const colorID = $('#color_id').val();
+            const quantity = $('#quantity').val();
+            const price = $('#price').val();
+
+            const data = {
+                order_id: `${orderID}`,
+                product_id: `${productID}`,
+                size_id: `${sizeID}`,
+                color_id: `${colorID}`,
+                price: `${price}`,
+                quantity: `${quantity}`,
+            };
+
+            if (data) {
+                $.ajax({
+                    url: link,
+                    method: 'POST',
+                    dataType: 'json',
+                    data: data,
+                    success: function(response) {
+                        // Handle success response
+                        console.log('POST request successful');
+                        console.log(response);
+                    },
+                });
+            }
+        });
+    });
+</script>

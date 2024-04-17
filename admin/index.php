@@ -108,6 +108,8 @@ match ($action) {
     'statistical-management' => statisticalManagement(),
     'ajax-statistical' => statisticalAjax(),
 
+    'ajax-product' => ajaxProduct(),
+
     default => e404()
 };
 

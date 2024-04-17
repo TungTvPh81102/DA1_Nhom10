@@ -346,3 +346,44 @@ if (!function_exists('getColorName')) {
         }
     }
 }
+
+if (!function_exists('getQuantityOrder')) {
+    function getQuantityOrder($orderDetailID)
+    {
+        try {
+            $sql = "
+            SELECT quantity FROM order_detail WHERE id = :order_detail_id
+            ";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(":order_detail_id", $orderDetailID);
+            $stmt->execute();
+            $result = $stmt->fetch();
+            if ($result) {
+                return $result['quantity'];
+            }
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
+
+
+if (!function_exists('downProductQuantity')) {
+    function downProductQuantity($productID, $sizeID, $colorID, $quantity)
+    {
+        try {
+            $sql = "
+        UPDATE product_attribute SET quantity = quantity - :quantity
+        WHERE product_id = :product_id AND size_id = :size_id AND color_id = :color_id
+        ";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(":quantity", $quantity);
+            $stmt->bindParam(":product_id", $productID);
+            $stmt->bindParam(":size_id", $sizeID);
+            $stmt->bindParam(":color_id", $colorID);
+            $stmt->execute();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    }
+}
